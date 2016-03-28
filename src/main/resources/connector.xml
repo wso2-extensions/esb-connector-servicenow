@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector>
+    <component name="servicenow" package="org.wso2.carbon.connector">
+        <dependency component="config"/>
+        <dependency component="table"/>
+        <dependency component="importSet"/>
+        <dependency component="aggregate"/>
+        <description>WSO2 Connector for ServiceNow REST API.</description>
+    </component>
+</connector>

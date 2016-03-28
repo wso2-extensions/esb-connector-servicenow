@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright (c) 2005-2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+
+   WSO2 Inc. licenses this file to you under the Apache License,
+   Version 2.0 (the "License"); you may not use this file except
+   in compliance with the License.
+   You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied. See the License for the
+   specific language governing permissions and limitations
+   under the License.
+-->
+
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="servicenow"
+       transports="https,http"
+       statistics="disable"
+       trace="disable"
+       startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="serviceNowInstanceURL" expression="json-eval($.serviceNowInstanceURL)"/>
+            <property name="username" expression="json-eval($.username)"/>
+            <property name="password" expression="json-eval($.password)"/>
+            <property name="tableName" expression="json-eval($.tableName)"/>
+            <property name="sysId" expression="json-eval($.sysId)"/>
+            <property name="tableNameStaging" expression="json-eval($.tableNameStaging)"/>
+            <property name="sysIdStaging" expression="json-eval($.sysIdStaging)"/>
+            <property name="sysparmQuery" expression="json-eval($.sysparmQuery)"/>
+            <property name="sysparmDisplayValue" expression="json-eval($.sysparmDisplayValue)"/>
+            <property name="sysparmFields" expression="json-eval($.sysparmFields)"/>
+            <property name="sysparmView" expression="json-eval($.sysparmView)"/>
+            <property name="sysparmLimit" expression="json-eval($.sysparmLimit)"/>
+            <property name="sysparmOffset" expression="json-eval($.sysparmOffset)"/>
+            <property name="sysparmExcludeReferenceLink" expression="json-eval($.sysparmExcludeReferenceLink)"/>
+            <property name="sysparmReadReplicaCategory" expression="json-eval($.sysparmReadReplicaCategory)"/>
+            <property name="sysparmGroupBy" expression="json-eval($.sysparmGroupBy)"/>
+            <property name="sysparmHaving" expression="json-eval($.sysparmHaving)"/>
+            <property name="sysparmCount" expression="json-eval($.sysparmCount)"/>
+            <property name="sysparmOrderBy" expression="json-eval($.sysparmOrderBy)"/>
+            <property name="KeyValuePairs" expression="json-eval($.KeyValuePairs)"/>
+            <property name="sysparmInputDisplayValue" expression="json-eval($.sysparmInputDisplayValue)"/>
+            <property name="number" expression="json-eval($.number)"/>
+            <property name="shortDescription" expression="json-eval($.shortDescription)"/>
+            <property name="active" expression="json-eval($.active)"/>
+            <property name="approval" expression="json-eval($.approval)"/>
+            <property name="category" expression="json-eval($.category)"/>
+            <property name="contactType" expression="json-eval($.contactType)"/>
+            <property name="serialNumber" expression="json-eval($.serialNumber)"/>
+            <property name="cpuCount" expression="json-eval($.cpuCount)"/>
+            <property name="manufacturer" expression="json-eval($.manufacturer)"/>
+            <property name="name" expression="json-eval($.name)"/>
+            <property name="operatingSystem" expression="json-eval($.operatingSystem)"/>
+            <property name="diskSpace" expression="json-eval($.diskSpace)"/>
+            <property name="ram" expression="json-eval($.ram)"/>
+            <property name="apiColumns" expression="json-eval($.apiColumns)"/>
+            <servicenow.init>
+                <serviceNowInstanceURL>{$ctx:serviceNowInstanceURL}</serviceNowInstanceURL>
+                <username>{$ctx:username}</username>
+                <password>{$ctx:password}</password>
+            </servicenow.init>
+            <switch source="get-property('transport', 'Action')">
+                <case regex="urn:getRecords">
+                    <servicenow.getRecords>
+                        <tableName>{$ctx:tableName}</tableName>
+                        <sysparmQuery>{$ctx:sysparmQuery}</sysparmQuery>
+                        <sysparmDisplayValue>{$ctx:sysparmDisplayValue}</sysparmDisplayValue>
+                        <sysparmFields>{$ctx:sysparmFields}</sysparmFields>
+                        <sysparmView>{$ctx:sysparmView}</sysparmView>
+                        <sysparmLimit>{$ctx:sysparmLimit}</sysparmLimit>
+                        <sysparmOffset>{$ctx:sysparmOffset}</sysparmOffset>
+                        <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
+                        <sysparmReadReplicaCategory>{$ctx:sysparmReadReplicaCategory}</sysparmReadReplicaCategory>
+                        <KeyValuePairs>{$ctx:KeyValuePairs}</KeyValuePairs>
+                    </servicenow.getRecords>
+                </case>
+                <case regex="urn:getRecordById">
+                    <servicenow.getRecordById>
+                        <tableName>{$ctx:tableName}</tableName>
+                        <sysId>{$ctx:sysId}</sysId>
+                        <sysparmDisplayValue>{$ctx:sysparmDisplayValue}</sysparmDisplayValue>
+                        <sysparmFields>{$ctx:sysparmFields}</sysparmFields>
+                        <sysparmView>{$ctx:sysparmView}</sysparmView>
+                        <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
+                    </servicenow.getRecordById>
+                </case>
+                <case regex="urn:deleteRecordById">
+                    <servicenow.deleteRecordById>
+                        <tableName>{$ctx:tableName}</tableName>
+                        <sysId>{$ctx:sysId}</sysId>
+                    </servicenow.deleteRecordById>
+                </case>
+                <case regex="urn:patchRecordById">
+                    <servicenow.patchRecordById>
+                        <sysId>{$ctx:sysId}</sysId>
+                        <tableName>{$ctx:tableName}</tableName>
+                        <sysparmDisplayValue>{$ctx:sysparmDisplayValue}</sysparmDisplayValue>
+                        <sysparmFields>{$ctx:sysparmFields}</sysparmFields>
+                        <sysparmView>{$ctx:sysparmView}</sysparmView>
+                        <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
+                        <sysparmInputDisplayValue>{$ctx:sysparmInputDisplayValue}</sysparmInputDisplayValue>
+                        <number>{$ctx:number}</number>
+                        <shortDescription>{$ctx:shortDescription}</shortDescription>
+                        <active>{$ctx:active}</active>
+                        <approval>{$ctx:approval}</approval>
+                        <category>{$ctx:category}</category>
+                        <contactType>{$ctx:contactType}</contactType>
+                        <apiColumns>{$ctx:apiColumns}</apiColumns>
+                    </servicenow.patchRecordById>
+                </case>
+                <case regex="urn:postRecord">
+                    <servicenow.postRecord>
+                        <tableName>{$ctx:tableName}</tableName>
+                        <sysparmDisplayValue>{$ctx:sysparmDisplayValue}</sysparmDisplayValue>
+                        <sysparmFields>{$ctx:sysparmFields}</sysparmFields>
+                        <sysparmView>{$ctx:sysparmView}</sysparmView>
+                        <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
+                        <sysparmInputDisplayValue>{$ctx:sysparmInputDisplayValue}</sysparmInputDisplayValue>
+                        <number>{$ctx:number}</number>
+                        <shortDescription>{$ctx:shortDescription}</shortDescription>
+                        <active>{$ctx:active}</active>
+                        <approval>{$ctx:approval}</approval>
+                        <category>{$ctx:category}</category>
+                        <contactType>{$ctx:contactType}</contactType>
+                        <apiColumns>{$ctx:apiColumns}</apiColumns>
+                    </servicenow.postRecord>
+                </case>
+                <case regex="urn:putRecordById">
+                    <servicenow.putRecordById>
+                        <sysId>{$ctx:sysId}</sysId>
+                        <tableName>{$ctx:tableName}</tableName>
+                        <sysparmDisplayValue>{$ctx:sysparmDisplayValue}</sysparmDisplayValue>
+                        <sysparmFields>{$ctx:sysparmFields}</sysparmFields>
+                        <sysparmView>{$ctx:sysparmView}</sysparmView>
+                        <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
+                        <sysparmInputDisplayValue>{$ctx:sysparmInputDisplayValue}</sysparmInputDisplayValue>
+                        <number>{$ctx:number}</number>
+                        <shortDescription>{$ctx:shortDescription}</shortDescription>
+                        <active>{$ctx:active}</active>
+                        <approval>{$ctx:approval}</approval>
+                        <category>{$ctx:category}</category>
+                        <contactType>{$ctx:contactType}</contactType>
+                        <apiColumns>{$ctx:apiColumns}</apiColumns>
+                    </servicenow.putRecordById>
+                </case>
+                <case regex="urn:getAggregateRecord">
+                    <servicenow.getAggregateRecord>
+                        <tableName>{$ctx:tableName}</tableName>
+                        <sysparmAvgFields>{$ctx:sysparmAvgFields}</sysparmAvgFields>
+                        <sysparmMinFields>{$ctx:sysparmMinFields}</sysparmMinFields>
+                        <sysparmMaxFields>{$ctx:sysparmMaxFields}</sysparmMaxFields>
+                        <sysparmCount>{$ctx:sysparmCount}</sysparmCount>
+                        <sysparmSumFields>{$ctx:sysparmSumFields}</sysparmSumFields>
+                    </servicenow.getAggregateRecord>
+                </case>
+                <case regex="urn:getRecordsStagingTable">
+                    <servicenow.getRecordsStagingTable>
+                        <tableNameStaging>{$ctx:tableNameStaging}</tableNameStaging>
+                        <sysIdStaging>{$ctx:sysIdStaging}</sysIdStaging>
+                    </servicenow.getRecordsStagingTable>
+                </case>
+                <case regex="urn:postRecordStagingTable">
+                    <servicenow.postRecordStagingTable>
+                        <tableNameStaging>{$ctx:tableNameStaging}</tableNameStaging>
+                        <serialNumber>{$ctx:serialNumber}</serialNumber>
+                        <cpuCount>{$ctx:cpuCount}</cpuCount>
+                        <manufacturer>{$ctx:manufacturer}</manufacturer>
+                        <name>{$ctx:name}</name>
+                        <operatingSystem>{$ctx:operatingSystem}</operatingSystem>
+                        <diskSpace>{$ctx:diskSpace}</diskSpace>
+                        <ram>{$ctx:ram}</ram>
+                        <apiColumns>{$ctx:apiColumns}</apiColumns>
+                    </servicenow.postRecordStagingTable>
+                </case>
+            </switch>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <description/>
+</proxy>

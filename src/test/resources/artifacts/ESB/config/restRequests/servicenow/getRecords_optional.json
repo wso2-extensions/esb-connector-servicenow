@@ -1,0 +1,15 @@
+{
+  "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
+  "username":"%s(username)",
+  "password":"%s(password)",
+  "tableName":"%s(tableName)",
+  "sysparmQuery":"%s(sysparmQuery)",
+  "sysparmLimit":"%s(sysparmLimit)",
+  "sysparmDisplayValue":"%s(sysparmDisplayValue)",
+  "sysparmFields":"%s(sysparmFields)",
+  "sysparmView":"%s(sysparmView)",
+  "sysparmOffset":"%s(sysparmOffset)",
+  "sysparmExcludeReferenceLink":"",
+  "sysparmReadReplicaCategory":"",
+  "KeyValuePairs":"%s(KeyValuePairs)"
+}
