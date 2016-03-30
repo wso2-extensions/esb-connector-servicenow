@@ -1,0 +1,6 @@
+{
+  "serviceNowInstanceURL": "%s(serviceNowInstanceURL)",
+  "username": "%s(username)",
+  "password": "%s(password)",
+  "tableName": "negative"
+}

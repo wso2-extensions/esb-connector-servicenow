@@ -1,0 +1,11 @@
+{
+  "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
+  "username":"%s(username)",
+  "password":"%s(password)",
+  "tableName":"%s(tableName)",
+  "sysparmCount":"%s(sysparmCount)",
+  "sysparmAvgFields":"%s(sysparmAvgFields)",
+  "sysparmMinFields":"%s(sysparmMinFields)",
+  "sysparmMaxFields":"%s(sysparmMaxFields)",
+  "sysparmSumFields":"%s(sysparmSumFields)"
+}
