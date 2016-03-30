@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+<template name="getAggregateRecord" xmlns="http://ws.apache.org/ns/synapse">
+    <!--Required Parameter-->
+    <parameter name="tableName" description="Name of the Table you ar going to get data."/>
+    <!-- Supported parameters -->
+    <parameter name="sysparmAvgFields "
+               description="A comma-separated list of fields for which to calculate the average value."/>
+    <parameter name="sysparmMinFields"
+               description="A comma-separated list of fields for which to calculate the minimum value."/>
+    <parameter name="sysparmMaxFields"
+               description="A comma-separated list of fields for which to calculate the maximum value."/>
+    <parameter name="sysparmSumFields"
+               description="A comma-separated list of fields for which to calculate the sum of the values."/>
+    <parameter name="sysparmCount"
+               description="You can set this parameter to true for the number of records returned by the query."/>
+    <sequence>
+        <property name="uri.var.tableName" expression="$func:tableName"/>
+        <property name="uri.var.sysparmAvgFields" expression="$func:sysparmAvgFields"/>
+        <property name="uri.var.sysparmMinFields" expression="$func:sysparmMinFields"/>
+        <property name="uri.var.sysparmMaxFields" expression="$func:sysparmMaxFields"/>
+        <property name="uri.var.sysparmSumFields" expression="$func:sysparmSumFields"/>
+        <property name="uri.var.sysparmCount" expression="$func:sysparmCount"/>
+        <property name="uri.var.apiParameters" value=""/>
+        <filter xpath="(not($ctx:uri.var.sysparmAvgFields = '' or (not(string($ctx:uri.var.sysparmAvgFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_avg_fields=', $ctx:uri.var.sysparmAvgFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmMinFields = '' or (not(string($ctx:uri.var.sysparmMinFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_min_fields=', $ctx:uri.var.sysparmMinFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmMaxFields = '' or (not(string($ctx:uri.var.sysparmMaxFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_max_fields=', $ctx:uri.var.sysparmMaxFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmCount = '' or (not(string($ctx:uri.var.sysparmCount)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_count=', $ctx:uri.var.sysparmCount, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmSumFields = '' or (not(string($ctx:uri.var.sysparmSumFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_sum_fields=', $ctx:uri.var.sysparmSumFields, '&amp;')"/>
+            </then>
+        </filter>
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/stats/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
+            </endpoint>
+        </call>
+    </sequence>
+</template>
