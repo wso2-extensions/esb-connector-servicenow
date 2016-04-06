@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+<template name="postRecordStagingTable" xmlns="http://ws.apache.org/ns/synapse">
+    <!--Required Parameters-->
+    <parameter name="tableNameStaging" description="Specify the name of the table."/>
+    <!-- Supported parameters -->
+    <parameter name="serialNumber" description="The row value for serial_number."/>
+    <parameter name="cpuCount" description="The row value for cpu_count."/>
+    <parameter name="manufacturer" description="The row value for manufacturer."/>
+    <parameter name="name" description="The row value for name."/>
+    <parameter name="operatingSystem" description="The row value for operatingSystem."/>
+    <parameter name="diskSpace" description="The row value for disk_space."/>
+    <parameter name="ram" description="The row value for ram."/>
+    <parameter name="apiColumns" description="The attribute values of your table in your instance."/>
+    <sequence>
+        <property name="uri.var.tableNameStaging" expression="$func:tableNameStaging"/>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="uri.var.serialNumber" expression="$func:serialNumber"/>
+        <property name="uri.var.cpuCount" expression="$func:cpuCount"/>
+        <property name="uri.var.manufacturer" expression="$func:manufacturer"/>
+        <property name="uri.var.name" expression="$func:name"/>
+        <property name="uri.var.operatingSystem" expression="$func:operatingSystem"/>
+        <property name="uri.var.diskSpace" expression="$func:diskSpace"/>
+        <property name="uri.var.ram" expression="$func:ram"/>
+        <property name="uri.var.apiColumns" expression="$func:apiColumns"/>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                }
+            </format>
+        </payloadFactory>
+        <script language="js">
+            <![CDATA[
+                //request body param variables
+                var serialNumber = mc.getProperty('uri.var.serialNumber');
+                var cpuCount = mc.getProperty('uri.var.cpuCount');
+                var manufacturer = mc.getProperty('uri.var.manufacturer');
+                var name = mc.getProperty('uri.var.name');
+                var operatingSystem = mc.getProperty('uri.var.operatingSystem');
+                var diskSpace = mc.getProperty('uri.var.diskSpace');
+                var ram = mc.getProperty('uri.var.ram');
+                var apiColumns = mc.getProperty('uri.var.apiColumns');
+                 //Get the existing payload
+                var payload = mc.getPayloadJSON();
+                if (serialNumber != null && serialNumber != "") {
+                    payload["serial_number"]=serialNumber;
+                }
+                if (cpuCount != null && cpuCount != "") {
+                    payload["cpu_count"]=cpuCount;
+                }
+                if (manufacturer != null && manufacturer != "") {
+                    payload["manufacturer"]=manufacturer;
+                }
+                if (name != null && name != "") {
+                    payload["name"]=name;
+                }
+                if (operatingSystem != null && operatingSystem != "") {
+                    payload["operating_system"]=operatingSystem;
+                }
+                if (diskSpace != null && diskSpace != "") {
+                    payload["disk_space"]=diskSpace;
+                }
+                if (ram != null && ram != "") {
+                    payload["ram"]=ram;
+                }
+                if (apiColumns != null && apiColumns != "") {
+                    var obj = eval ("(" + apiColumns + ")");
+                    for(var key in obj){
+                        payload[key]=obj[key];
+                    }
+                }
+                //Set the newly constructed payload
+                mc.setPayloadJSON(payload);
+            ]]>
+        </script>
+        <call>
+            <endpoint>
+                <http method="post"
+                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/import/{+uri.var.tableNameStaging}"/>
+            </endpoint>
+        </call>
+    </sequence>
+</template>

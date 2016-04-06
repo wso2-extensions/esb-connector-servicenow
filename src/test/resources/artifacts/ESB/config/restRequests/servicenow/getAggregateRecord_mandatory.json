@@ -1,0 +1,7 @@
+{
+  "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
+  "username":"%s(username)",
+  "password":"%s(password)",
+  "tableName":"%s(tableName)",
+  "sysparmCount":"%s(sysparmCount)"
+}

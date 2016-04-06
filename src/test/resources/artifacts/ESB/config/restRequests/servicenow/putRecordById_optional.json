@@ -1,0 +1,20 @@
+{
+  "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
+  "username":"%s(username)",
+  "password":"%s(password)",
+  "tableName":"%s(tableName)",
+  "sysId":"%s(sysId)",
+  "number":"%s(number)",
+  "shortDescription":"%s(shortDescription)",
+  "active":"%s(active)",
+  "approval":"%s(approval)",
+  "category":"%s(category)",
+  "apiColumns": {"close_notes":"close clogard","correlation_display":"api"},
+  "sysparmDisplayValue":"%s(sysparmDisplayValue)",
+  "sysparmFields":"%s(sysparmFields)",
+  "sysparmView":"%s(sysparmView)",
+  "sysparmExcludeReferenceLink":"",
+  "sysparmInputDisplayValue ":"%s(sysparmInputDisplayValue)"
+}
+
+

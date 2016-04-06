@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+<template name="putRecordById" xmlns="http://ws.apache.org/ns/synapse">
+    <!--Required Parameters-->
+    <parameter name="tableName" description="Specify the table which you are going to put record."/>
+    <parameter name="sysId" description="System Id which is different for every raw."/>
+    <!-- supported parameters -->
+    <parameter name="sysparmDisplayValue" description="Data retrieval operation for reference and choice fields."/>
+    <parameter name="sysparmFields" description="Comma-separated field names to return in the response."/>
+    <parameter name="sysparmView" description="UI view to determine fields returned in the response. "/>
+    <parameter name="sysparmExcludeReferenceLink" description="Additional information provided for reference fields."/>
+    <parameter name="sysparmInputDisplayValue" description="Data insert or update operations."/>
+    <parameter name="number" description="The row value for number."/>
+    <parameter name="shortDescription" description="The row value for short_description."/>
+    <parameter name="active" description="The row value for active."/>
+    <parameter name="approval" description="The row value for approval."/>
+    <parameter name="category" description="The row value for category."/>
+    <parameter name="contactType" description="The row value for contact."/>
+    <parameter name="apiColumns" description="The attribute values of your table in your instance."/>
+    <sequence>
+        <property name="uri.var.tableName" expression="$func:tableName"/>
+        <property name="uri.var.sysId" expression="$func:sysId"/>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="uri.var.input" expression="$func:input"/>
+        <property name="uri.var.sysparmDisplayValue" expression="$func:sysparmDisplayValue"/>
+        <property name="uri.var.sysparmFields" expression="$func:sysparmFields"/>
+        <property name="uri.var.sysparmView" expression="$func:sysparmView"/>
+        <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
+        <property name="uri.var.sysparmInputDisplayValue" expression="$func:sysparmInputDisplayValue"/>
+        <property name="uri.var.apiParameters" value=""/>
+        <property name="uri.var.number" expression="$func:number"/>
+        <property name="uri.var.shortDescription" expression="$func:shortDescription"/>
+        <property name="uri.var.active" expression="$func:active"/>
+        <property name="uri.var.approval" expression="$func:approval"/>
+        <property name="uri.var.category" expression="$func:category"/>
+        <property name="uri.var.contactType" expression="$func:contactType"/>
+        <property name="uri.var.apiColumns" expression="$func:apiColumns"/>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                }
+            </format>
+        </payloadFactory>
+        <script language="js">
+            <![CDATA[
+                //request body param variables
+                var number = mc.getProperty('uri.var.number');
+                var shortDescription = mc.getProperty('uri.var.shortDescription');
+                var active = mc.getProperty('uri.var.active');
+                var approval = mc.getProperty('uri.var.approval');
+                var category = mc.getProperty('uri.var.category');
+                var contactType = mc.getProperty('uri.var.contactType');
+                var apiColumns = mc.getProperty('uri.var.apiColumns');
+                 //Get the existing payload
+                var payload = mc.getPayloadJSON();
+                if (number != null && number != "") {
+                    payload["number"]=number;
+                }
+                if (shortDescription != null && shortDescription != "") {
+                    payload["short_description"]=shortDescription;
+                }
+                if (active != null && active != "") {
+                    payload["active"]=active;
+                }
+                if (approval != null && approval != "") {
+                    payload["approval"]=approval;
+                }
+                if (category != null && category != "") {
+                    payload["category"]=category;
+                }
+                if (contactType != null && contactType != "") {
+                    payload["contact_type"]=contactType;
+                }
+                if (apiColumns != null && apiColumns != "") {
+                    var obj = eval ("(" + apiColumns + ")");
+                    for(var key in obj){
+                        payload[key]=obj[key];
+                    }
+                }
+                //Set the newly constructed payload
+                mc.setPayloadJSON(payload);
+                ]]>
+        </script>
+        <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_display_value=', $ctx:uri.var.sysparmDisplayValue, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmFields = '' or (not(string($ctx:uri.var.sysparmFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_fields=', $ctx:uri.var.sysparmFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmView = '' or (not(string($ctx:uri.var.sysparmView)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_view=', $ctx:uri.var.sysparmView, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmExcludeReferenceLink = '' or (not(string($ctx:uri.var.sysparmExcludeReferenceLink)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_exclude_reference_link=', $ctx:uri.var.sysparmExcludeReferenceLink, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmInputDisplayValue = '' or (not(string($ctx:uri.var.sysparmInputDisplayValue)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_input_display_value=', $ctx:uri.var.sysparmInputDisplayValue, '&amp;')"/>
+            </then>
+        </filter>
+        <call>
+            <endpoint>
+                <http method="put"
+                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
+            </endpoint>
+        </call>
+    </sequence>
+</template>

@@ -1,0 +1,7 @@
+{
+  "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
+  "username":"%s(username)",
+  "password":"%s(password)",
+  "tableNameStaging":"%s(tableNameStaging)",
+  "sysIdStaging":"%s(sysIdStaging)"
+}

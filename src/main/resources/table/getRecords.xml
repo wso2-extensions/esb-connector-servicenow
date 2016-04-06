@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+<template name="getRecords" xmlns="http://ws.apache.org/ns/synapse">
+    <!--Required Parameter-->
+    <parameter name="tableName" description="Name of the Table you ar going to get data."/>
+    <!-- Supported parameters -->
+    <parameter name="sysparmQuery"
+               description="An encoded query. The encoded query provides support for order by and filter out records."/>
+    <parameter name="sysparmDisplayValue" description="Data retrieval operation for reference and choice fields."/>
+    <parameter name="sysparmFields" description="Comma-separated field names to return in the response."/>
+    <parameter name="sysparmView" description="UI view to determine fields returned in the response. "/>
+    <parameter name="sysparmLimit" description="Limit to be applied on pagination. The default is 10000."/>
+    <parameter name="sysparmOffset" description="A number of records to skip before returning records."/>
+    <parameter name="sysparmExcludeReferenceLink" description="Additional information provided for reference fields."/>
+    <parameter name="sysparmReadReplicaCategory" description="The category value to read data from read replicas."/>
+    <parameter name="KeyValuePairs"
+               description="Can filter a query using key-value pairs where the key is the name of a field."/>
+    <sequence>
+        <property name="uri.var.tableName" expression="$func:tableName"/>
+        <property name="uri.var.sysparmQuery" expression="$func:sysparmQuery"/>
+        <property name="uri.var.sysparmDisplayValue" expression="$func:sysparmDisplayValue"/>
+        <property name="uri.var.sysparmFields" expression="$func:sysparmFields"/>
+        <property name="uri.var.sysparmView" expression="$func:sysparmView"/>
+        <property name="uri.var.sysparmLimit" expression="$func:sysparmLimit"/>
+        <property name="uri.var.sysparmOffset" expression="$func:sysparmOffset"/>
+        <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
+        <property name="uri.var.sysparmReadReplicaCategory" expression="$func:sysparmReadReplicaCategory"/>
+        <property name="uri.var.KeyValuePairs" expression="$func:KeyValuePairs"/>
+        <property name="uri.var.apiParameters" value=""/>
+        <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query=', $ctx:uri.var.sysparmQuery, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_display_value=', $ctx:uri.var.sysparmDisplayValue, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmFields = '' or (not(string($ctx:uri.var.sysparmFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_fields=', $ctx:uri.var.sysparmFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmView = '' or (not(string($ctx:uri.var.sysparmView)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_view=', $ctx:uri.var.sysparmView, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmLimit = '' or (not(string($ctx:uri.var.sysparmLimit)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_limit=', $ctx:uri.var.sysparmLimit, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmOffset = '' or (not(string($ctx:uri.var.sysparmOffset)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_offset=', $ctx:uri.var.sysparmOffset, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmExcludeReferenceLink = '' or (not(string($ctx:uri.var.sysparmExcludeReferenceLink)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_exclude_reference_link=', $ctx:uri.var.sysparmExcludeReferenceLink, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmReadReplicaCategory = '' or (not(string($ctx:uri.var.sysparmReadReplicaCategory)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_read_replica_category=', $ctx:uri.var.sysparmReadReplicaCategory, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.KeyValuePairs = '' or (not(string($ctx:uri.var.KeyValuePairs)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, $ctx:uri.var.KeyValuePairs, '&amp;')"/>
+            </then>
+        </filter>
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
+            </endpoint>
+        </call>
+    </sequence>
+</template>
