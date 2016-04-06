@@ -54,6 +54,7 @@
         <payloadFactory media-type="json">
             <format>
                 {
+
                 }
             </format>
         </payloadFactory>

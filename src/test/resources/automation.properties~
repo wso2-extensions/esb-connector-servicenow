@@ -117,6 +117,7 @@ ravana.jdbc.url=jdbc:mysql://127.0.0.1:3306
 ravana.db.user=root
 ravana.db.password=root
 
+
 #this database configuration is used for test result dashboard.
 dashboard.enable=false
 dashboard.database.driver.name=com.mysql.jdbc.Driver
