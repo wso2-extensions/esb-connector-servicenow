@@ -132,9 +132,9 @@
         </dependency>
     </dependencies>
     <scm>
-        <connection>scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest.git</connection>
-        <url>https://github.com/wso2-extensions/esb-connector-salesforcerest.git</url>
-        <developerConnection>scm:git:https://github.com/wso2-extensions/esb-connector-salesforcerest</developerConnection>
+        <connection>scm:git:https://github.com/wso2-extensions/esb-connector-servicenow.git</connection>
+        <url>https://github.com/wso2-extensions/esb-connector-servicenow.git</url>
+        <developerConnection>scm:git:https://github.com/wso2-extensions/esb-connector-servicenow</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <build>
