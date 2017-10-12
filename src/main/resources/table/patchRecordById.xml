@@ -16,7 +16,6 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
-
 <template name="patchRecordById" xmlns="http://ws.apache.org/ns/synapse">
     <!--Required Parameters-->
     <parameter name="tableName" description="Specify the table which you are going to put record."/>

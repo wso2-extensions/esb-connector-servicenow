@@ -18,7 +18,6 @@ package org.wso2.carbon.connector.integration.test.serviceNow;
  *  under the License.
  *
  */
-
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +26,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.wso2.connector.integration.test.base.ConnectorIntegrationTestBase;
 import org.wso2.connector.integration.test.base.RestResponse;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;

@@ -69,7 +69,3 @@ Steps to follow in setting integration test.
 	
  7. Navigate to "{SERVICENOW_CONNECTOR_HOME}/" and run the following command.
       $ mvn clean install
-	  
-	  
-
-		

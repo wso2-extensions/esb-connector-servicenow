@@ -16,8 +16,6 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
-
-
 <template name="deleteRecordById" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="sysId" description="System Id which is different for every raw."/>
     <parameter name="tableName" description="Name of the Table you ar going to get data."/>
