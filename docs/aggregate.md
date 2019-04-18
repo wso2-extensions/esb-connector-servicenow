@@ -106,7 +106,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
 </proxy>
 ```
 
-2. Create a json file named getAggregateRecord.json and copy the configurations given below to it:
+2. Create a JSON file named getAggregateRecord.json and add the configurations given below:
 
 ```json
 {
@@ -128,7 +128,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
 ```bash
 curl http://localhost:8280/services/getAggregateRecord -H "Content-Type: application/json" -d @getAggregateRecord.json
 ```
-5. ServiceNow returns a json response similar to the one shown below:
+5. ServiceNow returns a JSON response similar to the one shown below:
  
 ```json
 {

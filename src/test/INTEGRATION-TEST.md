@@ -9,14 +9,14 @@ Pre-requisites:
 
 Tested Platform: 
 
- - UBUNTU 15.10
- - WSO2 EI 6.5.0-m4
+ - UBUNTU 16.04
+ - WSO2 EI 6.5.0
 
 Steps to follow in setting integration test.
 
- 1. Download EI 6.5.0-m4-m4 from official website.
+ 1. Download EI 6.5.0 from official website.
 
- 3. Compress modified EI as wso2ei-6.5.0-m4.zip and copy that zip file in to location "{SERVICENOW_CONNECTOR_HOME}/repository/".
+ 3. Compress modified EI as wso2ei-6.5.0.zip and copy that zip file in to location "{SERVICENOW_CONNECTOR_HOME}/repository/".
 
  4. Follow the below mentioned steps for adding valid certificate to access serviceNow API over https.
 

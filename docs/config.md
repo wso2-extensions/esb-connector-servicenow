@@ -65,7 +65,7 @@ Following is a sample REST request that can be handled by the init operation.
 
 http://wiki.servicenow.com/index.php?title=REST_API#gsc.tab=0
 
-Now that you have connected to ServiceNow, use the information in the following topics to perform various operations with the connector. Also, see [Configuring the ServiceNow Connector Fault Handler Sequence]((fault_handler_sequence.md)).
+Now that you have connected to ServiceNow, use the information in the following topics to perform various operations with the connector. Also, see [Configuring the ServiceNow Connector Fault Handler Sequence](fault_handler_sequence.md).
 
 [Working with Aggregate API in ServiceNow](aggregate.md)
 

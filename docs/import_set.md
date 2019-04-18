@@ -201,7 +201,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
 </proxy>
 ```
 
-2. Create a json file named getRecordsStagingTable.json and copy the configurations given below to it:
+2. Create a JSON file named getRecordsStagingTable.json and add the configurations given below:
 
 ```json
 {
@@ -227,7 +227,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
 curl http://localhost:8280/services/getRecordsStagingTable -H "Content-Type: application/json" -d @getRecordsStagingTable.json
 ```
 
-5. ServiceNow returns a json response similar to the one shown below:
+5. ServiceNow returns a JSON response similar to the one shown below:
  
 ```json
 {

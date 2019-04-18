@@ -69,7 +69,6 @@ Following is a sample request that can be handled by the getRecords operation.
   "sysparmExcludeReferenceLink":"",
   "sysparmReadReplicaCategory":"",
   "KeyValuePairs":"active=true"
- 
 }
 ```
 **Sample response**
@@ -811,7 +810,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
 </proxy>
 ```
 
-2. Create a json file named getRecords.json and copy the configurations given below to it:
+2. Create a JSON file named getRecords.json and add the configurations given below:
 
 ```json
 {
@@ -828,7 +827,6 @@ Following example illustrates how to connect to ServiceNow with the init operati
   "sysparmExcludeReferenceLink":"",
   "sysparmReadReplicaCategory":"",
   "KeyValuePairs":"active=true"
- 
 }
 ```
 3. Replace the credentials with your values.
@@ -838,7 +836,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
 ```bash
 curl http://localhost:8280/services/getRecords -H "Content-Type: application/json" -d @getRecords.json
 ```
-5. ServiceNow returns a json response similar to the one shown below:
+5. ServiceNow returns a JSON response similar to the one shown below:
  
 ```json
 {
