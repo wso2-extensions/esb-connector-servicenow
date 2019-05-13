@@ -41,7 +41,15 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
      */
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
-        init("servicenow-connector-1.0.2-SNAPSHOT");
+
+        String connectorName = System.getProperty("connector_name") + "-connector-" +
+                System.getProperty("connector_version") + ".zip";
+
+        log.info("=================================== "+ connectorName +" ===================================");
+        init(connectorName);
+        getApiConfigProperties();
+        //init("servicenow-connector-1.0.2-SNAPSHOT.zip");
+
         esbRequestHeadersMap.put("Accept-Charset", "UTF-8");
         esbRequestHeadersMap.put("Content-Type", "application/json");
         apiRequestHeadersMap.putAll(esbRequestHeadersMap);
