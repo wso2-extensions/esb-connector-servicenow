@@ -1,0 +1,482 @@
+{
+    "id": "http:\/\/wso2jsonschema.org",
+    "title": "root",
+    "type": "object",
+    "$schema": "http:\/\/wso2.org\/json-schema\/wso2-data-mapper-v5.0.0\/schema#",
+    "properties": {
+      "result": {
+        "id": "http:\/\/wso2jsonschema.org\/result",
+        "type": "object",
+        "properties": {
+          "parent": {
+            "id": "http:\/\/wso2jsonschema.org\/parent",
+            "type": "string"
+          },
+          "made_sla": {
+            "id": "http:\/\/wso2jsonschema.org\/made_sla",
+            "type": "string"
+          },
+          "caused_by": {
+            "id": "http:\/\/wso2jsonschema.org\/caused_by",
+            "type": "string"
+          },
+          "watch_list": {
+            "id": "http:\/\/wso2jsonschema.org\/watch_list",
+            "type": "string"
+          },
+          "upon_reject": {
+            "id": "http:\/\/wso2jsonschema.org\/upon_reject",
+            "type": "string"
+          },
+          "sys_updated_on": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_updated_on",
+            "type": "string"
+          },
+          "child_incidents": {
+            "id": "http:\/\/wso2jsonschema.org\/child_incidents",
+            "type": "string"
+          },
+          "hold_reason": {
+            "id": "http:\/\/wso2jsonschema.org\/hold_reason",
+            "type": "string"
+          },
+          "origin_table": {
+            "id": "http:\/\/wso2jsonschema.org\/origin_table",
+            "type": "string"
+          },
+          "task_effective_number": {
+            "id": "http:\/\/wso2jsonschema.org\/task_effective_number",
+            "type": "string"
+          },
+          "approval_history": {
+            "id": "http:\/\/wso2jsonschema.org\/approval_history",
+            "type": "string"
+          },
+          "number": {
+            "id": "http:\/\/wso2jsonschema.org\/number",
+            "type": "string"
+          },
+          "resolved_by": {
+            "id": "http:\/\/wso2jsonschema.org\/resolved_by",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "sys_updated_by": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_updated_by",
+            "type": "string"
+          },
+          "opened_by": {
+            "id": "http:\/\/wso2jsonschema.org\/opened_by",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "user_input": {
+            "id": "http:\/\/wso2jsonschema.org\/user_input",
+            "type": "string"
+          },
+          "sys_created_on": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_created_on",
+            "type": "string"
+          },
+          "sys_domain": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_domain",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "state": {
+            "id": "http:\/\/wso2jsonschema.org\/state",
+            "type": "string"
+          },
+          "route_reason": {
+            "id": "http:\/\/wso2jsonschema.org\/route_reason",
+            "type": "string"
+          },
+          "sys_created_by": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_created_by",
+            "type": "string"
+          },
+          "knowledge": {
+            "id": "http:\/\/wso2jsonschema.org\/knowledge",
+            "type": "string"
+          },
+          "order": {
+            "id": "http:\/\/wso2jsonschema.org\/order",
+            "type": "string"
+          },
+          "calendar_stc": {
+            "id": "http:\/\/wso2jsonschema.org\/calendar_stc",
+            "type": "string"
+          },
+          "closed_at": {
+            "id": "http:\/\/wso2jsonschema.org\/closed_at",
+            "type": "string"
+          },
+          "cmdb_ci": {
+            "id": "http:\/\/wso2jsonschema.org\/cmdb_ci",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "delivery_plan": {
+            "id": "http:\/\/wso2jsonschema.org\/delivery_plan",
+            "type": "string"
+          },
+          "contract": {
+            "id": "http:\/\/wso2jsonschema.org\/contract",
+            "type": "string"
+          },
+          "impact": {
+            "id": "http:\/\/wso2jsonschema.org\/impact",
+            "type": "string"
+          },
+          "active": {
+            "id": "http:\/\/wso2jsonschema.org\/active",
+            "type": "string"
+          },
+          "work_notes_list": {
+            "id": "http:\/\/wso2jsonschema.org\/work_notes_list",
+            "type": "string"
+          },
+          "business_service": {
+            "id": "http:\/\/wso2jsonschema.org\/business_service",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "business_impact": {
+            "id": "http:\/\/wso2jsonschema.org\/business_impact",
+            "type": "string"
+          },
+          "priority": {
+            "id": "http:\/\/wso2jsonschema.org\/priority",
+            "type": "string"
+          },
+          "sys_domain_path": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_domain_path",
+            "type": "string"
+          },
+          "rfc": {
+            "id": "http:\/\/wso2jsonschema.org\/rfc",
+            "type": "string"
+          },
+          "time_worked": {
+            "id": "http:\/\/wso2jsonschema.org\/time_worked",
+            "type": "string"
+          },
+          "expected_start": {
+            "id": "http:\/\/wso2jsonschema.org\/expected_start",
+            "type": "string"
+          },
+          "opened_at": {
+            "id": "http:\/\/wso2jsonschema.org\/opened_at",
+            "type": "string"
+          },
+          "business_duration": {
+            "id": "http:\/\/wso2jsonschema.org\/business_duration",
+            "type": "string"
+          },
+          "group_list": {
+            "id": "http:\/\/wso2jsonschema.org\/group_list",
+            "type": "string"
+          },
+          "work_end": {
+            "id": "http:\/\/wso2jsonschema.org\/work_end",
+            "type": "string"
+          },
+          "caller_id": {
+            "id": "http:\/\/wso2jsonschema.org\/caller_id",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "reopened_time": {
+            "id": "http:\/\/wso2jsonschema.org\/reopened_time",
+            "type": "string"
+          },
+          "resolved_at": {
+            "id": "http:\/\/wso2jsonschema.org\/resolved_at",
+            "type": "string"
+          },
+          "approval_set": {
+            "id": "http:\/\/wso2jsonschema.org\/approval_set",
+            "type": "string"
+          },
+          "subcategory": {
+            "id": "http:\/\/wso2jsonschema.org\/subcategory",
+            "type": "string"
+          },
+          "work_notes": {
+            "id": "http:\/\/wso2jsonschema.org\/work_notes",
+            "type": "string"
+          },
+          "universal_request": {
+            "id": "http:\/\/wso2jsonschema.org\/universal_request",
+            "type": "string"
+          },
+          "short_description": {
+            "id": "http:\/\/wso2jsonschema.org\/short_description",
+            "type": "string"
+          },
+          "close_code": {
+            "id": "http:\/\/wso2jsonschema.org\/close_code",
+            "type": "string"
+          },
+          "correlation_display": {
+            "id": "http:\/\/wso2jsonschema.org\/correlation_display",
+            "type": "string"
+          },
+          "delivery_task": {
+            "id": "http:\/\/wso2jsonschema.org\/delivery_task",
+            "type": "string"
+          },
+          "work_start": {
+            "id": "http:\/\/wso2jsonschema.org\/work_start",
+            "type": "string"
+          },
+          "assignment_group": {
+            "id": "http:\/\/wso2jsonschema.org\/assignment_group",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "additional_assignee_list": {
+            "id": "http:\/\/wso2jsonschema.org\/additional_assignee_list",
+            "type": "string"
+          },
+          "business_stc": {
+            "id": "http:\/\/wso2jsonschema.org\/business_stc",
+            "type": "string"
+          },
+          "cause": {
+            "id": "http:\/\/wso2jsonschema.org\/cause",
+            "type": "string"
+          },
+          "description": {
+            "id": "http:\/\/wso2jsonschema.org\/description",
+            "type": "string"
+          },
+          "origin_id": {
+            "id": "http:\/\/wso2jsonschema.org\/origin_id",
+            "type": "string"
+          },
+          "calendar_duration": {
+            "id": "http:\/\/wso2jsonschema.org\/calendar_duration",
+            "type": "string"
+          },
+          "close_notes": {
+            "id": "http:\/\/wso2jsonschema.org\/close_notes",
+            "type": "string"
+          },
+          "notify": {
+            "id": "http:\/\/wso2jsonschema.org\/notify",
+            "type": "string"
+          },
+          "service_offering": {
+            "id": "http:\/\/wso2jsonschema.org\/service_offering",
+            "type": "string"
+          },
+          "sys_class_name": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_class_name",
+            "type": "string"
+          },
+          "closed_by": {
+            "id": "http:\/\/wso2jsonschema.org\/closed_by",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "follow_up": {
+            "id": "http:\/\/wso2jsonschema.org\/follow_up",
+            "type": "string"
+          },
+          "parent_incident": {
+            "id": "http:\/\/wso2jsonschema.org\/parent_incident",
+            "type": "string"
+          },
+          "sys_id": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_id",
+            "type": "string"
+          },
+          "contact_type": {
+            "id": "http:\/\/wso2jsonschema.org\/contact_type",
+            "type": "string"
+          },
+          "reopened_by": {
+            "id": "http:\/\/wso2jsonschema.org\/reopened_by",
+            "type": "string"
+          },
+          "incident_state": {
+            "id": "http:\/\/wso2jsonschema.org\/incident_state",
+            "type": "string"
+          },
+          "urgency": {
+            "id": "http:\/\/wso2jsonschema.org\/urgency",
+            "type": "string"
+          },
+          "problem_id": {
+            "id": "http:\/\/wso2jsonschema.org\/problem_id",
+            "type": "string"
+          },
+          "company": {
+            "id": "http:\/\/wso2jsonschema.org\/company",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "reassignment_count": {
+            "id": "http:\/\/wso2jsonschema.org\/reassignment_count",
+            "type": "string"
+          },
+          "activity_due": {
+            "id": "http:\/\/wso2jsonschema.org\/activity_due",
+            "type": "string"
+          },
+          "assigned_to": {
+            "id": "http:\/\/wso2jsonschema.org\/assigned_to",
+            "type": "object",
+            "properties": {
+              "link": {
+                "id": "http:\/\/wso2jsonschema.org\/link",
+                "type": "string"
+              },
+              "value": {
+                "id": "http:\/\/wso2jsonschema.org\/value",
+                "type": "string"
+              }
+            }
+          },
+          "severity": {
+            "id": "http:\/\/wso2jsonschema.org\/severity",
+            "type": "string"
+          },
+          "comments": {
+            "id": "http:\/\/wso2jsonschema.org\/comments",
+            "type": "string"
+          },
+          "approval": {
+            "id": "http:\/\/wso2jsonschema.org\/approval",
+            "type": "string"
+          },
+          "sla_due": {
+            "id": "http:\/\/wso2jsonschema.org\/sla_due",
+            "type": "string"
+          },
+          "comments_and_work_notes": {
+            "id": "http:\/\/wso2jsonschema.org\/comments_and_work_notes",
+            "type": "string"
+          },
+          "due_date": {
+            "id": "http:\/\/wso2jsonschema.org\/due_date",
+            "type": "string"
+          },
+          "sys_mod_count": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_mod_count",
+            "type": "string"
+          },
+          "reopen_count": {
+            "id": "http:\/\/wso2jsonschema.org\/reopen_count",
+            "type": "string"
+          },
+          "sys_tags": {
+            "id": "http:\/\/wso2jsonschema.org\/sys_tags",
+            "type": "string"
+          },
+          "escalation": {
+            "id": "http:\/\/wso2jsonschema.org\/escalation",
+            "type": "string"
+          },
+          "upon_approval": {
+            "id": "http:\/\/wso2jsonschema.org\/upon_approval",
+            "type": "string"
+          },
+          "correlation_id": {
+            "id": "http:\/\/wso2jsonschema.org\/correlation_id",
+            "type": "string"
+          },
+          "location": {
+            "id": "http:\/\/wso2jsonschema.org\/location",
+            "type": "string"
+          },
+          "category": {
+            "id": "http:\/\/wso2jsonschema.org\/category",
+            "type": "string"
+          }
+        }
+      }
+    }
+}
