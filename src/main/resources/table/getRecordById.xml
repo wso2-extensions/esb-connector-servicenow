@@ -21,7 +21,7 @@
     <!--Required Parameter-->
     <parameter name="sysId" description="System Id which is different for every raw."/>
     <parameter name="tableName" description="Name of the Table you ar going to get data."/>
-    <!-- Supported parameters -->
+    <!-- Optional Query Parameters -->
     <parameter name="sysparmDisplayValue" description="Data retrieval operation for reference and choice fields."/>
     <parameter name="sysparmFields" description="Comma-separated field names to return in the response."/>
     <parameter name="sysparmView" description="UI view to determine fields returned in the response. "/>

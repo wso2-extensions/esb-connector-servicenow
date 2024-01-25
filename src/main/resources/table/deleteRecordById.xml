@@ -24,7 +24,6 @@
     <sequence>
         <property name="uri.var.sysId" expression="$func:sysId"/>
         <property name="uri.var.tableName" expression="$func:tableName"/>
-        <property name="messageType" value="application/json" scope="axis2"/>
         <call>
             <endpoint>
                 <http method="DELETE"

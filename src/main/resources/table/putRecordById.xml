@@ -52,52 +52,7 @@
         <property name="uri.var.category" expression="$func:category"/>
         <property name="uri.var.contactType" expression="$func:contactType"/>
         <property name="uri.var.apiColumns" expression="$func:apiColumns"/>
-        <payloadFactory media-type="json">
-            <format>
-                {
-                }
-            </format>
-        </payloadFactory>
-        <script language="js">
-            <![CDATA[
-                //request body param variables
-                var number = mc.getProperty('uri.var.number');
-                var shortDescription = mc.getProperty('uri.var.shortDescription');
-                var active = mc.getProperty('uri.var.active');
-                var approval = mc.getProperty('uri.var.approval');
-                var category = mc.getProperty('uri.var.category');
-                var contactType = mc.getProperty('uri.var.contactType');
-                var apiColumns = mc.getProperty('uri.var.apiColumns');
-                 //Get the existing payload
-                var payload = mc.getPayloadJSON();
-                if (number != null && number != "") {
-                    payload["number"]=number;
-                }
-                if (shortDescription != null && shortDescription != "") {
-                    payload["short_description"]=shortDescription;
-                }
-                if (active != null && active != "") {
-                    payload["active"]=active;
-                }
-                if (approval != null && approval != "") {
-                    payload["approval"]=approval;
-                }
-                if (category != null && category != "") {
-                    payload["category"]=category;
-                }
-                if (contactType != null && contactType != "") {
-                    payload["contact_type"]=contactType;
-                }
-                if (apiColumns != null && apiColumns != "") {
-                    var obj = eval ("(" + apiColumns + ")");
-                    for(var key in obj){
-                        payload[key]=obj[key];
-                    }
-                }
-                //Set the newly constructed payload
-                mc.setPayloadJSON(payload);
-                ]]>
-        </script>
+        
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
                 <property name="uri.var.apiParameters"
