@@ -16,16 +16,16 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
-
 <template name="getRecordById" xmlns="http://ws.apache.org/ns/synapse">
-    <!--Required Parameter-->
-    <parameter name="sysId" description="System Id which is different for every raw."/>
-    <parameter name="tableName" description="Name of the Table you ar going to get data."/>
+    <!--Required Path Variable-->
+    <parameter name="sysId" description="Unique record identifier"/>
+    <parameter name="tableName" description="Name of data retrieving table"/>
     <!-- Optional Query Parameters -->
-    <parameter name="sysparmDisplayValue" description="Data retrieval operation for reference and choice fields."/>
-    <parameter name="sysparmFields" description="Comma-separated field names to return in the response."/>
-    <parameter name="sysparmView" description="UI view to determine fields returned in the response. "/>
-    <parameter name="sysparmExcludeReferenceLink" description="Additional information provided for reference fields."/>
+    <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
+    <parameter name="sysparmFields" description="Comma-separated field names to be returned in the response."/>
+    <parameter name="sysparmView" description="UI view for which to render the data"/>
+    <parameter name="sysparmExcludeReferenceLink" description="Flag that indicates whether to exclude Table API links for reference fields"/>
+    <parameter name="sysparmQueryNoDomain" description="Flag that indicates whether to restrict the record search to only the domains for which the logged in user is configured"/>
     <sequence>
         <property name="uri.var.sysId" expression="$func:sysId"/>
         <property name="uri.var.tableName" expression="$func:tableName"/>
@@ -33,8 +33,9 @@
         <property name="uri.var.sysparmFields" expression="$func:sysparmFields"/>
         <property name="uri.var.sysparmView" expression="$func:sysparmView"/>
         <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
-        <property name="uri.var.sysparmQueryNoDomain" expression="$fucn:sysparmQueryNoDomain">
+        <property name="uri.var.sysparmQueryNoDomain" expression="$func:sysparmQueryNoDomain"/>
         <property name="uri.var.apiParameters" value=""/>
+        <!--Building Query Parameters-->
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
                 <property name="uri.var.apiParameters"
@@ -65,6 +66,7 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query_no_domain=', $ctx:uri.var.sysparmQueryNoDomain, '&amp;')"/>
             </then>
         </filter>
+        <!--Initilize Endpoint Meditator-->
         <call>
             <endpoint>
                 <http method="get"
