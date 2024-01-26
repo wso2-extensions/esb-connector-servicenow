@@ -19,15 +19,26 @@
 
 
 <template name="deleteRecordById" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="sysId" description="System Id which is different for every raw."/>
-    <parameter name="tableName" description="Name of the Table you ar going to get data."/>
+    <!--URL Parameter Variables-->
+    <parameter name="sysId" description="Unique Id to recognize record in a servicenow table"/>
+    <parameter name="tableName" description="Name of the table which a record going to be deleted"/>
+    <!--Optional Query Parameter-->
+    <parameter name="sysparmQueryNoDomain" description="Flag that indicates whether to restrict the record search to only the domains for which the logged in user is configured"/>
     <sequence>
         <property name="uri.var.sysId" expression="$func:sysId"/>
         <property name="uri.var.tableName" expression="$func:tableName"/>
+        <property name="uri.var.sysparmQueryNoDomain" expression="$func:sysparmQueryNoDomain"/>
+        <property name="uri.var.apiParameters" value=""/>
+        <filter xpath="(not($ctx:uri.var.sysparmQueryNoDomain = '' or (not(string($ctx:uri.var.sysparmQueryNoDomain)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query_no_domain=', $ctx:uri.var.sysparmQueryNoDomain, '&amp;')"/>
+            </then>
+        </filter>
         <call>
             <endpoint>
                 <http method="DELETE"
-                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}/{uri.var.sysId}"/>
+                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
             </endpoint>
         </call>
     </sequence>
