@@ -46,9 +46,16 @@
         <property name="uri.var.apiParameters" value=""/>
         <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
             <then>
-                <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query=', $ctx:uri.var.sysparmQuery, '&amp;')"/>
+                <foreach expression="$ctx:uri.var.sysparmQuery//*">
+                    <sequence>
+                        <property expression="json-eval($.name()" name="uri.var.key" scope="default" type="STRING"/>
+                        <property expression="json-eval($)" name="uri.var.value" scope="default" type="STRING"/>
+                        <!-- Append key-value pair to uri.var.apiParameters -->
+                        <property expression="fn:concat($ctx:uri.var.apiParameters, $ctx:uri.var.key, '=', $ctx:uri.var.value, '&amp;')" name="uri.var.apiParameters" scope="default" type="STRING"/>
+                    </sequence>
+                </foreach>
             </then>
+            <else/>
         </filter>
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>

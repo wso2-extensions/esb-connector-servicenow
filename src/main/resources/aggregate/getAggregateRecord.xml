@@ -18,34 +18,67 @@
   -->
 
 <template name="getAggregateRecord" xmlns="http://ws.apache.org/ns/synapse">
-    <!--Required Parameter-->
-    <parameter name="tableName" description="Name of the Table you ar going to get data."/>
+    <!--Required Parameters-->
+    <parameter name="tableName" description="Name of the Table you ar going get data."/>
     <!-- Supported parameters -->
-    <parameter name="sysparmAvgFields "
-               description="A comma-separated list of fields for which to calculate the average value."/>
-    <parameter name="sysparmMinFields"
-               description="A comma-separated list of fields for which to calculate the minimum value."/>
-    <parameter name="sysparmMaxFields"
-               description="A comma-separated list of fields for which to calculate the maximum value."/>
-    <parameter name="sysparmSumFields"
-               description="A comma-separated list of fields for which to calculate the sum of the values."/>
-    <parameter name="sysparmCount"
-               description="You can set this parameter to true for the number of records returned by the query."/>
+    <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
+    <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
+    <parameter name="sysparmView" description="UI view for which to render the data. Determines the fields returned in the response"/>
+    <parameter name="sysparmExcludeReferenceLink" description="Indicates whether to exclude Table API links for reference fields"/>
+    <parameter name="sysparmInputDisplayValue" description="Indicates whether to set field values using the display value or the actual value"/>
+    <parameter name="sysparmAvgFields" description="Return average aggregate as the response"/>
+    <parameter name="sysparmMinFields" description="Return minimum aggregate as the response"/>
+    <parameter name="sysparmMaxFields" description="Return maximum aggregate as the response"/>
+    <parameter name="sysparmSumFields" description="Return sum aggregate as the response"/>
+    <parameter name="sysparmCount" description="Nmber of records returned by the query"/>
+    <property name="uri.var.apiParameters" value=""/>
+
+
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
+        <property name="uri.var.sysparmDisplayValue" expression="$func:sysparmDisplayValue"/>
+        <property name="uri.var.sysparmFields" expression="$func:sysparmFields"/>
+        <property name="uri.var.sysparmView" expression="$func:sysparmView"/>
+        <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
+        <property name="uri.var.sysparmInputDisplayValue" expression="$func:sysparmInputDisplayValue"/>
         <property name="uri.var.sysparmAvgFields" expression="$func:sysparmAvgFields"/>
         <property name="uri.var.sysparmMinFields" expression="$func:sysparmMinFields"/>
         <property name="uri.var.sysparmMaxFields" expression="$func:sysparmMaxFields"/>
         <property name="uri.var.sysparmSumFields" expression="$func:sysparmSumFields"/>
         <property name="uri.var.sysparmCount" expression="$func:sysparmCount"/>
         <property name="uri.var.apiParameters" value=""/>
+
+        <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_display_value=', $ctx:uri.var.sysparmDisplayValue, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmFields = '' or (not(string($ctx:uri.var.sysparmFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_fields=', $ctx:uri.var.sysparmFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmView = '' or (not(string($ctx:uri.var.sysparmView)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_view=', $ctx:uri.var.sysparmView, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmExcludeReferenceLink = '' or (not(string($ctx:uri.var.sysparmExcludeReferenceLink)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_exclude_reference_link=', $ctx:uri.var.sysparmExcludeReferenceLink, '&amp;')"/>
+            </then>
+        </filter>
         <filter xpath="(not($ctx:uri.var.sysparmAvgFields = '' or (not(string($ctx:uri.var.sysparmAvgFields)))))">
             <then>
                 <property name="uri.var.apiParameters"
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_avg_fields=', $ctx:uri.var.sysparmAvgFields, '&amp;')"/>
             </then>
         </filter>
-        <filter xpath="(not($ctx:uri.var.sysparmMinFields = '' or (not(string($ctx:uri.var.sysparmMinFields)))))">
+                <filter xpath="(not($ctx:uri.var.sysparmMinFields = '' or (not(string($ctx:uri.var.sysparmMinFields)))))">
             <then>
                 <property name="uri.var.apiParameters"
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_min_fields=', $ctx:uri.var.sysparmMinFields, '&amp;')"/>
@@ -57,18 +90,7 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_max_fields=', $ctx:uri.var.sysparmMaxFields, '&amp;')"/>
             </then>
         </filter>
-        <filter xpath="(not($ctx:uri.var.sysparmCount = '' or (not(string($ctx:uri.var.sysparmCount)))))">
-            <then>
-                <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_count=', $ctx:uri.var.sysparmCount, '&amp;')"/>
-            </then>
-        </filter>
-        <filter xpath="(not($ctx:uri.var.sysparmSumFields = '' or (not(string($ctx:uri.var.sysparmSumFields)))))">
-            <then>
-                <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_sum_fields=', $ctx:uri.var.sysparmSumFields, '&amp;')"/>
-            </then>
-        </filter>
+        
         <call>
             <endpoint>
                 <http method="get"
