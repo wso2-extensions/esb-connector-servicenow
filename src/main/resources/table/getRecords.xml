@@ -6,15 +6,17 @@
     <!-- Supported parameters -->
     <parameter name="sysparmQuery"
                description="An encoded query. The encoded query provides support for order by and filter out records."/>
-    <parameter name="sysparmDisplayValue" description="Data retrieval operation for reference and choice fields."/>
-    <parameter name="sysparmFields" description="Comma-separated field names to return in the response."/>
-    <parameter name="sysparmView" description="UI view to determine fields returned in the response. "/>
-    <parameter name="sysparmLimit" description="Limit to be applied on pagination. The default is 10000."/>
-    <parameter name="sysparmOffset" description="A number of records to skip before returning records."/>
+    <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
+    <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
+    <parameter name="sysparmView" description="UI view for which to render the data. Determines the fields returned in the response"/>
+    <parameter name="sysparmLimit" description="Maximum number of records to return"/>
+    <parameter name="sysparmOffset" description="Starting record index for which to begin retrieving records"/>
     <parameter name="sysparmExcludeReferenceLink" description="Additional information provided for reference fields."/>
-    <parameter name="sysparmReadReplicaCategory" description="The category value to read data from read replicas."/>
-    <parameter name="keyValuePairs"
-               description="Can filter a query using key-value pairs where the key is the name of a field."/>
+    <parameter name="sysparmSupPaginationHeader" description="Flag that indicates whether to remove the Link header from the response"/>
+    <parameter name="keyValuePairs" description="Name-value pairs to use to filter the result set"/>
+    <parameter name="sysparmQueryNoDomain" description="Flag that indicates whether to restrict the record search to only the domains for which the logged in user is configured"/>
+    <parameter name="sysparmQueryCategory" description="Name of the category to use for queries"/>
+    <parameter name="sysparmNoCount" description="TFlag that indicates whether to execute a select count(*) query on the table "/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
         <property name="uri.var.sysparmQuery" expression="$func:sysparmQuery"/>
@@ -25,6 +27,10 @@
         <property name="uri.var.sysparmOffset" expression="$func:sysparmOffset"/>
         <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
         <property name="uri.var.sysparmSupPaginationHeader" expression="$func:sysparmSupPaginationHeader"/>
+        <property name="uri.var.sysparmQueryNoDomain" expression="$func:sysparmQueryNoDomain"/>
+        <property name="uri.var.sysparmQueryCategory" expression="$func:sysparmQueryCategory"/>
+        <property name="uri.var.sysparmNoCount" expression="$func:sysparmNoCount"/>
+
 
         <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
         <property name="uri.var.apiParameters" value=""/>
@@ -98,10 +104,22 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_exclude_reference_link=', $ctx:uri.var.sysparmExcludeReferenceLink, '&amp;')"/>
             </then>
         </filter>
-        <filter xpath="(not($ctx:uri.var.ysparmSupPaginationHeader = '' or (not(string($ctx:uri.var.ysparmSupPaginationHeader)))))">
+        <filter xpath="(not($ctx:uri.var.sysparmSupPaginationHeader = '' or (not(string($ctx:uri.var.sysparmSupPaginationHeader)))))">
             <then>
                 <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_read_replica_category=', $ctx:uri.var.ysparmSupPaginationHeader, '&amp;')"/>
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_read_replica_category=', $ctx:uri.var.sysparmSupPaginationHeader, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmQueryCategory = '' or (not(string($ctx:uri.var.sysparmQueryCategory)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_read_replica_category=', $ctx:uri.var.sysparmQueryCategory, '&amp;')"/>
+            </then>
+        </filter>
+          <filter xpath="(not($ctx:uri.var.sysparmNoCount = '' or (not(string($ctx:uri.var.sysparmNoCount)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_read_replica_category=', $ctx:uri.var.sysparmNoCount, '&amp;')"/>
             </then>
         </filter>
           
