@@ -42,18 +42,31 @@
         <property name="uri.var.sysparmOffset" expression="$func:sysparmOffset"/>
         <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
         <property name="uri.var.sysparmReadReplicaCategory" expression="$func:sysparmReadReplicaCategory"/>
-        <property name="uri.var.KeyValuePairs" expression="$func:KeyValuePairs"/>
+        <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
         <property name="uri.var.apiParameters" value=""/>
+        <script language="js">
+            <![CDATA[
+                var keyValue = mc.getProperty('uri.var.keyValuePairs');
+                var payload = mc.getPayloadJSON();
+                if(keyValue){
+                    for(var key in keyValue){
+                        var _key = key;
+                        var value = keyValue[key];
+                        payload['apiParameters']=payload['apiParameters'].concat(_key,"=",value,'&');
+                    }
+                    mc.setPayloadJSON(payload);
+
+                }
+
+
+            ]]>
+        </script>
+
+
         <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
-            <then>
-                <foreach expression="$ctx:uri.var.sysparmQuery//*">
-                    <sequence>
-                        <property expression="json-eval($.name()" name="uri.var.key" scope="default" type="STRING"/>
-                        <property expression="json-eval($)" name="uri.var.value" scope="default" type="STRING"/>
-                        <!-- Append key-value pair to uri.var.apiParameters -->
-                        <property expression="fn:concat($ctx:uri.var.apiParameters, $ctx:uri.var.key, '=', $ctx:uri.var.value, '&amp;')" name="uri.var.apiParameters" scope="default" type="STRING"/>
-                    </sequence>
-                </foreach>
+            <then> 
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query=', $ctx:uri.var.sysparmQuery, '&amp;')"/>
             </then>
             <else/>
         </filter>
@@ -97,12 +110,6 @@
             <then>
                 <property name="uri.var.apiParameters"
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_read_replica_category=', $ctx:uri.var.sysparmReadReplicaCategory, '&amp;')"/>
-            </then>
-        </filter>
-        <filter xpath="(not($ctx:uri.var.KeyValuePairs = '' or (not(string($ctx:uri.var.KeyValuePairs)))))">
-            <then>
-                <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, $ctx:uri.var.KeyValuePairs, '&amp;')"/>
             </then>
         </filter>
         <call>
