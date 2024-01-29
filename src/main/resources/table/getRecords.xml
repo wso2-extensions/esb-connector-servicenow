@@ -1,21 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
-  ~
-  ~ WSO2 Inc. licenses this file to you under the Apache License,
-  ~ Version 2.0 (the "License"); you may not use this file except
-  ~ in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~    http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing,
-  ~ software distributed under the License is distributed on an
-  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  ~ KIND, either express or implied.  See the License for the
-  ~ specific language governing permissions and limitations
-  ~ under the License.
-  -->
+
 
 <template name="getRecords" xmlns="http://ws.apache.org/ns/synapse">
     <!--Required Parameter-->
@@ -30,7 +13,7 @@
     <parameter name="sysparmOffset" description="A number of records to skip before returning records."/>
     <parameter name="sysparmExcludeReferenceLink" description="Additional information provided for reference fields."/>
     <parameter name="sysparmReadReplicaCategory" description="The category value to read data from read replicas."/>
-    <parameter name="KeyValuePairs"
+    <parameter name="keyValuePairs"
                description="Can filter a query using key-value pairs where the key is the name of a field."/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
@@ -41,34 +24,43 @@
         <property name="uri.var.sysparmLimit" expression="$func:sysparmLimit"/>
         <property name="uri.var.sysparmOffset" expression="$func:sysparmOffset"/>
         <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
-        <property name="uri.var.sysparmReadReplicaCategory" expression="$func:sysparmReadReplicaCategory"/>
+        <property name="uri.var.sysparmSupPaginationHeader" expression="$func:sysparmSupPaginationHeader"/>
+
         <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
         <property name="uri.var.apiParameters" value=""/>
-        <script language="js">
+         <script language="js">
             <![CDATA[
+               
                 var keyValue = mc.getProperty('uri.var.keyValuePairs');
                 var payload = mc.getPayloadJSON();
-                if(keyValue){
-                    for(var key in keyValue){
-                        var _key = key;
-                        var value = keyValue[key];
-                        payload['apiParameters']=payload['apiParameters'].concat(_key,"=",value,'&');
-                    }
+                var parmString = '';
+                print(payload);
+                print(keyValue);
+                var count=0;  
+                for(var key in eval("("+keyValue+")")){
+                   print(key);
+                   print(eval("("+keyValue+")")[key]);
+                        
+                   parmString += key+"="+eval("("+keyValue+")")[key]+"&";
+                      
+                        
+                }
+                 
+                    payload['apiParameters'] = parmString;
                     mc.setPayloadJSON(payload);
 
-                }
+                
 
 
             ]]>
         </script>
-
-
+         <log level="full"/>
+           <property name="uri.var.apiParameters" expression="json-eval($.apiParameters)"/>
         <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
-            <then> 
+            <then>
                 <property name="uri.var.apiParameters"
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query=', $ctx:uri.var.sysparmQuery, '&amp;')"/>
             </then>
-            <else/>
         </filter>
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
@@ -106,12 +98,13 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_exclude_reference_link=', $ctx:uri.var.sysparmExcludeReferenceLink, '&amp;')"/>
             </then>
         </filter>
-        <filter xpath="(not($ctx:uri.var.sysparmReadReplicaCategory = '' or (not(string($ctx:uri.var.sysparmReadReplicaCategory)))))">
+        <filter xpath="(not($ctx:uri.var.ysparmSupPaginationHeader = '' or (not(string($ctx:uri.var.ysparmSupPaginationHeader)))))">
             <then>
                 <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_read_replica_category=', $ctx:uri.var.sysparmReadReplicaCategory, '&amp;')"/>
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_read_replica_category=', $ctx:uri.var.ysparmSupPaginationHeader, '&amp;')"/>
             </then>
         </filter>
+          
         <call>
             <endpoint>
                 <http method="get"
@@ -120,3 +113,7 @@
         </call>
     </sequence>
 </template>
+
+
+
+
