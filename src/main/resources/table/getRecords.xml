@@ -34,24 +34,26 @@
         <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.apiParameters" value=""/>
-        <property name="uri.var.apiParameters" expression="json-eval($.apiParameters)"/>
 
         <!--Build Key-Value Query Parameter using JSON Payload-->
-            <script language="js">
-                <![CDATA[
-                
-                    var keyValue = mc.getProperty('uri.var.keyValuePairs');
-                    var payload = mc.getPayloadJSON();
-                    var parmString = '';
-                    var count=0; 
+        <script language="js">
+            <![CDATA[
+            
+                var keyValue = mc.getProperty('uri.var.keyValuePairs');
+                var payload = mc.getPayloadJSON();
+                var parmString = '';
+                var count=0; 
 
-                    for(var key in eval("("+keyValue+")")){
+                for(var key in eval("("+keyValue+")")){
                     parmString += key+"="+eval("("+keyValue+")")[key]+"&";     
-                    }
+                }
                     
-                    payload['apiParameters'] = parmString;
-                    mc.setPayloadJSON(payload);]]>
+                payload['apiParameters'] = parmString;
+                mc.setPayloadJSON(payload);]]>
+
             </script>
+        <property name="uri.var.apiParameters" expression="json-eval($.apiParameters)"/>
+
         <!--Build Query Parameters-->
         <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
             <then>
