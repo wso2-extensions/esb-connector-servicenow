@@ -23,13 +23,13 @@
     <parameter name="tableName" description="Name of data retrieving table"/>
 
     <!-- Optional Query Parameters -->
-    <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
-    <parameter name="sysparmFields" description="Comma-separated field names to be returned in the response."/>
+    <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
+    <parameter name="sysparmFields" description="Comma-separated field names to be returned in the response"/>
     <parameter name="sysparmView" description="UI view for which to render the data"/>
-    <parameter name="sysparmExcludeReferenceLink" description="Flag that indicates whether to exclude Table API links for reference fields"/>
-    <parameter name="sysparmQueryNoDomain" description="Flag that indicates whether to restrict the record search to only the domains for which the logged in user is configured"/>
+    <parameter name="sysparmExcludeReferenceLink" description="Exclude or include Table API links for reference fields"/>
+    <parameter name="sysparmQueryNoDomain" description="Restrict the record search to only the domains the logged in user is configured"/>
     <parameter name="keyValuePairs" description="Name-value pairs to use to filter the result set"/>
-    <parameter name="sysparmQuery" description="TFlag that indicates whether to execute a select count(*) query on the table "/>
+    <parameter name="sysparmQuery" description="Flag to execute a select count(*) query on the table "/>
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.sysId" expression="$func:sysId"/>
@@ -67,12 +67,6 @@
             <then>
                 <property name="uri.var.apiParameters"
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_display_value=', $ctx:uri.var.sysparmDisplayValue, '&amp;')"/>
-            </then>
-        </filter>
-        <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
-            <then>
-                <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query=', $ctx:uri.var.sysparmQuery, '&amp;')"/>
             </then>
         </filter>
         <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">

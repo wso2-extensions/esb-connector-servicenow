@@ -22,12 +22,12 @@
     <parameter name="tableName" description="Specify the table which you are going to put record."/>
     <parameter name="sysId" description="System Id which is different for every raw."/>
     <!-- supported parameters -->
-    <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
+     <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
     <parameter name="sysparmView" description="UI view for which to render the data. Determines the fields returned in the response"/>
-    <parameter name="sysparmExcludeReferenceLink" description="Flag that indicates whether to exclude Table API links for reference fields"/>
+    <parameter name="sysparmExcludeReferenceLink" description="Exclude or include Table API links for reference fields"/>
     <parameter name="sysparmInputDisplayValue" description="Flag that indicates whether to set field values using the display value or the actual value"/>
-    <parameter name="sysparmQueryNoDomain" description="Flag that indicates whether to restrict the record search to only the domains for which the logged in user is configured"/>
+    <parameter name="sysparmQueryNoDomain" description="Restrict the record search to only the domains the logged in user is configured"/>
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>

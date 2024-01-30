@@ -4,19 +4,19 @@
     <!--Required Parameters-->
     <parameter name="tableName" description="Name of the Table you ar going to get data."/>
     <!-- Supported parameters -->
-    <parameter name="sysparmQuery" description="An encoded query. The encoded query provides support for order by and filter out records."/>
-    <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
+    <parameter name="sysparmQuery" description="Filter rerturning records using query parameters"/>
+    <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
-    <parameter name="sysparmView" description="UI view for which to render the data. Determines the fields returned in the response"/>
+    <parameter name="sysparmView" description="UI view for which to render the data"/>
     <parameter name="sysparmLimit" description="Maximum number of records to return"/>
     <parameter name="sysparmOffset" description="Starting record index for which to begin retrieving records"/>
-    <parameter name="sysparmExcludeReferenceLink" description="Additional information provided for reference fields."/>
-    <parameter name="sysparmSupPaginationHeader" description="Flag that indicates whether to remove the Link header from the response"/>
+    <parameter name="sysparmExcludeReferenceLink" description="Exclude or include Table API links for reference fields"/>
+    <parameter name="sysparmSupPaginationHeader" description="Remove or keep the Link header from the response"/>
     <parameter name="keyValuePairs" description="Name-value pairs to use to filter the result set"/>
-    <parameter name="sysparmQueryNoDomain" description="Flag that indicates whether to restrict the record search to only the domains for which the logged in user is configured"/>
+    <parameter name="sysparmQueryNoDomain" description="Restrict the record search to only the domains the logged in user is configured"/>
     <parameter name="sysparmQueryCategory" description="Name of the category to use for queries"/>
-    <parameter name="sysparmNoCount" description="TFlag that indicates whether to execute a select count(*) query on the table "/>
-    <parameter name="sysparmQuery" description="TFlag that indicates whether to execute a select count(*) query on the table "/>
+    <parameter name="sysparmNoCount" description="Execute or not execute a select count(*) query on the table "/>
+    <parameter name="sysparmQuery" description="Filter returning values using url query parameters"/>
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>

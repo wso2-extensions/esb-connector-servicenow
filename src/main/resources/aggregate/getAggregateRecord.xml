@@ -20,8 +20,8 @@
 <template name="getAggregateRecord" xmlns="http://ws.apache.org/ns/synapse">
     <!--Required Parameters-->
     <parameter name="tableName" description="Name of the Table you ar going get data."/>
-    <!-- Supported parameters -->
-    <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
+    <!-- Optional parameters -->
+    <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
     <parameter name="sysparmView" description="UI view for which to render the data. Determines the fields returned in the response"/>
     <parameter name="sysparmExcludeReferenceLink" description="Indicates whether to exclude Table API links for reference fields"/>
@@ -33,7 +33,6 @@
     <parameter name="sysparmCount" description="Nmber of records returned by the query"/>
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <property name="uri.var.apiParameters" value=""/>
-
 
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
@@ -49,6 +48,7 @@
         <property name="uri.var.sysparmCount" expression="$func:sysparmCount"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.apiParameters" value=""/>
+
         <!--Build Query Parameters--> 
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
