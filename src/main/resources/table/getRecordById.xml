@@ -51,7 +51,7 @@
                     var keyValue = mc.getProperty('uri.var.keyValuePairs');
                     var payload = mc.getPayloadJSON();
                     var parmString = '';
-
+        
                     for(var key in eval("("+keyValue+")")){
                         parmString += key+"="+eval("("+keyValue+")")[key]+"&"; 
                     }
