@@ -28,6 +28,7 @@
     <parameter name="sysparmExcludeReferenceLink" description="Flag that indicates whether to exclude Table API links for reference fields"/>
     <parameter name="sysparmInputDisplayValue" description="Flag that indicates whether to set field values using the display value or the actual value"/>
     <parameter name="sysparmQueryNoDomain" description="Flag that indicates whether to restrict the record search to only the domains for which the logged in user is configured"/>
+    <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
         <property name="uri.var.sysId" expression="$func:sysId"/>
@@ -37,7 +38,8 @@
         <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
         <property name="uri.var.sysparmInputDisplayValue" expression="$func:sysparmInputDisplayValue"/>
         <property name="uri.var.sysparmQueryNoDomain" expression="$func:sysparmQueryNoDomain"/>
-        
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
+        <!--Build Query Parameter-->  
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
                 <property name="uri.var.apiParameters"
@@ -74,11 +76,24 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query_no_domain=', $ctx:uri.var.sysparmQueryNoDomain, '&amp;')"/>
             </then>
         </filter>
-        <call>
-            <endpoint>
-                <http method="put"
-                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
-            </endpoint>
-        </call>
+         <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
+            <then>
+                <call>
+                    <endpoint>
+                        <http method="put"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>        
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="put"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+       
     </sequence>
 </template>

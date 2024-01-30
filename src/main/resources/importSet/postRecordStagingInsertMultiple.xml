@@ -22,16 +22,34 @@
     <parameter name="tableNameStaging" description="Specify the name of the table."/>
     <!-- Supported parameters -->
     <parameter name="apiVersion" description="The attribute values of your table in your instance."/>
+    <parameter name="multiImportSetId" description="Sys_id of an entry in the Multi Import Sets [sys_multi_import_set] table"/>
+    <parameter name="runAfter" description="Sys_id of an entry in the Import Sets [sys_import_set] table"/>
+
     <sequence>
         <property name="uri.var.tableNameStaging" expression="$func:tableNameStaging"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
+        <property name="uri.var.multiImportSetId" expression="$func:multiImportSetId"/>
+        <property name="uri.var.runAfter" expression="$func:runAfter">
+        <property name="uri.var.apiParameters" value=""/>
         <!--Build Query Parameter--> 
+        <filter xpath="(not($ctx:uri.var.multiImportSetId = '' or (not(string($ctx:uri.var.multiImportSetId)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'multi_import_set_id=', $ctx:uri.var.multiImportSetId, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.runAfter = '' or (not(string($ctx:uri.var.runAfter)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'run_after=', $ctx:uri.var.runAfter, '&amp;')"/>
+            </then>
+        </filter>
         <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
             <then>
                 <call>
                     <endpoint>
                         <http method="post"
-                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.tableNameStaging}"/>
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.tableNameStaging}/insertMultiple?{+uri.var.apiParameters}"/>
                     </endpoint>
                 </call>        
             </then>
@@ -39,7 +57,7 @@
                 <call>
                     <endpoint>
                         <http method="post"
-                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.tableNameStaging}"/>
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.tableNameStaging}/insertMultiple?{+uri.var.apiParameters}"/>
                     </endpoint>
                 </call> 
             </else>

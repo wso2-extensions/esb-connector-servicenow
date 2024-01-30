@@ -17,9 +17,11 @@
   ~ under the License.
   -->
 <template name="getRecordById" xmlns="http://ws.apache.org/ns/synapse">
+
     <!--Required Path Variable-->
     <parameter name="sysId" description="Unique record identifier"/>
     <parameter name="tableName" description="Name of data retrieving table"/>
+
     <!-- Optional Query Parameters -->
     <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
     <parameter name="sysparmFields" description="Comma-separated field names to be returned in the response."/>
@@ -27,6 +29,8 @@
     <parameter name="sysparmExcludeReferenceLink" description="Flag that indicates whether to exclude Table API links for reference fields"/>
     <parameter name="sysparmQueryNoDomain" description="Flag that indicates whether to restrict the record search to only the domains for which the logged in user is configured"/>
     <parameter name="keyValuePairs" description="Name-value pairs to use to filter the result set"/>
+    <parameter name="sysparmQuery" description="TFlag that indicates whether to execute a select count(*) query on the table "/>
+    <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.sysId" expression="$func:sysId"/>
         <property name="uri.var.tableName" expression="$func:tableName"/>
@@ -36,27 +40,45 @@
         <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
         <property name="uri.var.sysparmQueryNoDomain" expression="$func:sysparmQueryNoDomain"/>
         <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
+        <property name="uri.var.sysparmQuery" expression="$func:sysparmQuery"/>
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.apiParameters" value=""/>
-        <!--Building Query Parameters-->
-           <script language="js">
-            <![CDATA[
-               
-                var keyValue = mc.getProperty('uri.var.keyValuePairs');
-                var payload = mc.getPayloadJSON();
-                var parmString = '';
 
-                for(var key in eval("("+keyValue+")")){
-                   parmString += key+"="+eval("("+keyValue+")")[key]+"&"; 
-
-                payload['apiParameters'] = parmString;
-                mc.setPayloadJSON(payload);
+        <!--Build Key-Value Query Parameter using JSON Payload-->
+        <script language="js">
+                <![CDATA[
                 
-            ]]>
+                    var keyValue = mc.getProperty('uri.var.keyValuePairs');
+                    var payload = mc.getPayloadJSON();
+                    var parmString = '';
+
+                    for(var key in eval("("+keyValue+")")){
+                        parmString += key+"="+eval("("+keyValue+")")[key]+"&"; 
+                    }
+
+                    payload['apiParameters'] = parmString;
+                    mc.setPayloadJSON(payload);
+                    
+                ]]>
         </script>
+
+        <!--Build Query Parameters-->
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
                 <property name="uri.var.apiParameters"
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_display_value=', $ctx:uri.var.sysparmDisplayValue, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query=', $ctx:uri.var.sysparmQuery, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query=', $ctx:uri.var.sysparmQuery, '&amp;')"/>
             </then>
         </filter>
         <filter xpath="(not($ctx:uri.var.sysparmFields = '' or (not(string($ctx:uri.var.sysparmFields)))))">
@@ -83,12 +105,24 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query_no_domain=', $ctx:uri.var.sysparmQueryNoDomain, '&amp;')"/>
             </then>
         </filter>
-        <!--Initilize Endpoint Meditator-->
-        <call>
-            <endpoint>
-                <http method="get"
-                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
-            </endpoint>
-        </call>
+           <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
+            <then>
+                <call>
+                    <endpoint>
+                         <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>        
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+        
     </sequence>
 </template>

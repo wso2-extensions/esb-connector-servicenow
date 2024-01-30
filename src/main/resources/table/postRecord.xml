@@ -26,6 +26,7 @@
     <parameter name="sysparmView" description="UI view for which to render the data. Determines the fields returned in the response"/>
     <parameter name="sysparmExcludeReferenceLink" description="Flag that indicates whether to exclude Table API links for reference fields"/>
     <parameter name="sysparmInputDisplayValue" description="Flag that indicates whether to set field values using the display value or the actual value"/>
+    <parameter name="apiVersion" description="Optional API version to embed in url"/>
    
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
@@ -34,7 +35,9 @@
         <property name="uri.var.sysparmView" expression="$func:sysparmView"/>
         <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
         <property name="uri.var.sysparmInputDisplayValue" expression="$func:sysparmInputDisplayValue"/>
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.apiParameters" value=""/>
+        <!--Build Query Parameter--> 
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
                 <property name="uri.var.apiParameters"
@@ -65,12 +68,25 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_input_display_value=', $ctx:uri.var.sysparmInputDisplayValue, '&amp;')"/>
             </then>
         </filter>
-        <property name="Accept-Encoding" scope="transport" action="remove"/>
-        <call>
-            <endpoint>
-                <http method="post"
-                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
-            </endpoint>
-        </call>
+          <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
+            <then>
+                <call>
+                    <endpoint>
+                        <http method="post"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/table/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>        
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="post"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+
+       
     </sequence>
 </template>

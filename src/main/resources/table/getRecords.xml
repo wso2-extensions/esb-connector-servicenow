@@ -4,8 +4,7 @@
     <!--Required Parameter-->
     <parameter name="tableName" description="Name of the Table you ar going to get data."/>
     <!-- Supported parameters -->
-    <parameter name="sysparmQuery"
-               description="An encoded query. The encoded query provides support for order by and filter out records."/>
+    <parameter name="sysparmQuery" description="An encoded query. The encoded query provides support for order by and filter out records."/>
     <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
     <parameter name="sysparmView" description="UI view for which to render the data. Determines the fields returned in the response"/>
@@ -18,9 +17,9 @@
     <parameter name="sysparmQueryCategory" description="Name of the category to use for queries"/>
     <parameter name="sysparmNoCount" description="TFlag that indicates whether to execute a select count(*) query on the table "/>
     <parameter name="sysparmQuery" description="TFlag that indicates whether to execute a select count(*) query on the table "/>
+    <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
-        <property name="uri.var.sysparmQuery" expression="$func:sysparmQuery"/>
         <property name="uri.var.sysparmDisplayValue" expression="$func:sysparmDisplayValue"/>
         <property name="uri.var.sysparmFields" expression="$func:sysparmFields"/>
         <property name="uri.var.sysparmView" expression="$func:sysparmView"/>
@@ -33,29 +32,27 @@
         <property name="uri.var.sysparmNoCount" expression="$func:sysparmNoCount"/>
         <property name="uri.var.sysparmQuery" expression="$func:sysparmQuery"/>
         <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.apiParameters" value=""/>
-         <script language="js">
-            <![CDATA[
-               
-                var keyValue = mc.getProperty('uri.var.keyValuePairs');
-                var payload = mc.getPayloadJSON();
-                var parmString = '';
-                var count=0; 
+        <property name="uri.var.apiParameters" expression="json-eval($.apiParameters)"/>
 
-                for(var key in eval("("+keyValue+")")){
-                   parmString += key+"="+eval("("+keyValue+")")[key]+"&";     
-                }
-                 
-                payload['apiParameters'] = parmString;
-                mc.setPayloadJSON(payload);
-
+        <!--Build Key-Value Query Parameter using JSON Payload-->
+            <script language="js">
+                <![CDATA[
                 
+                    var keyValue = mc.getProperty('uri.var.keyValuePairs');
+                    var payload = mc.getPayloadJSON();
+                    var parmString = '';
+                    var count=0; 
 
-
-            ]]>
-        </script>
-         <log level="full"/>
-           <property name="uri.var.apiParameters" expression="json-eval($.apiParameters)"/>
+                    for(var key in eval("("+keyValue+")")){
+                    parmString += key+"="+eval("("+keyValue+")")[key]+"&";     
+                    }
+                    
+                    payload['apiParameters'] = parmString;
+                    mc.setPayloadJSON(payload);]]>
+            </script>
+        <!--Build Query Parameters-->
         <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
             <then>
                 <property name="uri.var.apiParameters"
@@ -116,13 +113,26 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_no_count=', $ctx:uri.var.sysparmNoCount, '&amp;')"/>
             </then>
         </filter>
+        <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
+            <then>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/table/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>        
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
           
-        <call>
-            <endpoint>
-                <http method="get"
-                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
-            </endpoint>
-        </call>
+        
     </sequence>
 </template>
 

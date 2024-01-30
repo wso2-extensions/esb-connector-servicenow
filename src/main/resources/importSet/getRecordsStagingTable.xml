@@ -21,14 +21,30 @@
     <!--Required Parameter-->
     <parameter name="sysIdStaging" description="Specific Value for every raw."/>
     <parameter name="tableNameStaging" description="Specify the name of the table."/>
+    <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.sysIdStaging" expression="$func:sysIdStaging"/>
         <property name="uri.var.tableNameStaging" expression="$func:tableNameStaging"/>
-        <call>
-            <endpoint>
-                <http method="get"
-                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/import/{+uri.var.tableNameStaging}/{uri.var.sysIdStaging}"/>
-            </endpoint>
-        </call>
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
+        <!--Build Query Parameter-->  
+        <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
+            <then>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.tableNameStaging}/{uri.var.sysIdStaging}"/>
+                    </endpoint>
+                </call>        
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/import/{+uri.var.tableNameStaging}/{uri.var.sysIdStaging}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+        
     </sequence>
 </template>
