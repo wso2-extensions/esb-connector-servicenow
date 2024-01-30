@@ -54,7 +54,26 @@
         <property name="uri.var.sysparmHaving" expression="$func:sysparmHaving"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.apiParameters" value=""/>
+        <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
+        
+         <!--Building Query Parameters-->
+        <script language="js">
+            <![CDATA[
+               
+                var keyValue = mc.getProperty('uri.var.keyValuePairs');
+                var payload = mc.getPayloadJSON();
+                var parmString = '';
 
+                for(var key in eval("("+keyValue+")")){
+                   parmString += key+"="+eval("("+keyValue+")")[key]+"&"; 
+                }
+
+                payload['apiParameters'] = parmString;
+                mc.setPayloadJSON(payload);
+                
+            ]]>
+        </script>
+        <property name="uri.var.apiParameters" expression="json-eval($.apiParameters)"/> 
         <!--Build Query Parameters--> 
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>

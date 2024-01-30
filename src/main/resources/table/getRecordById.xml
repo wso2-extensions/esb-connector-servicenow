@@ -41,7 +41,8 @@
         <property name="uri.var.sysparmQuery" expression="$func:sysparmQuery"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.apiParameters" value=""/>
-        <!--Building Query Parameters-->
+
+        <!--Build Filter Query Paramter Using JSON Payload-->
         <script language="js">
             <![CDATA[
                
@@ -58,6 +59,8 @@
                 
             ]]>
         </script>
+
+        <!--Building Query Parameters-->
         <property name="uri.var.apiParameters" expression="json-eval($.apiParameters)"/>
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
