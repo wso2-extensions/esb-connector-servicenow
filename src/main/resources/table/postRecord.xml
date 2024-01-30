@@ -37,7 +37,7 @@
         <property name="uri.var.sysparmInputDisplayValue" expression="$func:sysparmInputDisplayValue"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.apiParameters" value=""/>
-        <!--Build Query Parameter--> 
+        <!--Build Query Parameters--> 
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
                 <property name="uri.var.apiParameters"

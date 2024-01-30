@@ -18,7 +18,7 @@
   -->
 
 <template name="getRecordsStagingTable" xmlns="http://ws.apache.org/ns/synapse">
-    <!--Required Parameter-->
+    <!--Required Parameters-->
     <parameter name="sysIdStaging" description="Specific Value for every raw."/>
     <parameter name="tableNameStaging" description="Specify the name of the table."/>
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
@@ -26,7 +26,7 @@
         <property name="uri.var.sysIdStaging" expression="$func:sysIdStaging"/>
         <property name="uri.var.tableNameStaging" expression="$func:tableNameStaging"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
-        <!--Build Query Parameter-->  
+        <!--Build Query Parameters-->  
         <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
             <then>
                 <call>

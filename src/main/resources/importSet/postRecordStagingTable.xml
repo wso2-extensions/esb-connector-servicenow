@@ -25,7 +25,7 @@
     <sequence>
         <property name="uri.var.tableNameStaging" expression="$func:tableNameStaging"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
-        <!--Build Query Parameter--> 
+        <!--Build Query Parameters--> 
         <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
             <then>
                 <call>

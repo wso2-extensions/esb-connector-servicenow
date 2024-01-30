@@ -31,7 +31,7 @@
         <property name="uri.var.multiImportSetId" expression="$func:multiImportSetId"/>
         <property name="uri.var.runAfter" expression="$func:runAfter">
         <property name="uri.var.apiParameters" value=""/>
-        <!--Build Query Parameter--> 
+        <!--Build Query Parameters--> 
         <filter xpath="(not($ctx:uri.var.multiImportSetId = '' or (not(string($ctx:uri.var.multiImportSetId)))))">
             <then>
                 <property name="uri.var.apiParameters"

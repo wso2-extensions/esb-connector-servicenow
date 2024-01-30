@@ -29,7 +29,7 @@
     <!--Uncomment if you want to enable file caching for attachments -->
     <!--parameter name="cacheAttachments">true</parameter>
     <parameter name="attachmentDIR"></parameter>
-    <parameter name="sizeThreshold">4000</parameter-->
+    <parameter name="sizeThreshold">4000</Parameters-->
 
     <!--This will give out the timout of the configuration contexts, in milliseconds-->
     <parameter name="ConfigContextTimeoutInterval">30000</parameter>
@@ -61,7 +61,7 @@
 
 
     <!--Following params will set the proper context paths for invocations. All the endpoints will have a commons context-->
-    <!--root which can configured using the following contextRoot parameter-->
+    <!--root which can configured using the following contextRoot Parameters-->
     <parameter name="contextRoot">/</parameter>
 
     <!--Our HTTP endpoints can handle both REST and SOAP. Following parameters can be used to distinguiush those endpoints-->

@@ -24,7 +24,7 @@
     <parameter name="sysId" description="Unique Id to recognize record in a servicenow table"/>
     <parameter name="tableName" description="Name of the table which a record going to be deleted"/>
 
-    <!--Optional Query Parameter-->
+    <!--Optional Query Parameters-->
     <parameter name="sysparmQueryNoDomain" description="Flag that indicates whether to restrict the record search to only the domains for which the logged in user is configured"/>
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
 

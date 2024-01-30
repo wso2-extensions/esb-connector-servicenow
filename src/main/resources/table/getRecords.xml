@@ -1,7 +1,7 @@
 
 
 <template name="getRecords" xmlns="http://ws.apache.org/ns/synapse">
-    <!--Required Parameter-->
+    <!--Required Parameters-->
     <parameter name="tableName" description="Name of the Table you ar going to get data."/>
     <!-- Supported parameters -->
     <parameter name="sysparmQuery" description="An encoded query. The encoded query provides support for order by and filter out records."/>
