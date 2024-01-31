@@ -29,7 +29,7 @@
             <file>getRecordsStagingTable.xml</file>
             <description>This method retrieves the associated record and resulting transformation result.</description>
         </component>
-        <component name="getRecordsStagingTableInsertMultiple">
+        <component name="postRecordStagingInsertMultiple">
             <file>postRecordStagingInsertMultiple.xml</file>
             <description>This method retrieves the associated record and resulting transformation result.</description>
         </component>
