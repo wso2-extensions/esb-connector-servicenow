@@ -21,27 +21,27 @@
     <subComponents>
         <component name="getRecords">
             <file>getRecords.xml</file>
-            <description>Retrieves set of records from table.</description>
+            <description>Retrieves set of records from table</description>
         </component>
         <component name="getRecordById">
             <file>getRecordById.xml</file>
-            <description>Retrieves record according to the system ID from table.</description>
+            <description>Retrieves record form table using servicenow sysId</description>
         </component>
         <component name="postRecord">
             <file>postRecord.xml</file>
-            <description>Insert a record into a table.</description>
+            <description>Insert a record into a table</description>
         </component>
         <component name="patchRecordById">
             <file>patchRecordById.xml</file>
-            <description>Patch a record from table by specifying system ID.</description>
+            <description>Patch a record from table by using servicenow sysId</description>
         </component>
         <component name="deleteRecordById">
             <file>deleteRecordById.xml</file>
-            <description>Delete a record from table by specifying system ID.</description>
+            <description>Delete a record from table by using systId</description>
         </component>
         <component name="putRecordById">
             <file>putRecordById.xml</file>
-            <description>Put a record to table by specifying system ID.</description>
+            <description>Put a record to table by using systId</description>
         </component>
     </subComponents>
 </component>
