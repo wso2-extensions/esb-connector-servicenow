@@ -19,7 +19,7 @@
 
 <template name="postRecordStagingTable" xmlns="http://ws.apache.org/ns/synapse">
     <!--Required Parameters-->
-    <parameter name="tableNameStaging" description="Specify the name of the table."/>
+    <parameter name="stagingTableName" description="Specify the name of the table."/>
     <!-- Supported parameters -->
     <parameter name="apiVersion" description="The attribute values of your table in your instance."/>
     <sequence>

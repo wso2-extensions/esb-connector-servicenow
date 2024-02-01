@@ -19,8 +19,8 @@
 
 <template name="getRecordsStagingTable" xmlns="http://ws.apache.org/ns/synapse">
     <!--Required Parameters-->
-    <parameter name="sysIdStaging" description="Specific Value for every raw."/>
-    <parameter name="stagingTableName" description="Specify the name of the table."/>
+    <parameter name="sysIdStaging" description="Id to retrieve data"/>
+    <parameter name="stagingTableName" description="Specify the name of the table"/>
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.sysIdStaging" expression="$func:sysIdStaging"/>

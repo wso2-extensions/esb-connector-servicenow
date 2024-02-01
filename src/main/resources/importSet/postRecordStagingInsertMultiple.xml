@@ -21,7 +21,7 @@
     <!--Required Parameters-->
     <parameter name="stagingTableName" description="Specify the name of the table"/>
     <!-- Supported parameters -->
-    <parameter name="apiVersion" description="The attribute values of your table in your instance."/>
+    <parameter name="apiVersion" description="Optional API version to be embed in url"/>
     <parameter name="multiImportSetId" description="Sys_id of an entry in the Multi Import Sets [sys_multi_import_set] table"/>
     <parameter name="runAfter" description="Sys_id of an entry in the Import Sets [sys_import_set] table"/>
 
