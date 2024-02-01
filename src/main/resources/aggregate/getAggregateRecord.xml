@@ -64,8 +64,15 @@
                 var payload = mc.getPayloadJSON();
                 var parmString = '';
 
-                for(var key in eval("("+keyValue+")")){
-                   parmString += key+"="+eval("("+keyValue+")")[key]+"&"; 
+                if(keyValue != null && keyValue != "") {
+                    
+                    for(var key in eval("("+keyValue+")")){
+                        parmString += key+"="+eval("("+keyValue+")")[key]+"&"; 
+                    }
+
+                    payload['apiParameters'] = parmString;
+                    mc.setPayloadJSON(payload);
+
                 }
 
                 payload['apiParameters'] = parmString;

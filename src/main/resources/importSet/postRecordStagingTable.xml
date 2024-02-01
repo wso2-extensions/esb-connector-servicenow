@@ -19,11 +19,11 @@
 
 <template name="postRecordStagingTable" xmlns="http://ws.apache.org/ns/synapse">
     <!--Required Parameters-->
-    <parameter name="stagingTableName" description="Specify the name of the table."/>
+    <parameter name="stagingTableName" description="Specify the name of the table"/>
     <!-- Supported parameters -->
-    <parameter name="apiVersion" description="The attribute values of your table in your instance."/>
+    <parameter name="apiVersion" description="API version of the table"/>
     <sequence>
-        <property name="uri.var.tableNameStaging" expression="$func:tableNameStaging"/>
+        <property name="uri.var.stagingTableName" expression="$func:stagingTableName"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         
         <!--Build Query Parameters--> 
@@ -32,7 +32,7 @@
                 <call>
                     <endpoint>
                         <http method="post"
-                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.tableNameStaging}"/>
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.stagingTableName}"/>
                     </endpoint>
                 </call>        
             </then>
@@ -40,7 +40,7 @@
                 <call>
                     <endpoint>
                         <http method="post"
-                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.tableNameStaging}"/>
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.stagingTableName}"/>
                     </endpoint>
                 </call> 
             </else>
