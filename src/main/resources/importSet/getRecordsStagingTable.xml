@@ -21,6 +21,8 @@
     <!--Required Parameters-->
     <parameter name="sysIdStaging" description="Id to retrieve data"/>
     <parameter name="stagingTableName" description="Specify the name of the table"/>
+
+    <!--Optional Parameters-->
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.sysIdStaging" expression="$func:sysIdStaging"/>

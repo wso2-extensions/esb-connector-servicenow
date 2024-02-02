@@ -37,11 +37,11 @@
         </component>
         <component name="deleteRecordById">
             <file>deleteRecordById.xml</file>
-            <description>Delete a record from table by using systId</description>
+            <description>Delete a record from table by using sysId</description>
         </component>
         <component name="putRecordById">
             <file>putRecordById.xml</file>
-            <description>Put a record to table by using systId</description>
+            <description>Put a record to table by using sysId</description>
         </component>
     </subComponents>
 </component>
