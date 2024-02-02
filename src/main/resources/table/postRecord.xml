@@ -18,8 +18,10 @@
   -->
 
 <template name="postRecord" xmlns="http://ws.apache.org/ns/synapse">
+
     <!--Require Path Variables-->
-    <parameter name="tableName" description="Name of the data inserting table"/>
+    <parameter name="tableName" description="Name of the table where data going to be inserted"/>
+
     <!--Optional Url Query Parameter -->
      <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
@@ -37,6 +39,7 @@
         <property name="uri.var.sysparmInputDisplayValue" expression="$func:sysparmInputDisplayValue"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
         <property name="uri.var.apiParameters" value=""/>
+        
         <!--Build Query Parameters--> 
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>

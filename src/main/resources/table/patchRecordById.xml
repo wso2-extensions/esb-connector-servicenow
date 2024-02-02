@@ -18,9 +18,10 @@
   -->
 
 <template name="patchRecordById" xmlns="http://ws.apache.org/ns/synapse">
+
        <!--Required Parameters-->
-    <parameter name="tableName" description="Specify the table which you are going to put record."/>
-    <parameter name="sysId" description="System Id which is different for every raw."/>
+    <parameter name="tableName" description="Table which the record going to be patched"/>
+    <parameter name="sysId" description="Servicenow sysId"/>
     <!-- supported parameters -->
      <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>

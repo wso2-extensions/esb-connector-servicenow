@@ -18,8 +18,10 @@
   -->
 
 <template name="getAggregateRecord" xmlns="http://ws.apache.org/ns/synapse">
+
     <!--Required Parameters-->
     <parameter name="tableName" description="Table which the aggregated data is retrieved"/>
+
     <!-- Optional parameters -->
     <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
@@ -37,7 +39,6 @@
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <parameter name="sysparmQuery" description="Encoded query to retriece data"/>
     <property name="uri.var.apiParameters" value=""/>
-
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
         <property name="uri.var.sysparmDisplayValue" expression="$func:sysparmDisplayValue"/>

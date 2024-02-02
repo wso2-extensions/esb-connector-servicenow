@@ -18,6 +18,7 @@
   -->
 
 <template name="getRecordsStagingTable" xmlns="http://ws.apache.org/ns/synapse">
+
     <!--Required Parameters-->
     <parameter name="sysIdStaging" description="Id to retrieve data"/>
     <parameter name="stagingTableName" description="Specify the name of the table"/>

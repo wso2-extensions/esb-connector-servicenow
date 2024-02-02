@@ -17,9 +17,11 @@
   ~ under the License.
   -->
 <template name="getRecordById" xmlns="http://ws.apache.org/ns/synapse">
+
     <!--Required Path Variable-->
     <parameter name="sysId" description="Unique record identifier"/>
     <parameter name="tableName" description="Name of data retrieving table"/>
+    
     <!-- Optional Query Parameters -->
     <parameter name="sysparmDisplayValue" description="Determines the type of data returned, either the actual values from the database or the display values of the fields"/>
     <parameter name="sysparmFields" description="Comma-separated field names to be returned in the response."/>

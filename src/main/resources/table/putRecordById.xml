@@ -18,9 +18,11 @@
   -->
 
 <template name="putRecordById" xmlns="http://ws.apache.org/ns/synapse">
+
     <!--Required Parameters-->
-    <parameter name="tableName" description="Specify the table which you are going to put record."/>
-    <parameter name="sysId" description="System Id which is different for every raw."/>
+    <parameter name="tableName" description="Name of the table where data going to be updated"/>
+    <parameter name="sysId" description="Servicenow sysId"/>
+
     <!-- supported parameters -->
      <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
@@ -39,6 +41,7 @@
         <property name="uri.var.sysparmInputDisplayValue" expression="$func:sysparmInputDisplayValue"/>
         <property name="uri.var.sysparmQueryNoDomain" expression="$func:sysparmQueryNoDomain"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
+
         <!--Build Query Parameters-->  
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
