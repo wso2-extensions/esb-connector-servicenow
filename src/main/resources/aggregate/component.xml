@@ -21,7 +21,7 @@
     <subComponents>
         <component name="getAggregateRecord">
             <file>getAggregateRecord.xml</file>
-            <description>Allow to compute aggregate statistics about existing table and column data.</description>
+            <description>Get aggregate information from servicenow tables</description>
         </component>
     </subComponents>
 </component>

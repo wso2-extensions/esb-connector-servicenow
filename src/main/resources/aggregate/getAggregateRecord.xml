@@ -19,7 +19,7 @@
 
 <template name="getAggregateRecord" xmlns="http://ws.apache.org/ns/synapse">
     <!--Required Parameters-->
-    <parameter name="tableName" description="Name of the Table you ar going get data."/>
+    <parameter name="tableName" description="Table which the aggregated data is retrieved"/>
     <!-- Optional parameters -->
     <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
@@ -81,6 +81,7 @@
             ]]>
         </script>
         <property name="uri.var.apiParameters" expression="json-eval($.apiParameters)"/> 
+
         <!--Build Query Parameters--> 
         <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
             <then>
@@ -160,7 +161,5 @@
                 </call>
             </else>
         </filter>
-        
-        
     </sequence>
 </template>
