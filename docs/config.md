@@ -6,14 +6,14 @@
 
 To use the ServiceNow connector, add the <servicenow.init> element in your configuration before carrying out any other ServiceNow operations.
 
-The ServiceNow API requires all requests to be authenticated as a user. User has to create a own instance with user credentials. For more information, see https://developer.servicenow.com/app.do#!/home
+The ServiceNow API requires all requests to be authenticated as a user. User has to create an own instance with user credentials. For more information, see https://developer.servicenow.com/app.do#!/home
 
 ### Obtaining user credentials
 
 * **Create a ServiceNow instance using serviceNow developer site and setup the username and password**
  
-    1. Using the URL "https://developer.servicenow.com/app.do#!/home" signup to a ServiceNow account or signin.
-	2. Login to the created ServiceNow account and request an instance.
+    1. Using the URL "https://developer.servicenow.com/app.do#!/home" signup to a ServiceNow account or signin to existing account.
+	2. Login to the ServiceNow account and request an instance.
 	3. Then you will get a username and password for your instance with instance URL. you can change your password by going My Instance -> Instance Action -> Manage Instance Password.
 	
 	    
@@ -38,9 +38,9 @@ Add the following <servicenow.init> method in your configuration:
 </servicenow.init>
 ```
 **Properties** 
-* serviceNowInstanceURL: The base endpoint URL of the ServiceNow API.  
-* username : The user Name of the own developer instance (default:admin).  
-* password : The Password of the own developer instance. 
+* serviceNowInstanceURL: Developer instance URL.  
+* username : The user Name of the developer instance (default:admin).  
+* password : The Password of the  developer instance. 
 
 **Sample Request**
 
@@ -58,7 +58,7 @@ Following is a sample REST request that can be handled by the init operation.
 
 http://wiki.servicenow.com/index.php?title=REST_API#gsc.tab=0
 
-Now that you have connected to ServiceNow, use the information in the following topics to perform various operations with the connector. Also, see [Configuring the ServiceNow Connector Fault Handler Sequence](fault_handler_sequence.md).
+Now that you have connected to ServiceNow, use the information in the following topics to perform required operations with the connector. Also, see [Configuring the ServiceNow Connector Fault Handler Sequence](fault_handler_sequence.md).
 
 [Working with Aggregate API in ServiceNow](aggregate.md)
 

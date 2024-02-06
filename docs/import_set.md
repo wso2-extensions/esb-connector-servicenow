@@ -5,7 +5,7 @@
 ### Overview 
 
 The following operations allow you to work with  Import Set API. Click an operation name to see details on how to use it.
-For a sample proxy service that illustrates how to work with  Import Set API, see [Sample configuration](#sample-configuration).
+For a sample REST API that illustrates how to work with  Import Set API, see [Sample configuration](#sample-configuration).
 
 | Operation        | Description |
 | ------------- |-------------|
@@ -73,7 +73,7 @@ Given below is a sample response for the getRecordsStagingTable operation.
 
 **Related ServiceNow documentation**
 
-https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI
+https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI#import-GET
 
 #### Inserts multiple records into the staging table
 
@@ -128,7 +128,7 @@ Given below is a sample response for the postRecordStagingTable operation.
 ```
 
 **Related ServiceNow documentation**
-https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI
+https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI#import-POST-insertMultiple
 
 
 **NOTE**
@@ -194,7 +194,7 @@ Given below is a sample response for the postRecordStagingTable operation.
 ```
 
 **Related ServiceNow documentation**
-https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI
+https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI#import-POST
 
 ### Sample configuration
 

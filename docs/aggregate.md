@@ -15,9 +15,9 @@ Retrieves records for the specified table and performs aggregate functions on th
     <sysparmFields>{$ctx:sysparmFields}</sysparmFields>
     <sysparmDisplayValue>{$ctx:sysparmDisplayValue}</sysparmDisplayValue>
     <sysparmGroupBy>{$ctx:sysparmGroupBy}</sysparmGroupBy>
-    <sysparmHaving>{$ctx:sysparmHaving}</syspaarmHaving>
+    <sysparmHaving>{$ctx:sysparmHaving}</sysparmHaving>
     <sysparmOrderby>{$ctx:sysparmOrderby}</sysparmOrderby>
-    <sysparQuery>{$ctx:sysparmQuery}</sysparmQuery>
+    <sysparmQuery>{$ctx:sysparmQuery}</sysparmQuery>
     <keyValuePairs>{$ctx:keyValuePairs}</keyValuePairs>
 </servicenow.getAggregateRecord>
 ```
@@ -180,7 +180,7 @@ https://developer.servicenow.com/app.do#!/rest_api_doc?v=jakarta&id=r_AggregateA
 
 Following example illustrates how to connect to ServiceNow with the init operation and getAggregateRecord operation.
 
-1. Create a sample Rest API as below :
+1. Create a sample REST API as below :
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -220,7 +220,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
 4. Execute the following curl command:
 
 ```bash
-curl http://localhost:8280/services/aggtable -H "Content-Type: application/json" -d @getAggregateRecord.json
+curl http://localhost:8290/aggtable -H "Content-Type: application/json" -d @getAggregateRecord.json
 ```
 5. ServiceNow returns a JSON response similar to the one shown above at sample response section.
  

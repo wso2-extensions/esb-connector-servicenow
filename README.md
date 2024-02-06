@@ -1,6 +1,6 @@
 ### ServiceNow WSO2 EI Connector
 
-The ServiceNow [connector](https://docs.wso2.com/display/EI650/Working+with+Connectors) allows you to access the [ServiceNow REST API](https://developer.servicenow.com/app.do#!/rest_api_doc?v=madrid&id=c_TableAPI) through WSO2 EI. ServiceNow is a software platform that supports IT service management and automates common business processes. This software as a service (SaaS) platform contains a number of modular applications that can vary by instance and user.
+The ServiceNow [connector](https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/servicenow-connector/servicenow-overview/) allows you to access the [ServiceNow REST API](https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI) through WSO2 EI. The ServiceNow connector is consisted with Table API, Aggregate API, Import Set API services to provide digital tranformation for entrprise workflow.
 ## Compatibility
 
 | Connector version | Supported ServiceNow API version | Supported WSO2 ESB/EI version |
