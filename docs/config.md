@@ -1,4 +1,4 @@
-# Configuring Salesforce REST Operations
+# Configuring Servicenow REST Operations
 
 [[Prerequisites]](#Prerequisites) [[Initializing the connector]](#initializing-the-connector)
 
@@ -6,31 +6,24 @@
 
 To use the ServiceNow connector, add the <servicenow.init> element in your configuration before carrying out any other ServiceNow operations.
 
-The ServiceNow API requires all requests to be authenticated as a user. User has to create a own instance with his user credentials. When u create a account in ServiceNow Developer page then you are enable to create your own instance. For more information, see https://developer.servicenow.com/app.do#!/home
+The ServiceNow API requires all requests to be authenticated as a user. User has to create a own instance with user credentials. For more information, see https://developer.servicenow.com/app.do#!/home
 
 ### Obtaining user credentials
 
-* **Create a ServiceNow instance using serviceNow developer site and derive the username and password**
+* **Create a ServiceNow instance using serviceNow developer site and setup the username and password**
  
-    1. Using the URL "https://developer.servicenow.com/app.do#!/home" register a ServiceNow account.
-	2. Login to the created Service-Now account and go to Manage >> Instance and request an instance.
-	3. Then you will get a username and password for your instance with instance URL. you can change your password by going Action >> Reset admin password.
-	4. In your instance you will get three types of APIs and some pre defined tables.
+    1. Using the URL "https://developer.servicenow.com/app.do#!/home" signup to a ServiceNow account or signin.
+	2. Login to the created ServiceNow account and request an instance.
+	3. Then you will get a username and password for your instance with instance URL. you can change your password by going My Instance -> Instance Action -> Manage Instance Password.
+	
 	    
 	    
 ### Importing the ServiceNow Certificate
 
 Before you start configuring the connector, import the ServiceNow certificate to your EI client keystore.
 
-* Follow the steps below to import the ServiceNow certificate into the EI client keystore:
-
-    1. To view the certificate, log in to your ServiceNow account using your browser (e.g., https://dev62519.service-now.com/), and click the lock on the address bar.
-    2. Export the certificate to the file system.
-    3. Import the certificate to the EI client keystore using either the following command or the EI Management Console:
-    ```
-    keytool -importcert -file <certificate file> -keystore <EI>/repository/resources/security/client-truststore.jks -alias "ServiceNow"
-    ```
-    4. Restart the server and deploy the ServiceNow configuration. 
+* Follow the article https://ei.docs.wso2.com/en/latest/micro-integrator/setup/security/importing_ssl_certificate/  to import the ServiceNow certificate into the EI client keystore.
+ 
 
 ## Initializing the connector
 
@@ -46,8 +39,8 @@ Add the following <servicenow.init> method in your configuration:
 ```
 **Properties** 
 * serviceNowInstanceURL: The base endpoint URL of the ServiceNow API.  
-* username : The user Name of the own instance.  
-* password : The Password of the own instance. 
+* username : The user Name of the own developer instance (default:admin).  
+* password : The Password of the own developer instance. 
 
 **Sample Request**
 
@@ -55,9 +48,9 @@ Following is a sample REST request that can be handled by the init operation.
 
 ```json
 {
-  "serviceNowInstanceURL":"https://dev17686.service-now.com", 
+  "serviceNowInstanceURL":"https://your-instance.service-now.com", 
   "username":"admin",
-  "password":"12345"
+  "password":"<password>"
 }
 ```
 

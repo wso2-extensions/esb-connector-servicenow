@@ -25,8 +25,6 @@
     <!-- Optional parameters -->
     <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
     <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
-    <parameter name="sysparmView" description="UI view for which to render the data"/>
-    <parameter name="sysparmExcludeReferenceLink" description="Indicates whether to exclude Table API links for reference fields"/>
     <parameter name="sysparmAvgFields" description="Return average aggregate as the response"/>
     <parameter name="sysparmMinFields" description="Return minimum aggregate as the response"/>
     <parameter name="sysparmMaxFields" description="Return maximum aggregate as the response"/>
@@ -38,13 +36,10 @@
     <parameter name="keyValuePairs" description="Name-value pairs to use to filter the result set"/>
     <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <parameter name="sysparmQuery" description="Encoded query to retriece data"/>
-    <property name="uri.var.apiParameters" value=""/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
         <property name="uri.var.sysparmDisplayValue" expression="$func:sysparmDisplayValue"/>
         <property name="uri.var.sysparmFields" expression="$func:sysparmFields"/>
-        <property name="uri.var.sysparmView" expression="$func:sysparmView"/>
-        <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
         <property name="uri.var.sysparmAvgFields" expression="$func:sysparmAvgFields"/>
         <property name="uri.var.sysparmMinFields" expression="$func:sysparmMinFields"/>
         <property name="uri.var.sysparmMaxFields" expression="$func:sysparmMaxFields"/>
@@ -53,9 +48,11 @@
         <property name="uri.var.sysparmGroupBy" expression="$func:sysparmGroupBy"/>
         <property name="uri.var.sysparmHaving" expression="$func:sysparmHaving"/>
         <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
-        <property name="uri.var.apiParameters" value=""/>
         <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
         <property name="uri.var.sysparmQuery" expression="$func:sysparmQuery"/>
+        <property name="uri.var.sysparmOrderby" expression="$func:sysparmOrderby"/>
+        <property name="uri.var.apiParameters" value=""/>
+
         
          <!--Building Query Parameters-->
         <script language="js">
@@ -96,18 +93,6 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_fields=', $ctx:uri.var.sysparmFields, '&amp;')"/>
             </then>
         </filter>
-        <filter xpath="(not($ctx:uri.var.sysparmView = '' or (not(string($ctx:uri.var.sysparmView)))))">
-            <then>
-                <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_view=', $ctx:uri.var.sysparmView, '&amp;')"/>
-            </then>
-        </filter>
-        <filter xpath="(not($ctx:uri.var.sysparmExcludeReferenceLink = '' or (not(string($ctx:uri.var.sysparmExcludeReferenceLink)))))">
-            <then>
-                <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_exclude_reference_link=', $ctx:uri.var.sysparmExcludeReferenceLink, '&amp;')"/>
-            </then>
-        </filter>
         <filter xpath="(not($ctx:uri.var.sysparmAvgFields = '' or (not(string($ctx:uri.var.sysparmAvgFields)))))">
             <then>
                 <property name="uri.var.apiParameters"
@@ -126,6 +111,18 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_max_fields=', $ctx:uri.var.sysparmMaxFields, '&amp;')"/>
             </then>
         </filter>
+         <filter xpath="(not($ctx:uri.var.sysparmSumFields = '' or (not(string($ctx:uri.var.sysparmSumFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_sum_fields=', $ctx:uri.var.sysparmSumFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmCount = '' or (not(string($ctx:uri.var.sysparmCount)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_count=', $ctx:uri.var.sysparmCount, '&amp;')"/>
+            </then>
+        </filter>
         <filter xpath="(not($ctx:uri.var.sysparmGroupBy = '' or (not(string($ctx:uri.var.sysparmGroupBy)))))">
             <then>
                 <property name="uri.var.apiParameters"
@@ -142,6 +139,12 @@
             <then>
                 <property name="uri.var.apiParameters"
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query=', $ctx:uri.var.sysparmQuery, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmOrderby = '' or (not(string($ctx:uri.var.sysparmOrderby)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_orderby=', $ctx:uri.var.sysparmOrderby, '&amp;')"/>
             </then>
         </filter>
          <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
