@@ -489,4 +489,4 @@ curl http://localhost:8290/table/readrecord -H "Content-Type: application/json" 
 ```
 5. ServiceNow returns a JSON response similar to the one shown in the [section](#retrieving-a-set-of-records-from-a-table) above.
  
-```
+
