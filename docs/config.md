@@ -14,7 +14,7 @@ The ServiceNow API requires all requests to be authenticated as a user. User has
  
     1. Using the URL "https://developer.servicenow.com/app.do#!/home" signup to a ServiceNow account or signin to existing account.
 	2. Login to the ServiceNow account and request an instance.
-	3. Then you will get a username and password for your instance with instance URL. You can change your password by going My Instance -> Instance Action -> Manage Instance Password.
+	3. Then you will get a username and password for your instance with instance URL. You can change your password by going to My Instance -> Instance Action -> Manage Instance Password.
 	
 	    
 	    
