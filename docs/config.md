@@ -12,7 +12,7 @@ The ServiceNow API requires all requests to be authenticated as a user. User has
 
 * **Create a ServiceNow instance using serviceNow developer site and setup the username and password**
  
-    1. Using the URL "https://developer.servicenow.com/app.do#!/home" signup to a ServiceNow account or signin to existing account.
+  1. Using the URL "https://developer.servicenow.com/app.do#!/home" signup to a ServiceNow account or signin to existing account.
 	2. Login to the ServiceNow account and request an instance.
 	3. Then you will get a username and password for your instance with instance URL. You can change your password by going to My Instance -> Instance Action -> Manage Instance Password.
 	
@@ -20,9 +20,9 @@ The ServiceNow API requires all requests to be authenticated as a user. User has
 	    
 ### Importing the ServiceNow Certificate
 
-Before you start configuring the connector, import the ServiceNow certificate to your EI client keystore.
+Before you start configuring the connector, import the ServiceNow certificate to your MI client keystore.
 
-* Follow the article https://ei.docs.wso2.com/en/latest/micro-integrator/setup/security/importing_ssl_certificate/  to import the ServiceNow certificate into the EI client keystore.
+* Follow the article https://ei.docs.wso2.com/en/latest/micro-integrator/setup/security/importing_ssl_certificate/  to import the ServiceNow certificate into the MI client keystore.
  
 
 ## Initializing the connector
