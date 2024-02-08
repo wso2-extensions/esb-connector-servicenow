@@ -208,7 +208,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
     <resource methods="POST" uri-template="/postrecord">
         <inSequence>
             <servicenow.init>
-                <serviceNowInstanceURL>https://your-instance.service-now.com</serviceNowInstanceURL>
+                <serviceNowInstanceurl>https://your-instance.service-now.com</serviceNowInstanceurl>
                 <username>admin</username>
                 <password>your-passord</password>
             </servicenow.init>

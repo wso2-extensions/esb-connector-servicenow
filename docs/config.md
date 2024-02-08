@@ -12,9 +12,9 @@ The ServiceNow API requires all requests to be authenticated as an user. The use
 
 * **Create a ServiceNow instance using serviceNow developer site and setup the username and password**
  
-  1. Using the URL "https://developer.servicenow.com/app.do#!/home" signup to a ServiceNow account or signin to existing account.
+  1. Using the url "https://developer.servicenow.com/app.do#!/home" signup to a ServiceNow account or signin to existing account.
 	2. Login to the ServiceNow account and request an instance.
-	3. Then you will get an username and password for your instance with instance URL. You can change your password by going to My Instance -> Instance Action -> Manage Instance Password.
+	3. Then you will get an username and password for your instance with instance url. You can change your password by going to My Instance -> Instance Action -> Manage Instance Password.
 	
 	    
 	    
@@ -32,13 +32,13 @@ Add the following <servicenow.init> method in your configuration:
 #### init
 ```xml
 <servicenow.init>
-    <serviceNowInstanceURL>{$ctx:serviceNowInstanceURL}</serviceNowInstanceURL>
+    <serviceNowInstanceurl>{$ctx:serviceNowInstanceurl}</serviceNowInstanceurl>
     <username>{$ctx:username}</username>
     <password>{$ctx:password}</password>
 </servicenow.init>
 ```
 **Properties** 
-* serviceNowInstanceURL: Developer instance URL.  
+* serviceNowInstanceurl: Developer instance url.  
 * username : The username of the developer instance (default:admin).  
 * password : The password of the  developer instance. 
 
@@ -48,7 +48,7 @@ Following is a sample REST request that can be handled by the init operation.
 
 ```json
 {
-  "serviceNowInstanceURL":"https://your-instance.service-now.com", 
+  "serviceNowInstanceurl":"https://your-instance.service-now.com", 
   "username":"admin",
   "password":"<password>"
 }

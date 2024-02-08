@@ -54,7 +54,7 @@ The getRecords operation retrieves set of records from a table.
 * keyValuePairs: Name-value pairs to use to filter the result set  
 * sysparmQueryNoDomain: Restrict the record search to only the domains the logged in user is configured
 * sysparmQueryCategory: Name of the category to use for queries
-* apiVersion: Optional version to be embeded in the URL
+* apiVersion: Optional version to be embeded in the url
 
 **Sample request**
 
@@ -164,7 +164,7 @@ The getRecordById operation retrieves a record according to the sysId from a tab
 * sysparmExcludeReferenceLink: Exclude or include Table API links for reference fields
 * keyValuePairs: Name-value pairs to use to filter the result set  
 * sysparmQueryNoDomain: Restrict the record search to only the domains the logged in user is configured
-* apiVersion: Optional version to be embeded in the URL
+* apiVersion: Optional version to be embeded in the url
 
 **Sample request**
 
@@ -221,7 +221,7 @@ The postRecord operation insert a record with given attributes into a table:
 * sysparmView: UI view for which to render the data  
 * sysparmExcludeReferenceLink: Exclude or include Table API links for reference fields
 * sysparmInputDisplayValue: Flag that indicates whether to set field values using the display value or the actual value
-* apiVersion: API version to be embedded in the URL
+* apiVersion: API version to be embedded in the url
 
 
 **Sample request**
@@ -282,7 +282,7 @@ The patchRecordById operation patches a record which is already in table using t
 
 **Properties**
 * tableName: Name of the table you want to retrieve a record.
-* apiVersion: API version to be embedded in the URL.
+* apiVersion: API version to be embedded in the url.
 * sysparmDisplayValue: Determines the type of data returned ( actual values from the database or display values of the fields).
 * sysparmFields: Comma-separated field names to return in the response.
 * sysparmView: UI view for which to render the data.  
@@ -342,7 +342,7 @@ The putRecordById operation put a record which is already in table according to 
 **Properties**
 
 * tableName: Name of the table you want to retrieve a record.
-* apiVersion: API version to be embedded in the URL
+* apiVersion: API version to be embedded in the url
 * sysparmDisplayValue: Determines the type of data returned ( actual values from the database or display values of the fields)
 * sysparmFields: Comma-separated field names to return in the response
 * sysparmView: UI view for which to render the data  
@@ -406,7 +406,7 @@ The delete record using sysId of the record
 * tableName: Name of the table where deleting record is in
 * sysId: Id of the record to be deleted
 * sysparmQueryNoDomain: Restrict the record search to only the domains the logged in user is configured
-* apiVersion: API version to be embedded in the URL
+* apiVersion: API version to be embedded in the url
 
 
 **Sample request**
@@ -437,7 +437,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
     <resource methods="POST" uri-template="/readrecord">
         <inSequence>
             <servicenow.init>
-                <serviceNowInstanceURL>https://your-instance.service-now.com</serviceNowInstanceURL>
+                <serviceNowInstanceurl>https://your-instance.service-now.com</serviceNowInstanceurl>
                 <username>admin</username>
                 <password>your-password</password>
             </servicenow.init>

@@ -24,7 +24,7 @@ Retrieves records for the specified table and performs aggregate functions on th
 
 **Properties**
 * tableName: Name of the data retrieving table
-* apiVersion: Optional api version to be embeded in the URL
+* apiVersion: Optional api version to be embeded in the url
 * sysparmAvgFields: A comma-separated list of fields for which to calculate the average value
 * sysparmMinFields: A comma-separated list of fields for which to calculate the minimum value
 * sysparmMaxFields: A comma-separated list of fields for which to calculate the maximum value
@@ -188,7 +188,7 @@ Following example illustrates how to connect to ServiceNow with the init operati
     <resource methods="POST">
         <inSequence>
             <servicenow.init>
-                <serviceNowInstanceURL>https://your-instance.service-now.com</serviceNowInstanceURL>
+                <serviceNowInstanceurl>https://your-instance.service-now.com</serviceNowInstanceurl>
                 <username>admin</username>
                 <password>your-password</password>
             </servicenow.init>
