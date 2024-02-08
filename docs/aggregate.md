@@ -35,12 +35,12 @@ Retrieves records for the specified table and performs aggregate functions on th
 * sysparmGroupBy: Fields by which to group the returned data
 * sysparmHaving : Query that enables you to filter the data based on an aggregate operation 
 * sysparmOrderby: List of values by which to order grouped results
-* sysparmQuery: An encoded query to fileter response data
+* sysparmQuery: An encoded query to filter response data
 * keyValuePairs: Filter a query using key-value pairs, key is the name of a field
 
 **Sample request**
 
-Following is a sample request that can be handled by the getAggregateRecord operation.
+Following is a sample request that can be handled by the getAggregateRecord operation:
 
 ```json
 {
@@ -51,7 +51,7 @@ Following is a sample request that can be handled by the getAggregateRecord oper
 ```
 **Sample response**
 
-Given below is a sample response for the getAggregateRecord operation.
+Given below is a sample response for the getAggregateRecord operation:
 
 ```json
 {

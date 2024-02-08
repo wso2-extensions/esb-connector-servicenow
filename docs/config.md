@@ -6,7 +6,7 @@
 
 To use the ServiceNow connector, add the <servicenow.init> element in your configuration before carrying out any other ServiceNow operations.
 
-The ServiceNow API requires all requests to be authenticated as a user. User has to create an own instance with user credentials. For more information, see https://developer.servicenow.com/app.do#!/home
+The ServiceNow API requires all requests to be authenticated as an user. The user has to create an own instance with the user credentials. For more information, see https://developer.servicenow.com/app.do#!/home
 
 ### Obtaining user credentials
 
@@ -14,13 +14,13 @@ The ServiceNow API requires all requests to be authenticated as a user. User has
  
   1. Using the URL "https://developer.servicenow.com/app.do#!/home" signup to a ServiceNow account or signin to existing account.
 	2. Login to the ServiceNow account and request an instance.
-	3. Then you will get a username and password for your instance with instance URL. You can change your password by going to My Instance -> Instance Action -> Manage Instance Password.
+	3. Then you will get an username and password for your instance with instance URL. You can change your password by going to My Instance -> Instance Action -> Manage Instance Password.
 	
 	    
 	    
 ### Importing the ServiceNow Certificate
 
-ServiceNow API support basic authentication using username,passsword to access APIs. For additional secrure connection, import the ServiceNow certificate to your MI client keystore.
+ServiceNow API support basic authentication using username,passsword to access APIs. For additional secure connection, import the ServiceNow certificate to your MI client keystore.
 
 * Follow the article https://ei.docs.wso2.com/en/latest/micro-integrator/setup/security/importing_ssl_certificate/  to import the ServiceNow certificate into the MI client keystore.
  
@@ -39,8 +39,8 @@ Add the following <servicenow.init> method in your configuration:
 ```
 **Properties** 
 * serviceNowInstanceURL: Developer instance URL.  
-* username : The user Name of the developer instance (default:admin).  
-* password : The Password of the  developer instance. 
+* username : The username of the developer instance (default:admin).  
+* password : The password of the  developer instance. 
 
 **Sample Request**
 

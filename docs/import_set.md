@@ -10,7 +10,7 @@ For a sample REST API that illustrates how to work with  Import Set API, see [Sa
 | Operation        | Description |
 | ------------- |-------------|
 | [getRecordsStagingTable](#Retrieving-the-record)    | This method retrieves the specified import staging record and resulting transformation result.|
-| [postRecordStagingTableInsertMultiple](#Inserts-multiple-records-into-the-staging-table)      | This method inserts multiple records into a specified staging table and triggers transformation |
+| [postRecordStagingTableInsertMultiple](#Inserts-multiple-records-into-the-staging-table)      | This method inserts multiple records into a specified staging table and triggers transformation. |
 | [postRecordStagingTable](#Inserts-incoming-data-into-a-specified-staging-table)      | This method inserts incoming data into a specified staging table and triggers transformation. |
 
 
@@ -89,10 +89,10 @@ Inserts multiple records into a specified staging table and triggers transformat
  </servicenow.postRecordStagingTableInsertMultiple>
 ```
 **Properties**
-* stagingTableName :  Name of the staging table for retrieving records..
+* stagingTableName :  Name of the staging table for retrieving records.
 * apiVersion : Optinal api versin to be embeded in the url.
-* multiImportSetId : Sys_id of an entry in the Multi Import Sets [sys_multi_import_set] table.
-* runAfter : Sys_id of an entry in the Import Sets [sys_import_set] table.
+* multiImportSetId : sysId of an entry in the Multi Import Sets [sys_multi_import_set] table.
+* runAfter : sysId of an entry in the Import Sets [sys_import_set] table.
 
 
 **Sample request**
@@ -147,7 +147,7 @@ Inserts incoming data into a specified staging table and triggers transformation
  </servicenow.postRecordStagingTableInsertMultiple>
 ```
 **Properties**
-* stagingTableName :  Name of the staging table for retrieving records..
+* stagingTableName :  Name of the staging table for retrieving records.
 * apiVersion : Optinal api versin to be embeded in the url.
 
 
