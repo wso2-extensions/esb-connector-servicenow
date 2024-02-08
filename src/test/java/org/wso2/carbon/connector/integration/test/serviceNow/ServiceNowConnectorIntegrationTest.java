@@ -67,8 +67,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testGetRecordsWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getRecords");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_mandatory.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_mandatory.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);

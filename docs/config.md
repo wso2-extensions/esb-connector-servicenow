@@ -20,7 +20,7 @@ The ServiceNow API requires all requests to be authenticated as a user. User has
 	    
 ### Importing the ServiceNow Certificate
 
-Before you start configuring the connector, import the ServiceNow certificate to your MI client keystore.
+ServiceNow API support basic authentication using username,passsword to access APIs. For additional secrure connection, import the ServiceNow certificate to your MI client keystore.
 
 * Follow the article https://ei.docs.wso2.com/en/latest/micro-integrator/setup/security/importing_ssl_certificate/  to import the ServiceNow certificate into the MI client keystore.
  
