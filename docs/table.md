@@ -2,7 +2,7 @@
 
 [[Overview]](#overview)  [[Operation details]](#operation-details)  [[Sample configuration]](#sample-configuration)
 
-### Overview 
+## Overview 
 
 The following operations allow you to work with Table API. Click an operation name to see details on how to use it.
 For a sample REST API that illustrates how to work with tables, see [Sample configuration](#sample-configuration).
@@ -16,11 +16,11 @@ For a sample REST API that illustrates how to work with tables, see [Sample conf
 | [putRecordById](#Update-a-record-in-a-table-using-sysId-of-the-record)      | Put a record to table by specifying sysId. |
 | [deleteRecordById](#Delete-a-record-from-table-by-specifying-sysId)   | Delete a record from table by specifying sysId.|
 
-### Operation details
+## Operation details
 
 This section provides more details on each of the operations related to  table API.
 
-#### Retrieving a set of Records from a table
+### Retrieving a set of Records from a table
 The getRecords operation retrieves set of records from a table.
 
 **getRecords**
@@ -136,7 +136,7 @@ Given below is a sample response for the getRecords operation:
 **Related ServiceNow documentation**
 https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_TableAPI#table-GET.
 
-#### Retrieves record using sysId
+### Retrieves record using sysId
 
 The getRecordById operation retrieves a record according to the sysId from a table:
 
@@ -197,7 +197,7 @@ Given below is a sample response for the getRecordById operation:
 **Related ServiceNow documentation**
 https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_TableAPI#table-GET-id
 
-#### Insert a record into a table
+### Insert a record into a table
 
 The postRecord operation insert a record with given attributes into a table:
 
@@ -261,7 +261,7 @@ Given below is a sample response for the postRecord operation:
 
 https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_TableAPI#table-POST
 
-#### Patch a record from table using sysId of the record
+### Patch a record from table using sysId of the record
 
 The patchRecordById operation patches a record which is already in table using the sysId:
 
@@ -321,7 +321,7 @@ Given below is a sample response for the patchRecordById operation:
 
 https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_TableAPI#table-PATCH
 
-#### Update a record in a table using sysId of the record
+### Update a record in a table using sysId of the record
 
 The putRecordById operation put a record which is already in table according to the sysId from a table:
 
@@ -389,7 +389,7 @@ Given below is a sample response for the putRecordById operation:
 
 https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_TableAPI#table-PUT
 
-#### Delete a record from table by specifying sysId
+### Delete a record from table by specifying sysId
 
 The delete record using sysId of the record
 
@@ -426,7 +426,7 @@ Following is a sample request that can be handled by the deleteRecordById operat
 
 https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_TableAPI#table-DELETE
 
-### Sample configuration
+## Sample configuration
 
 Following example illustrates how to connect to ServiceNow with the init operation and getRecords.
 

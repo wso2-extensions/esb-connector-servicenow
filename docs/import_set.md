@@ -2,7 +2,7 @@
 
 [[Overview]](#overview)  [[Operation details]](#operation-details)  [[Sample configuration]](#sample-configuration)
 
-### Overview 
+## Overview 
 
 The following operations allow you to work with  Import Set API. Click an operation name to see details on how to use it.
 For a sample REST API that illustrates how to work with  Import Set API, see [Sample configuration](#sample-configuration).
@@ -14,11 +14,11 @@ For a sample REST API that illustrates how to work with  Import Set API, see [Sa
 | [postRecordStagingTable](#Inserts-incoming-data-into-a-specified-staging-table)      | This method inserts incoming data into a specified staging table and triggers transformation. |
 
 
-### Operation details
+## Operation details
 
 This section provides more details on each of the operations related to Import Set API.
 
-#### Retrieving the record
+### Retrieving the record
 
 The getRecordStagingTable operation retrieves the associated record and resulting transformation result.
 
@@ -75,7 +75,7 @@ Given below is a sample response for the getRecordsStagingTable operation.
 
 https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI#import-GET
 
-#### Inserts multiple records into the staging table
+### Inserts multiple records into the staging table
 
 Inserts multiple records into a specified staging table and triggers transformation based on predefined transform maps or Robust Transform Engine (RTE) configurations in a single request.
 
@@ -135,7 +135,7 @@ https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI
 
 You have to give Access Control List (ACL) permission to access the records in import set tables. You can find more information on https://docs.servicenow.com/bundle/utah-security-management/page/product/secops-integration-major-security-incident-management/task/adding-access-control-lists-for-msim-workspace-users.html
 
-#### Inserts records into the staging table
+### Inserts records into the staging table
 
 Inserts incoming data into a specified staging table and triggers transformation based on predefined transform maps in the import set table.
 
@@ -196,7 +196,7 @@ Given below is a sample response for the postRecordStagingTable operation.
 **Related ServiceNow documentation**
 https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI#import-POST
 
-### Sample configuration
+## Sample configuration
 
 Following example illustrates how to connect to ServiceNow with the init operation and postRecordsStagingTable operation.
 
