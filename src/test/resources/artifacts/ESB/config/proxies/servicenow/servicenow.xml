@@ -44,7 +44,6 @@
             <property name="sysparmHaving" expression="json-eval($.sysparmHaving)"/>
             <property name="sysparmCount" expression="json-eval($.sysparmCount)"/>
             <property name="sysparmOrderBy" expression="json-eval($.sysparmOrderBy)"/>
-            <property name="KeyValuePairs" expression="json-eval($.KeyValuePairs)"/>
             <property name="sysparmInputDisplayValue" expression="json-eval($.sysparmInputDisplayValue)"/>
             <property name="multiImportSetId" expression="json-eval($.multiImportSetId)"/>
             <property name="runAfter" expression="json-eval($.runAfter)"/>
@@ -56,9 +55,9 @@
             <property name="syparmInputDisplayValue" expression="json-eval($.sysparmInputDisplayValue)"/>
             <property name="sysparmNoCount" expression="json-eval($.sysparmNoCount)"/>
             <property name="sysparmAvgFields" expression="json-eval($.sysparmAvgFields)"/>
-            <property name="sysparMinFields" expression="json-eval($.sysparmMinFields)"/>
+            <property name="sysparmMinFields" expression="json-eval($.sysparmMinFields)"/>
             <property name="sysparmMaxFields" expression="json-eval($.sysparmMaxFields)"/>
-            <property name="sysparSumFields" expression="json-eval($.sysparmSumFields)"/>
+            <property name="sysparmSumFields" expression="json-eval($.sysparmSumFields)"/>
             <property name="sysparmHaving" expression="json-eval($.sysparmHaving)"/>
             <property name="sysparmOrderby" expression="json-eval($.sysparmOrderby)"/>
             
@@ -79,7 +78,7 @@
                         <sysparmOffset>{$ctx:sysparmOffset}</sysparmOffset>
                         <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
                         <sysparmReadReplicaCategory>{$ctx:sysparmReadReplicaCategory}</sysparmReadReplicaCategory>
-                        <KeyValuePairs>{$ctx:KeyValuePairs}</KeyValuePairs>
+                        <KeyValuePairs>json-eval($.keyValuePairs)</KeyValuePairs>
                     </servicenow.getRecords>
                 </case>
                 <case regex="urn:getRecordById">
@@ -157,19 +156,18 @@
                         <sysparmAvgFields>{$ctx:sysparmAvgFields}</sysparmAvgFields>
                         <sysparmMinFields>{$ctx:sysparmMinFields}</sysparmMinFields>
                         <sysparmMaxFields>{$ctx:sysparmMaxFields}</sysparmMaxFields>
-                        <sysparmCount>{$ctx:sysparmCount}</sysparmCount>
                         <sysparmSumFields>{$ctx:sysparmSumFields}</sysparmSumFields>
                     </servicenow.getAggregateRecord>
                 </case>
                 <case regex="urn:getRecordsStagingTable">
                     <servicenow.getRecordsStagingTable>
-                        <tableNameStaging>{$ctx:tableNameStaging}</tableNameStaging>
+                        <stagingTableName>{$ctx:stagingTableName}</stagingTableName>
                         <sysIdStaging>{$ctx:sysIdStaging}</sysIdStaging>
                     </servicenow.getRecordsStagingTable>
                 </case>
                 <case regex="urn:postRecordStagingTable">
                     <servicenow.postRecordStagingTable>
-                        <tableNameStaging>{$ctx:tableNameStaging}</tableNameStaging>
+                        <stagingTableName>{$ctx:stagingTableName}</stagingTableName>
                         <serialNumber>{$ctx:serialNumber}</serialNumber>
                         <cpuCount>{$ctx:cpuCount}</cpuCount>
                         <manufacturer>{$ctx:manufacturer}</manufacturer>

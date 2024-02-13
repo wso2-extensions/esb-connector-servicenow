@@ -3,5 +3,6 @@
   "username":"%s(username)",
   "password":"%s(password)",
   "tableName":"%s(tableName)",
-  "sysId":"%s(sysId)"
+  "sysId":"%s(sysId)",
+  "sysparmExcludeReferenceLink":"%a(sysparmExcludeReferenceLink)"
 }
