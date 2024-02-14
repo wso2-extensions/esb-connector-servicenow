@@ -82,25 +82,21 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
         Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("short_description"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("short_description"));
     }
 
-    // /**
-    //  * Test case for getRecords method with optional parameter.
-    //  */
-    // // @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecords} integration test with optional parameters.")
-    // // public void testGetRecordsWithOptionalParameters() throws IOException, JSONException {
-    // //     esbRequestHeadersMap.put("Action", "urn:getRecords");
-    // //     String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "?" +"&sysparm_limit=" + connectorProperties.getProperty("sysparmLimit") + "&sysparm_display_value=" + connectorProperties.getProperty("sysparmDisplayValue") + "&sysparm_fields=" + connectorProperties.getProperty("sysparmFields") + "&sysparm_view=" + connectorProperties.getProperty("sysparmView") + "&sysparm_offset=" + connectorProperties.getProperty("sysparmOffset") + "&sysparm_exclude_reference_link=" + connectorProperties.getProperty("sysparmExcludeReferenceLink") ;
-    // //     RestResponse<JSONObject> esbRestResponse =
-    // //             sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_optional.json");
-    // //     RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-    // //     FileWriter myWriter = new FileWriter("/home/yasiruw/Desktop/works/result.txt");
-    // //     myWriter.append(apiRestResponse.getBody().toString());
-    // //     myWriter.append(esbRestResponse.getBody().toString());
-    // //     myWriter.close();
-    // //     Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-    // //     Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-    // //     Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("number"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("number"));
-    // //     Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("short_description"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("short_description"));
-    // // }
+    /**
+     * Test case for getRecords method with optional parameter.
+     */
+    @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecords} integration test with optional parameters.")
+    public void testGetRecordsWithOptionalParameters() throws IOException, JSONException {
+        esbRequestHeadersMap.put("Action", "urn:getRecords");
+        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "?" +"&sysparm_limit=" + connectorProperties.getProperty("sysparmLimit") + "&sysparm_display_value=" + connectorProperties.getProperty("sysparmDisplayValue") + "&sysparm_fields=" + connectorProperties.getProperty("sysparmFields") + "&sysparm_view=" + connectorProperties.getProperty("sysparmView") + "&sysparm_exclude_reference_link=" + connectorProperties.getProperty("sysparmExcludeReferenceLink")+"number="+connectorProperties.getProperty("getordernumber") ;
+        RestResponse<JSONObject> esbRestResponse =
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_optional.json");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("number"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("number"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("short_description"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("short_description"));
+    }
 
     /**
      * Negative test case for getRecords method.
@@ -112,6 +108,8 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        
+        
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
 
@@ -414,15 +412,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getAggregateRecord_optional.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        FileWriter myWriter = new FileWriter("/home/yasiruw/Desktop/works/result.txt");
       
-        myWriter.write(apiRestResponse.getBody().toString());
-        myWriter.write("\n================================\n");
-        myWriter.write(apiEndPoint);
-        myWriter.write("\n================================\n");
-        myWriter.write(esbRestResponse.getBody().toString());
-        myWriter.close();
-        
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbRestResponse.getBody().getJSONObject("result").getJSONObject("stats").getJSONObject("max").get("number"), apiRestResponse.getBody().getJSONObject("result").getJSONObject("stats").getJSONObject("max").get("number"));

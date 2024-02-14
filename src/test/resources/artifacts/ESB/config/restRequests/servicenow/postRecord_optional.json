@@ -8,6 +8,6 @@
   "sysparmDisplayValue":"%s(sysparmDisplayValue)",
   "sysparmFields":"%s(sysparmFields)",
   "sysparmView":"%s(sysparmView)",
-  "sysparmExcludeReferenceLink":"",
+  "sysparmExcludeReferenceLink":"%s(sysparmExcludeReferenceLink)",
   "sysparmInputDisplayValue ":"%s(sysparmInputDisplayValue)"
 }

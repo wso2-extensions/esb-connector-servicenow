@@ -52,7 +52,7 @@
             <property name="sysparmQueryCategory" expression="json-eval($.sysparmQueryCategory)"/>
             <property name="sysparmQueryNoDomain" expression="json-eval($.syaparmQueryNoDomain)"/>
             <property name="sysparmQuery" expression="json-eval($.sysparmQuery)"/>
-            <property name="syparmInputDisplayValue" expression="json-eval($.sysparmInputDisplayValue)"/>
+            <property name="sysparmInputDisplayValue" expression="json-eval($.sysparmInputDisplayValue)"/>
             <property name="sysparmNoCount" expression="json-eval($.sysparmNoCount)"/>
             <property name="sysparmAvgFields" expression="json-eval($.sysparmAvgFields)"/>
             <property name="sysparmMinFields" expression="json-eval($.sysparmMinFields)"/>
@@ -77,7 +77,6 @@
                         <sysparmLimit>{$ctx:sysparmLimit}</sysparmLimit>
                         <sysparmOffset>{$ctx:sysparmOffset}</sysparmOffset>
                         <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
-                        <sysparmReadReplicaCategory>{$ctx:sysparmReadReplicaCategory}</sysparmReadReplicaCategory>
                         <KeyValuePairs>json-eval($.keyValuePairs)</KeyValuePairs>
                     </servicenow.getRecords>
                 </case>
@@ -106,13 +105,6 @@
                         <sysparmView>{$ctx:sysparmView}</sysparmView>
                         <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
                         <sysparmInputDisplayValue>{$ctx:sysparmInputDisplayValue}</sysparmInputDisplayValue>
-                        <number>{$ctx:number}</number>
-                        <shortDescription>{$ctx:shortDescription}</shortDescription>
-                        <active>{$ctx:active}</active>
-                        <approval>{$ctx:approval}</approval>
-                        <category>{$ctx:category}</category>
-                        <contactType>{$ctx:contactType}</contactType>
-                        <apiColumns>{$ctx:apiColumns}</apiColumns>
                     </servicenow.patchRecordById>
                 </case>
                 <case regex="urn:postRecord">
@@ -123,13 +115,6 @@
                         <sysparmView>{$ctx:sysparmView}</sysparmView>
                         <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
                         <sysparmInputDisplayValue>{$ctx:sysparmInputDisplayValue}</sysparmInputDisplayValue>
-                        <number>{$ctx:number}</number>
-                        <shortDescription>{$ctx:shortDescription}</shortDescription>
-                        <active>{$ctx:active}</active>
-                        <approval>{$ctx:approval}</approval>
-                        <category>{$ctx:category}</category>
-                        <contactType>{$ctx:contactType}</contactType>
-                        <apiColumns>{$ctx:apiColumns}</apiColumns>
                     </servicenow.postRecord>
                 </case>
                 <case regex="urn:putRecordById">
@@ -141,22 +126,15 @@
                         <sysparmView>{$ctx:sysparmView}</sysparmView>
                         <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
                         <sysparmInputDisplayValue>{$ctx:sysparmInputDisplayValue}</sysparmInputDisplayValue>
-                        <number>{$ctx:number}</number>
-                        <shortDescription>{$ctx:shortDescription}</shortDescription>
-                        <active>{$ctx:active}</active>
-                        <approval>{$ctx:approval}</approval>
-                        <category>{$ctx:category}</category>
-                        <contactType>{$ctx:contactType}</contactType>
-                        <apiColumns>{$ctx:apiColumns}</apiColumns>
                     </servicenow.putRecordById>
                 </case>
                 <case regex="urn:getAggregateRecord">
                     <servicenow.getAggregateRecord>
                         <tableName>{$ctx:tableName}</tableName>
                         <sysparmAvgFields>{$ctx:sysparmAvgFields}</sysparmAvgFields>
-                        <sysparmMinFields>{$ctx:sysparmMinFields}</sysparmMinFields>
-                        <sysparmMaxFields>{$ctx:sysparmMaxFields}</sysparmMaxFields>
-                        <sysparmSumFields>{$ctx:sysparmSumFields}</sysparmSumFields>
+                        <sysparmMinFields>{json-eval($.sysparmMinFields)}</sysparmMinFields>
+                        <sysparmMaxFields>{json-eval($.sysparmMaxFields)}</sysparmMaxFields>
+                        <sysparmSumFields>{json-eval($.sysparmSumFields)}</sysparmSumFields>
                     </servicenow.getAggregateRecord>
                 </case>
                 <case regex="urn:getRecordsStagingTable">
@@ -168,14 +146,6 @@
                 <case regex="urn:postRecordStagingTable">
                     <servicenow.postRecordStagingTable>
                         <stagingTableName>{$ctx:stagingTableName}</stagingTableName>
-                        <serialNumber>{$ctx:serialNumber}</serialNumber>
-                        <cpuCount>{$ctx:cpuCount}</cpuCount>
-                        <manufacturer>{$ctx:manufacturer}</manufacturer>
-                        <name>{$ctx:name}</name>
-                        <operatingSystem>{$ctx:operatingSystem}</operatingSystem>
-                        <diskSpace>{$ctx:diskSpace}</diskSpace>
-                        <ram>{$ctx:ram}</ram>
-                        <apiColumns>{$ctx:apiColumns}</apiColumns>
                     </servicenow.postRecordStagingTable>
                 </case>
             </switch>
