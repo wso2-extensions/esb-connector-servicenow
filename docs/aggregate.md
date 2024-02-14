@@ -36,7 +36,7 @@ Retrieves records for the specified table and performs aggregate functions on th
 * sysparmHaving : Query that enables you to filter the data based on an aggregate operation 
 * sysparmOrderby: List of values by which to order grouped results
 * sysparmQuery: An encoded query to filter response data
-* keyValuePairs: Filter a query using key-value pairs, key is the name of a field
+* keyValuePairs: Filter  query using key-value pairs, key is the name of a field
 
 **Sample request**
 
