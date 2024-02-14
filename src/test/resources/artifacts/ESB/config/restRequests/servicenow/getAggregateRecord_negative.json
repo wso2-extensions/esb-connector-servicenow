@@ -1,7 +1,0 @@
-{
-  "serviceNowInstanceURL": "%s(serviceNowInstanceURL)",
-  "username": "%s(username)",
-  "password": "%s(password)",
-  "sysparmAvgFields":"%s(sysparmAvgFields)",
-  "tableName": "negative"
-}

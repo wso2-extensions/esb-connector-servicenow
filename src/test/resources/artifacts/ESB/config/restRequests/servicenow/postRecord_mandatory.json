@@ -1,9 +1,0 @@
-{
-  "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
-  "username":"%s(username)",
-  "password":"%s(password)",
-  "tableName":"%s(tableName)",
-  "number":"%s(number)",
-  "short_description":"%s(shortDescription)"
-  
-}
