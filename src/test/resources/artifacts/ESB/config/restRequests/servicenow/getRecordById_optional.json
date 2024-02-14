@@ -7,8 +7,5 @@
   "sysparmDisplayValue":"%s(sysparmDisplayValue)",
   "sysparmFields":"%s(sysparmFields)",
   "sysparmView":"%s(sysparmView)",
-  "sysparmExcludeReferenceLink":"%s(sysparmExcludeReferenceLink)",
-  "keyValuePairs":{
-    "number":"%s(getordernumber)"
-  }
+  "sysparmExcludeReferenceLink":"%s(sysparmExcludeReferenceLink)"
 }
