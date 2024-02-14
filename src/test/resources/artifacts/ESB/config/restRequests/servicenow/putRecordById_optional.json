@@ -1,0 +1,17 @@
+{
+  "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
+  "username":"%s(username)",
+  "password":"%s(password)",
+  "tableName":"%s(tableName)",
+  "sysId":"%s(sysId)",
+  "number":"%s(number)",
+  "short_description":"%s(shortDescription)",
+  "state":"%s(state)",
+  "sysparmDisplayValue":"%s(sysparmDisplayValue)",
+  "sysparmFields":"%s(sysparmFields)",
+  "sysparmView":"%s(sysparmView)",
+  "sysparmExcludeReferenceLink":"",
+  "sysparmInputDisplayValue ":"%s(sysparmInputDisplayValue)"
+}
+
+
