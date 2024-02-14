@@ -29,5 +29,4 @@ target
 
 # ignore the target directories
 target/
-repository/
 *.*~
