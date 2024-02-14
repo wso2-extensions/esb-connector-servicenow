@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+
+<template name="deleteRecordById" xmlns="http://ws.apache.org/ns/synapse">
+
+    <!--URL Parameter Variables-->
+    <parameter name="sysId" description="Unique Id to recognize record in a servicenow table"/>
+    <parameter name="tableName" description="Name of the table which a record going to be deleted"/>
+
+    <!--Optional Query Parameters-->
+    <parameter name="sysparmQueryNoDomain" description="Restrict the record search to only the domains the logged in user is configured"/>
+    <parameter name="apiVersion" description="Optional API version to embed in url"/>
+
+    <sequence>
+        <property name="uri.var.sysId" expression="$func:sysId"/>
+        <property name="uri.var.tableName" expression="$func:tableName"/>
+        <property name="uri.var.sysparmQueryNoDomain" expression="$func:sysparmQueryNoDomain"/>
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
+        <property name="uri.var.apiParameters" value=""/>
+
+        <!--Build Key-Value Query Parameter using JSON Payload-->
+        <filter xpath="(not($ctx:uri.var.sysparmQueryNoDomain = '' or (not(string($ctx:uri.var.sysparmQueryNoDomain)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query_no_domain=', $ctx:uri.var.sysparmQueryNoDomain, '&amp;')"/>
+            </then>
+        </filter>
+         <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
+            <then>
+                <call>
+                    <endpoint>
+                        <http method="DELETE"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>        
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="DELETE"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/table/{+uri.var.tableName}/{uri.var.sysId}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+        
+    </sequence>
+</template>

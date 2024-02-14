@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~ WSO2 Inc. licenses this file to you under the Apache License,
+  ~ Version 2.0 (the "License"); you may not use this file except
+  ~ in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+-->
+
+<template name="getAggregateRecord" xmlns="http://ws.apache.org/ns/synapse">
+
+    <!--Required Parameters-->
+    <parameter name="tableName" description="Table which the aggregated data is retrieved"/>
+
+    <!-- Optional parameters -->
+    <parameter name="sysparmDisplayValue" description="Determines the type of data returned ( actual values from the database or display values of the fields)"/>
+    <parameter name="sysparmFields" description="Comma-separated list of fields to return in the response"/>
+    <parameter name="sysparmAvgFields" description="Return average aggregate as the response"/>
+    <parameter name="sysparmMinFields" description="Return minimum aggregate as the response"/>
+    <parameter name="sysparmMaxFields" description="Return maximum aggregate as the response"/>
+    <parameter name="sysparmSumFields" description="Return sum aggregate as the response"/>
+    <parameter name="sysparmCount" description="Number of records returned by the query"/>
+    <parameter name="sysparmGroupBy" description="Fields by which to group the returned data"/>
+    <parameter name="sysparmHaving" description="Filter the data based on an aggregate operation"/>
+    <parameter name="sysparmOrderby" description="List of values by which to order grouped results"/>
+    <parameter name="keyValuePairs" description="Name-value pairs to use to filter the result set"/>
+    <parameter name="apiVersion" description="Optional API version to embed in url"/>
+    <parameter name="sysparmQuery" description="Encoded query to retriece data"/>
+    <sequence>
+        <property name="uri.var.tableName" expression="$func:tableName"/>
+        <property name="uri.var.sysparmDisplayValue" expression="$func:sysparmDisplayValue"/>
+        <property name="uri.var.sysparmFields" expression="$func:sysparmFields"/>
+        <property name="uri.var.sysparmAvgFields" expression="$func:sysparmAvgFields"/>
+        <property name="uri.var.sysparmMinFields" expression="$func:sysparmMinFields"/>
+        <property name="uri.var.sysparmMaxFields" expression="$func:sysparmMaxFields"/>
+        <property name="uri.var.sysparmSumFields" expression="$func:sysparmSumFields"/>
+        <property name="uri.var.sysparmCount" expression="$func:sysparmCount"/>
+        <property name="uri.var.sysparmGroupBy" expression="$func:sysparmGroupBy"/>
+        <property name="uri.var.sysparmHaving" expression="$func:sysparmHaving"/>
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
+        <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
+        <property name="uri.var.sysparmQuery" expression="$func:sysparmQuery"/>
+        <property name="uri.var.sysparmOrderby" expression="$func:sysparmOrderby"/>
+        <property name="uri.var.apiParameters" value=""/>
+
+        
+         <!--Building Query Parameters-->
+        <script language="js">
+            <![CDATA[
+               
+                var keyValue = mc.getProperty('uri.var.keyValuePairs');
+                var payload = mc.getPayloadJSON();
+                var parmString = '';
+
+                if(keyValue != null && keyValue != "") {
+                    
+                    for(var key in eval("("+keyValue+")")){
+                        parmString += key+"="+eval("("+keyValue+")")[key]+"&"; 
+                    }
+
+                    payload['apiParameters'] = parmString;
+                    mc.setPayloadJSON(payload);
+
+                }
+
+                payload['apiParameters'] = parmString;
+                mc.setPayloadJSON(payload);
+                
+            ]]>
+        </script>
+        <property name="uri.var.apiParameters" expression="json-eval($.apiParameters)"/> 
+
+        <!--Build Query Parameters--> 
+        <filter xpath="(not($ctx:uri.var.sysparmDisplayValue = '' or (not(string($ctx:uri.var.sysparmDisplayValue)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_display_value=', $ctx:uri.var.sysparmDisplayValue, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmFields = '' or (not(string($ctx:uri.var.sysparmFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_fields=', $ctx:uri.var.sysparmFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmAvgFields = '' or (not(string($ctx:uri.var.sysparmAvgFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_avg_fields=', $ctx:uri.var.sysparmAvgFields, '&amp;')"/>
+            </then>
+        </filter>
+                <filter xpath="(not($ctx:uri.var.sysparmMinFields = '' or (not(string($ctx:uri.var.sysparmMinFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_min_fields=', $ctx:uri.var.sysparmMinFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmMaxFields = '' or (not(string($ctx:uri.var.sysparmMaxFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_max_fields=', $ctx:uri.var.sysparmMaxFields, '&amp;')"/>
+            </then>
+        </filter>
+         <filter xpath="(not($ctx:uri.var.sysparmSumFields = '' or (not(string($ctx:uri.var.sysparmSumFields)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_sum_fields=', $ctx:uri.var.sysparmSumFields, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmCount = '' or (not(string($ctx:uri.var.sysparmCount)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_count=', $ctx:uri.var.sysparmCount, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmGroupBy = '' or (not(string($ctx:uri.var.sysparmGroupBy)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_group_by=', $ctx:uri.var.sysparmGroupBy, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmHaving = '' or (not(string($ctx:uri.var.sysparmHaving)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_having=', $ctx:uri.var.sysparmHaving, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_query=', $ctx:uri.var.sysparmQuery, '&amp;')"/>
+            </then>
+        </filter>
+        <filter xpath="(not($ctx:uri.var.sysparmOrderby = '' or (not(string($ctx:uri.var.sysparmOrderby)))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_orderby=', $ctx:uri.var.sysparmOrderby, '&amp;')"/>
+            </then>
+        </filter>
+         <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
+            <then>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/stats/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>        
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/stats/{+uri.var.tableName}?{+uri.var.apiParameters}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+    </sequence>
+</template>

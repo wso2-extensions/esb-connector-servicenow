@@ -1,0 +1,11 @@
+{
+  "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
+  "username":"%s(username)",
+  "password":"%s(password)",
+  "stagingTableName":"%s(stagingTableName)",
+  "serialNumber":"282",
+  "cpuCount":"234",
+  "name":"Mac",
+  "operatingSystem":"ubunthu",
+  "manufacturer":"owner"
+}
