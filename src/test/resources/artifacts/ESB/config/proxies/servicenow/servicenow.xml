@@ -77,7 +77,6 @@
                         <sysparmLimit>{$ctx:sysparmLimit}</sysparmLimit>
                         <sysparmOffset>{$ctx:sysparmOffset}</sysparmOffset>
                         <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
-                        <sysparmReadReplicaCategory>{$ctx:sysparmReadReplicaCategory}</sysparmReadReplicaCategory>
                         <KeyValuePairs>json-eval($.keyValuePairs)</KeyValuePairs>
                     </servicenow.getRecords>
                 </case>
@@ -106,13 +105,6 @@
                         <sysparmView>{$ctx:sysparmView}</sysparmView>
                         <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
                         <sysparmInputDisplayValue>{$ctx:sysparmInputDisplayValue}</sysparmInputDisplayValue>
-                        <number>{$ctx:number}</number>
-                        <shortDescription>{$ctx:shortDescription}</shortDescription>
-                        <active>{$ctx:active}</active>
-                        <approval>{$ctx:approval}</approval>
-                        <category>{$ctx:category}</category>
-                        <contactType>{$ctx:contactType}</contactType>
-                        <apiColumns>{$ctx:apiColumns}</apiColumns>
                     </servicenow.patchRecordById>
                 </case>
                 <case regex="urn:postRecord">
@@ -123,13 +115,6 @@
                         <sysparmView>{$ctx:sysparmView}</sysparmView>
                         <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
                         <sysparmInputDisplayValue>{$ctx:sysparmInputDisplayValue}</sysparmInputDisplayValue>
-                        <number>{$ctx:number}</number>
-                        <shortDescription>{$ctx:shortDescription}</shortDescription>
-                        <active>{$ctx:active}</active>
-                        <approval>{$ctx:approval}</approval>
-                        <category>{$ctx:category}</category>
-                        <contactType>{$ctx:contactType}</contactType>
-                        <apiColumns>{$ctx:apiColumns}</apiColumns>
                     </servicenow.postRecord>
                 </case>
                 <case regex="urn:putRecordById">
@@ -141,13 +126,6 @@
                         <sysparmView>{$ctx:sysparmView}</sysparmView>
                         <sysparmExcludeReferenceLink>{$ctx:sysparmExcludeReferenceLink}</sysparmExcludeReferenceLink>
                         <sysparmInputDisplayValue>{$ctx:sysparmInputDisplayValue}</sysparmInputDisplayValue>
-                        <number>{$ctx:number}</number>
-                        <shortDescription>{$ctx:shortDescription}</shortDescription>
-                        <active>{$ctx:active}</active>
-                        <approval>{$ctx:approval}</approval>
-                        <category>{$ctx:category}</category>
-                        <contactType>{$ctx:contactType}</contactType>
-                        <apiColumns>{$ctx:apiColumns}</apiColumns>
                     </servicenow.putRecordById>
                 </case>
                 <case regex="urn:getAggregateRecord">
@@ -169,13 +147,6 @@
                     <servicenow.postRecordStagingTable>
                         <stagingTableName>{$ctx:stagingTableName}</stagingTableName>
                         <serialNumber>{$ctx:serialNumber}</serialNumber>
-                        <cpuCount>{$ctx:cpuCount}</cpuCount>
-                        <manufacturer>{$ctx:manufacturer}</manufacturer>
-                        <name>{$ctx:name}</name>
-                        <operatingSystem>{$ctx:operatingSystem}</operatingSystem>
-                        <diskSpace>{$ctx:diskSpace}</diskSpace>
-                        <ram>{$ctx:ram}</ram>
-                        <apiColumns>{$ctx:apiColumns}</apiColumns>
                     </servicenow.postRecordStagingTable>
                 </case>
             </switch>
