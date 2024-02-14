@@ -14,7 +14,7 @@ The ServiceNow [connector](https://ei.docs.wso2.com/en/latest/micro-integrator/r
 #### Download and install the connector
 
 1. Download the connector from the [WSO2 Store](https://store.wso2.com/store/assets/esbconnector/details/74999163-6706-41f6-a564-61479b99918f) by clicking the Download Connector button.
-2. Then you can follow this [Documentation](https://ei.docs.wso2.com/en/7.0.0/micro-integrator/develop/intro-integration-development/) to add and enable the connector.
+2. Then you can follow this [Documentation](https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/servicenow-connector/servicenow-connector-example/) to add and enable the connector.
 3. For more information on using connectors and their operations in your MI configurations, see [Using a Connector](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/integration-development-kickstart/).
 
 
