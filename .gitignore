@@ -27,7 +27,7 @@ target
 # ignore logs
 *.log
 
-# ignore target directories
+# ignore the target directories
 target/
 repository/
 *.*~
