@@ -28,7 +28,7 @@ To get started with ServiceNow connector and their operations, see [Configuring 
 Follow the steps given below to build the ServiceNow connector from the source code:
 
 1. Get a clone or download the source from [Github](https://github.com/wso2-extensions/esb-connector-servicenow).
-2. Run the following Maven command from the `esb-connector-servicenow` directory: ` mvn  clean install -Dmaven.test.skip=true`.
+2. Run the following Maven command from the `esb-connector-servicenow` directory: ` mvn  clean install `.
 3. The ServiceNow connector zip file is created in the `esb-connector-servicenow/target` directory.
 
 ## How You Can Contribute

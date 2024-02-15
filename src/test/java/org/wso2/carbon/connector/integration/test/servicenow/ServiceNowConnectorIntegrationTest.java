@@ -65,8 +65,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
      * Test case for getRecords method with mandatory parameter.
      */
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecords} integration test with mandatory parameters.")
-    public void testGetRecordsWithMandatoryParameters() throws IOException, JSONException {
-      
+    public void testGetRecordsWithMandatoryParameters() throws IOException, JSONException {  
         esbRequestHeadersMap.put("Action", "urn:getRecords");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName");
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_mandatory.json");
@@ -87,6 +86,10 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "?" +"&sysparm_limit=" + connectorProperties.getProperty("sysparmLimit") + "&sysparm_display_value=" + connectorProperties.getProperty("sysparmDisplayValue") + "&sysparm_fields=" + connectorProperties.getProperty("sysparmFields") + "&sysparm_view=" + connectorProperties.getProperty("sysparmView") + "&sysparm_exclude_reference_link=" + connectorProperties.getProperty("sysparmExcludeReferenceLink")+"number="+connectorProperties.getProperty("getordernumber") ;
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_optional.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        FileWriter myWriter = new FileWriter("/home/yasiruw/Desktop/works/result.txt");
+        myWriter.write("\n================================\n");
+        myWriter.write(esbRestResponse.getBody().toString());
+        myWriter.close();
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("number"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("number"));
@@ -322,10 +325,9 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     //     Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"));
     // }
 
-        // /**
-    //  * Test case for postRecordStagingTableMultipleInsert  method with mandatory parameter.
-    //  */
-    
+    /**
+    * Test case for postRecordStagingTableMultipleInsert  method with mandatory parameter.
+    */
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecordStagingTable} integration test with mandatory parameters.")
     public void testpostRecordStagingTableMulWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:postRecordStagingTableMultipleInsert");

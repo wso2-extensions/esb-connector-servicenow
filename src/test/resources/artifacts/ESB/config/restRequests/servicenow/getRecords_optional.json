@@ -5,7 +5,10 @@
   "tableName":"%s(tableName)",
   "sysparmDisplayValue":"%s(sysparmDisplayValue)",
   "sysparmView":"%s(sysparmView)",
-  "sysparmExcludeReferenceLink":"%s(sysparmExcludeReferenceLink)"
+  "sysparmExcludeReferenceLink":"%s(sysparmExcludeReferenceLink)",
+  "keyValuePair":{
+    "number":"INC0000040"
+  }
  
  
 }
