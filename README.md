@@ -3,7 +3,7 @@
 The ServiceNow [connector](https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/servicenow-connector/servicenow-overview/) allows you to access the [ServiceNow REST API](https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/c_ImportSetAPI) through WSO2 EI. The ServiceNow connector is consisted with Table API, Aggregate API, Import Set API services to provide digital tranformation for enterprise workflow.
 ## Compatibility
 
-| Connector version | Supported ServiceNow API version | Supported WSO2 ESB/EI version |
+| Connector version | Supported ServiceNow API version | Supported WSO2 MI/EI/ESB version |
 | ------------- | ------------- | ------------- |
 | [2.0.0](https://github.com/wso2-extensions/esb-connector-servicenow/tree/org.wso2.carbon.connector.servicenow-2.0.0) | v32.0 | MI 4.2.0, EI 6.5.0|
 | [1.0.2](https://github.com/wso2-extensions/esb-connector-servicenow/tree/org.wso2.carbon.connector.servicenow-1.0.2) | v32.0 | EI 6.5.0 |
