@@ -184,7 +184,7 @@ Given below is a sample response for the postRecordStagingTable operation.
             "table": "cmdb_ci_computer",
             "display_name": "name",
             "display_value": "Mac",
-            "record_link": "https://dev212092.service-now.com/api/now/table/cmdb_ci_computer/1ac94e3f93000210e1dd70718bba10d0",
+            "record_link": "https://instance.service-now.com/api/now/table/cmdb_ci_computer/1ac94e3f93000210e1dd70718bba10d0",
             "status": "inserted",
             "sys_id": "1ac94e3f93000210e1dd70718bba10d0"
         }
@@ -261,7 +261,7 @@ curl http://localhost:8290/importset/postrecord -H "Content-Type: application/js
             "table": "cmdb_ci_computer",
             "display_name": "name",
             "display_value": "Mac",
-            "record_link": "https://dev212092.service-now.com/api/now/table/cmdb_ci_computer/a127967b93400210e1dd70718bba108d",
+            "record_link": "https://instance.service-now.com/api/now/table/cmdb_ci_computer/a127967b93400210e1dd70718bba108d",
             "status": "inserted",
             "sys_id": "a127967b93400210e1dd70718bba108d"
         }
