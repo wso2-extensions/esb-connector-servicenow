@@ -5,7 +5,7 @@ The ServiceNow [connector](https://ei.docs.wso2.com/en/latest/micro-integrator/r
 
 | Connector version | Supported ServiceNow API version | Supported WSO2 ESB/EI version |
 | ------------- | ------------- | ------------- |
-| [2.0.0](https://github.com/wso2-extensions/esb-connector-servicenow/tree/org.wso2.carbon.connector.servicenow-2.0.0) | v32.0 | MI 4.2.0|
+| [2.0.0](https://github.com/wso2-extensions/esb-connector-servicenow/tree/org.wso2.carbon.connector.servicenow-2.0.0) | v32.0 | MI 4.2.0, EI 6.5.0|
 | [1.0.2](https://github.com/wso2-extensions/esb-connector-servicenow/tree/org.wso2.carbon.connector.servicenow-1.0.2) | v32.0 | EI 6.5.0 |
 | [1.0.1](https://github.com/wso2-extensions/esb-connector-servicenow/tree/org.wso2.carbon.connector.servicenow-1.0.1) | v32.0 | ESB 4.9.0, 5.0.0 |
 
