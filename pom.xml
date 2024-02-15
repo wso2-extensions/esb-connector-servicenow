@@ -75,7 +75,7 @@
         <bouncycastle.version>1.55</bouncycastle.version>
         <rampart.apache.version>1.6.1-wso2v18</rampart.apache.version>
         <rampart.wso2.version>1.6.1.wso2v18</rampart.wso2.version>
-        <skip-tests>true</skip-tests>
+        <skip-tests>false</skip-tests>
     </properties>
     <dependencies>
         <dependency>

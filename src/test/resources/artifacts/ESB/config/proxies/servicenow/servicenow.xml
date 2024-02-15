@@ -146,7 +146,6 @@
                 <case regex="urn:postRecordStagingTable">
                     <servicenow.postRecordStagingTable>
                         <stagingTableName>{$ctx:stagingTableName}</stagingTableName>
-                        <serialNumber>{$ctx:serialNumber}</serialNumber>
                     </servicenow.postRecordStagingTable>
                 </case>
             </switch>
