@@ -148,6 +148,12 @@
                         <stagingTableName>{$ctx:stagingTableName}</stagingTableName>
                     </servicenow.postRecordStagingTable>
                 </case>
+                 <case regex="urn:postRecordStagingTableMultipleInsert">
+                    <servicenow.postRecordStagingTable>
+                        <stagingTableName>{$ctx:stagingTableName}</stagingTableName>
+                    </servicenow.postRecordStagingTable>
+                </case>
+
             </switch>
             <respond/>
         </inSequence>

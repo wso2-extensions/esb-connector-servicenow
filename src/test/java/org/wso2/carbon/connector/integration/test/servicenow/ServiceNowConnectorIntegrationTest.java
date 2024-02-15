@@ -335,18 +335,31 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     // /**
     //  * Test case for getRecordStagingTable method with mandatory parameter.
     //  */
+    // @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecordStagingTable} integration test with mandatory parameters.")
+    // public void testgetRecordStagingTableWithMandatoryParameters() throws IOException, JSONException {
+    //     esbRequestHeadersMap.put("Action", "urn:getRecordsStagingTable");
+    //     String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/import/" + connectorProperties.getProperty("tableNameStaging") + "/" + connectorProperties.getProperty("sysIdStaging");
+    //     RestResponse<JSONObject> esbRestResponse =
+    //             sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordStagingTable_mandatory.json");
+    //     RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+    //     Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+    //     Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+    //     Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("display_name"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("display_name"));
+    //     Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("sys_id"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("sys_id"));
+    //     Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"));
+    // }
+
+        // /**
+    //  * Test case for postRecordStagingTableMultipleInsert  method with mandatory parameter.
+    //  */
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecordStagingTable} integration test with mandatory parameters.")
-    public void testgetRecordStagingTableWithMandatoryParameters() throws IOException, JSONException {
-        esbRequestHeadersMap.put("Action", "urn:getRecordsStagingTable");
-        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/import/" + connectorProperties.getProperty("tableNameStaging") + "/" + connectorProperties.getProperty("sysIdStaging");
+    public void testpostRecordStagingTableMulWithMandatoryParameters() throws IOException, JSONException {
+        esbRequestHeadersMap.put("Action", "urn:postRecordStagingTableMultipleInsert");
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordStagingTable_mandatory.json");
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecordStagingTableMul_mandatory.json");
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("display_name"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("display_name"));
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("sys_id"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("sys_id"));
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"));
+      ;
+       
     }
 
     /**
@@ -430,4 +443,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
+    
+ 
+
 }

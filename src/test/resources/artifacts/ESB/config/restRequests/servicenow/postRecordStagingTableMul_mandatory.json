@@ -1,0 +1,18 @@
+{
+    "records":[
+    {
+  "serial_number":"2842",
+  "name":"Ma4c",
+  "operating_system":"ubunthu4",
+  "manufacturer":"I4BM",
+  "ram":"ram 15400"
+
+
+    }
+  ],
+   "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
+  "username":"%s(username)",
+  "password":"%s(password)"
+  
+
+}
