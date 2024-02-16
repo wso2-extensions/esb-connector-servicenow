@@ -35,8 +35,9 @@
  7. Update the ServiceNow properties file at location "{SERVICENOW_CONNECTOR_HOME}/src/test/resources/artifacts/ESB/connector/config/servicenow.properties.
 
  8. Change line containing  skip-test to false in main pom.xml.
+    ```xml <skip-test>true</skip-test>  ``` to ```xml <skip-test>false</skip-test>```
 	
- 9. Navigate to "{SERVICENOW_CONNECTOR_HOME}/" and run the following command.<br/>
+ 10. Navigate to "{SERVICENOW_CONNECTOR_HOME}/" and run the following command.<br/>
  `$ mvn clean install` 
 	  
 	  
