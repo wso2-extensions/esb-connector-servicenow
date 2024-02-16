@@ -32,7 +32,7 @@
 		iii). Then you will get an username and password for your instance with instance url. You can change your password by going to My Instance -> Instance Action -> Manage Instance Password.
 	    
 
- 7. Update the ServiceNow properties file at location "{SERVICENOW_CONNECTOR_HOME}/src/test/resources/artifacts/EI/connector/config" and esb-connector-servicenow.properties.
+ 7. Update the ServiceNow properties file at location "{SERVICENOW_CONNECTOR_HOME}/src/test/resources/artifacts/ESB/connector/config/servicenow.properties.
 
  8. Change line containing  <skip-test>true<skip-test> to <skip-test>false<skip-test> in main pom.xml.
 	
