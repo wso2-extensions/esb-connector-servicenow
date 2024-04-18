@@ -18,17 +18,37 @@
   -->
 
 <template name="getRecordsStagingTable" xmlns="http://ws.apache.org/ns/synapse">
-    <!--Required Parameter-->
-    <parameter name="sysIdStaging" description="Specific Value for every raw."/>
-    <parameter name="tableNameStaging" description="Specify the name of the table."/>
+
+    <!--Required Parameters-->
+    <parameter name="sysIdStaging" description="Id to retrieve data"/>
+    <parameter name="stagingTableName" description="Specify the name of the table"/>
+
+    <!--Optional Parameters-->
+    <parameter name="apiVersion" description="Optional API version to embed in url"/>
     <sequence>
         <property name="uri.var.sysIdStaging" expression="$func:sysIdStaging"/>
-        <property name="uri.var.tableNameStaging" expression="$func:tableNameStaging"/>
-        <call>
-            <endpoint>
-                <http method="get"
-                      uri-template="{uri.var.serviceNowInstanceURL}/api/now/import/{+uri.var.tableNameStaging}/{uri.var.sysIdStaging}"/>
-            </endpoint>
-        </call>
+        <property name="uri.var.stagingTableName" expression="$func:stagingTableName"/>
+        <property name="uri.var.apiVersion" expression="$func:apiVersion"/>
+        
+        <!--Build Query Parameters-->  
+        <filter xpath="(not($ctx:uri.var.apiVersion = '' or (not(string($ctx:uri.var.apiVersion)))))">
+            <then>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/{+uri.var.apiVersion}/import/{+uri.var.stagingTableName}/{uri.var.sysIdStaging}"/>
+                    </endpoint>
+                </call>        
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="get"
+                            uri-template="{uri.var.serviceNowInstanceURL}/api/now/import/{+uri.var.stagingTableName}/{uri.var.sysIdStaging}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+        
     </sequence>
 </template>

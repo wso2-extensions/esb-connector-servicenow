@@ -2,6 +2,6 @@
   "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
   "username":"%s(username)",
   "password":"%s(password)",
-  "tableNameStaging":"negative",
+  "stagingTableName":"negative",
   "sysIdStaging":"negative"
 }

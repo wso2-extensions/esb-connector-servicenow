@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<!-- API Document URL https://service-now.com -->
+
 <template name="init" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="serviceNowInstanceURL" description="The url to access ServiceNow API."/>
     <parameter name="username"

@@ -2,11 +2,10 @@
   "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
   "username":"%s(username)",
   "password":"%s(password)",
-  "tableNameStaging":"%s(tableNameStaging)",
+  "stagingTableName":"%s(stagingTableName)",
   "serialNumber":"282",
   "cpuCount":"234",
   "name":"Mac",
   "operatingSystem":"ubunthu",
-  "manufacturer":"owner",
-  "apiColumns": {"sys_mod_count":"2","sys_import_state_comment":"wwww"}
+  "manufacturer":"owner"
 }
