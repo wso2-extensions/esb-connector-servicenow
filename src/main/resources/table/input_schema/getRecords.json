@@ -1,0 +1,50 @@
+{
+    "id": "http:\/\/wso2jsonschema.org",
+    "title": "root",
+    "$schema": "http:\/\/wso2.org\/json-schema\/wso2-data-mapper-v5.0.0\/schema#",
+    "properties": {
+      "tableName": {
+        "id": "http:\/\/wso2jsonschema.org\/tableName",
+        "type": "string"
+      },
+      "sysparmQuery": {
+        "id": "http:\/\/wso2jsonschema.org\/sysparmQuery",
+        "type": "string"
+      },
+      "sysparmDisplayValue": {
+        "id": "http:\/\/wso2jsonschema.org\/sysparmDisplayValue",
+        "type": "string"
+      },
+      "sysparmFields": {
+        "id": "http:\/\/wso2jsonschema.org\/sysparmFields",
+        "type": "string"
+      },
+      "sysparmView": {
+        "id": "http:\/\/wso2jsonschema.org\/sysparmView",
+        "type": "string"
+      },
+      "sysparmLimit": {
+        "id": "http:\/\/wso2jsonschema.org\/sysparmLimit",
+        "type": "string"
+      },
+      "sysparmOffset": {
+        "id": "http:\/\/wso2jsonschema.org\/sysparmOffset",
+        "type": "string"
+      },
+      "sysparmExcludeReferenceLink": {
+        "id": "http:\/\/wso2jsonschema.org\/sysparmExcludeReferenceLink",
+        "type": "string"
+      },
+      "sysparmReadReplicaCategory": {
+        "id": "http:\/\/wso2jsonschema.org\/sysparmReadReplicaCategory",
+        "type": "string"
+      },
+      "KeyValuePairs": {
+        "id": "http:\/\/wso2jsonschema.org\/KeyValuePairs",
+        "type": "string"
+      }
+    },
+    "type": "object",
+    "required": ["tableName"]
+  }
+  
