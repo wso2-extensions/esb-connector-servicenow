@@ -10,7 +10,7 @@
     ],
     "releases": [
         {
-            "tagName": "v1.0.2",
+            "tagName": "org.wso2.carbon.connector.servicenow-1.0.2",
             "products": [
                 "EI 7.0.x",
                 "EI 6.6.0",
