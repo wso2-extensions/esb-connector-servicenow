@@ -21,7 +21,7 @@
     <subComponents>
         <component name="init">
             <file>init.xml</file>
-            <description>Service-Now configuration.</description>
+            <description>Servicenow Rest api access configurations</description>
         </component>
     </subComponents>
 </component>

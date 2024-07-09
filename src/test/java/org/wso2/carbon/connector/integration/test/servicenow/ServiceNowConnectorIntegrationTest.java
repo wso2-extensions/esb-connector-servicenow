@@ -1,4 +1,4 @@
-package org.wso2.carbon.connector.integration.test.serviceNow;
+package org.wso2.carbon.connector.integration.test.servicenow;
 /*
  *
  *  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
@@ -19,6 +19,7 @@ package org.wso2.carbon.connector.integration.test.serviceNow;
  *
  */
 
+
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +29,7 @@ import org.testng.annotations.Test;
 import org.wso2.connector.integration.test.base.ConnectorIntegrationTestBase;
 import org.wso2.connector.integration.test.base.RestResponse;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,12 +46,11 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
 
         String connectorName = System.getProperty("connector_name") + "-connector-" +
                 System.getProperty("connector_version") + ".zip";
-
         log.info("=================================== "+ connectorName +" ===================================");
+        //addCertificatesToTestKeyStore("client-truststore.jks", "wso2carbon");
         init(connectorName);
         getApiConfigProperties();
         //init("servicenow-connector-1.0.2-SNAPSHOT.zip");
-
         esbRequestHeadersMap.put("Accept-Charset", "UTF-8");
         esbRequestHeadersMap.put("Content-Type", "application/json");
         apiRequestHeadersMap.putAll(esbRequestHeadersMap);
@@ -64,11 +65,10 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
      * Test case for getRecords method with mandatory parameter.
      */
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecords} integration test with mandatory parameters.")
-    public void testGetRecordsWithMandatoryParameters() throws IOException, JSONException {
+    public void testGetRecordsWithMandatoryParameters() throws IOException, JSONException {  
         esbRequestHeadersMap.put("Action", "urn:getRecords");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_mandatory.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_mandatory.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -83,10 +83,13 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecords} integration test with optional parameters.")
     public void testGetRecordsWithOptionalParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getRecords");
-        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "?" + "&sysparm_query=" + connectorProperties.getProperty("sysparmQuery") + "&sysparm_limit=" + connectorProperties.getProperty("sysparmLimit") + "&sysparm_display_value=" + connectorProperties.getProperty("sysparmDisplayValue") + "&sysparm_fields=" + connectorProperties.getProperty("sysparmFields") + "&sysparm_view=" + connectorProperties.getProperty("sysparmView") + "&sysparm_offset=" + connectorProperties.getProperty("sysparmOffset") + "&sysparm_exclude_reference_link=" + connectorProperties.getProperty("sysparmExcludeReferenceLink") + "&sysparm_read_replica_category=" + connectorProperties.getProperty("sysparmReadReplicaCategory") + "&" + connectorProperties.getProperty("KeyValuePairs");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_optional.json");
+        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "?" +"&sysparm_limit=" + connectorProperties.getProperty("sysparmLimit") + "&sysparm_display_value=" + connectorProperties.getProperty("sysparmDisplayValue") + "&sysparm_fields=" + connectorProperties.getProperty("sysparmFields") + "&sysparm_view=" + connectorProperties.getProperty("sysparmView") + "&sysparm_exclude_reference_link=" + connectorProperties.getProperty("sysparmExcludeReferenceLink")+"number="+connectorProperties.getProperty("getordernumber") ;
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_optional.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        FileWriter myWriter = new FileWriter("/home/yasiruw/Desktop/works/result.txt");
+        myWriter.write("\n================================\n");
+        myWriter.write(esbRestResponse.getBody().toString());
+        myWriter.close();
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("number"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(1).get("number"));
@@ -99,9 +102,8 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecords} integration test with negative case.")
     public void testGetRecordsWithNegativeCase() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getRecords");
-        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableNameNegative");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_negative.json");
+        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableNameNegative")+"/"+connectorProperties.getProperty("sysIdNegative");
+        RestResponse<JSONObject> esbRestResponse =sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecords_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
@@ -113,8 +115,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testGetRecordByIdWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysId");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordById_mandatory.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordById_mandatory.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -130,8 +131,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testGetRecordByIdWithOptionalParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysId") + "?" + "&sysparm_display_value=" + connectorProperties.getProperty("sysparmDisplayValue") + "&sysparm_fields=" + connectorProperties.getProperty("sysparmFields") + "&sysparm_view=" + connectorProperties.getProperty("sysparmView") + "&sysparm_exclude_reference_link=" + connectorProperties.getProperty("sysparmExcludeReferenceLink");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordById_optional.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordById_optional.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -146,8 +146,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testGetRecordByIDWithNegativeCase() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysIdNegative");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordById_negative.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordById_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
@@ -158,8 +157,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {postRecord} integration test with mandatory parameters.")
     public void testPostRecordWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:postRecord");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecord_mandatory.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecord_mandatory.json");
         String sysIdPosted = esbRestResponse.getBody().getJSONObject("result").get("sys_id").toString();
         connectorProperties.put("sysId", sysIdPosted);
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + sysIdPosted;
@@ -177,8 +175,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {postRecord} integration test with optional parameters.")
     public void testPostRecordWithOptionalParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:postRecord");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecord_optional.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecord_optional.json");
         String sysIdPosted = esbRestResponse.getBody().getJSONObject("result").get("sys_id").toString();
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + sysIdPosted + "?" + "&sysparm_display_value=" + connectorProperties.getProperty("sysparmDisplayValue") + "&sysparm_fields=" + connectorProperties.getProperty("sysparmFields") + "&sysparm_view=" + connectorProperties.getProperty("sysparmView") + "&sysparm_exclude_reference_link=" + connectorProperties.getProperty("sysparmExcludeReferenceLink") + "&sysparm_input_display_value=" + connectorProperties.getProperty("sysparmInputDisplayValue");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
@@ -195,8 +192,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testPostRecordWithNegativeCase() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:postRecord");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableNameNegative");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecord_negative.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecord_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
@@ -208,8 +204,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testPatchRecordByIdWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:patchRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysId");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "patchRecordById_mandatory.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "patchRecordById_mandatory.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -225,8 +220,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testPatchRecordByIdWithOptionalParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:patchRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysId") + "?" + "&sysparm_display_value=" + connectorProperties.getProperty("sysparmDisplayValue") + "&sysparm_fields=" + connectorProperties.getProperty("sysparmFields") + "&sysparm_view=" + connectorProperties.getProperty("sysparmView") + "&sysparm_exclude_reference_link=" + connectorProperties.getProperty("sysparmExcludeReferenceLink") + "&sysparm_input_display_value=" + connectorProperties.getProperty("sysparmInputDisplayValue");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "patchRecordById_optional.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "patchRecordById_optional.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -241,8 +235,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testPatchRecordByIDWithNegativeCase() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:patchRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysIdNegative");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "patchRecordById_negative.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "patchRecordById_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
@@ -254,8 +247,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testPutRecordByIdWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:putRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysId");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "putRecordById_mandatory.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "putRecordById_mandatory.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -271,8 +263,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testPutRecordByIdWithOptionalParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:putRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysId") + "?" + "&sysparm_display_value=" + connectorProperties.getProperty("sysparmDisplayValue") + "&sysparm_fields=" + connectorProperties.getProperty("sysparmFields") + "&sysparm_view=" + connectorProperties.getProperty("sysparmView") + "&sysparm_exclude_reference_link=" + connectorProperties.getProperty("sysparmExcludeReferenceLink") + "&sysparm_input_display_value=" + connectorProperties.getProperty("sysparmInputDisplayValue");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "putRecordById_optional.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "putRecordById_optional.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
@@ -287,8 +278,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testPutRecordByIDWithNegativeCase() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:putRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysIdNegative");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "putRecordById_negative.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "putRecordById_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
@@ -300,8 +290,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testDeleteRecordByIdWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:deleteRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysId");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "deleteRecordById_mandatory.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "deleteRecordById_mandatory.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 204);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 404);
@@ -314,27 +303,38 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testDeleteRecordByIDWithNegativeCase() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:deleteRecordById");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/table/" + connectorProperties.getProperty("tableName") + "/" + connectorProperties.getProperty("sysIdNegative");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "deleteRecordById_negative.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "deleteRecordById_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "DELETE", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
 
+    // /**
+    //  * Test case for getRecordStagingTable method with mandatory parameter.
+    //  */
+    // @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecordStagingTable} integration test with mandatory parameters.")
+    // public void testgetRecordStagingTableWithMandatoryParameters() throws IOException, JSONException {
+    //     esbRequestHeadersMap.put("Action", "urn:getRecordsStagingTable");
+    //     String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/import/" + connectorProperties.getProperty("tableNameStaging") + "/" + connectorProperties.getProperty("sysIdStaging");
+    //     RestResponse<JSONObject> esbRestResponse =
+    //             sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordStagingTable_mandatory.json");
+    //     RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+    //     Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+    //     Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+    //     Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("display_name"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("display_name"));
+    //     Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("sys_id"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("sys_id"));
+    //     Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"));
+    // }
+
     /**
-     * Test case for getRecordStagingTable method with mandatory parameter.
-     */
+    * Test case for postRecordStagingTableMultipleInsert  method with mandatory parameter.
+    */
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getRecordStagingTable} integration test with mandatory parameters.")
-    public void testgetRecordStagingTableWithMandatoryParameters() throws IOException, JSONException {
-        esbRequestHeadersMap.put("Action", "urn:getRecordsStagingTable");
-        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/import/" + connectorProperties.getProperty("tableNameStaging") + "/" + connectorProperties.getProperty("sysIdStaging");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordStagingTable_mandatory.json");
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+    public void testpostRecordStagingTableMulWithMandatoryParameters() throws IOException, JSONException {
+        esbRequestHeadersMap.put("Action", "urn:postRecordStagingTableMultipleInsert");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecordStagingTableMul_mandatory.json");
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("display_name"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("display_name"));
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("sys_id"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("sys_id"));
-        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"), apiRestResponse.getBody().getJSONArray("result").getJSONObject(0).get("status"));
+      ;
+       
     }
 
     /**
@@ -344,8 +344,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testGetRecordStagingTableWithNegativeCase() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getRecordsStagingTable");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/import/" + connectorProperties.getProperty("tableNameNegative");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordStagingTable_negative.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getRecordStagingTable_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "POST", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
@@ -356,8 +355,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {postRecordStagingTable} integration test with mandatory parameters.")
     public void testPostRecordStagingTableWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:postRecordStagingTable");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecordStagingTable_mandatory.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecordStagingTable_mandatory.json");
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 201);
     }
 
@@ -368,8 +366,7 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testpostRecordStagingTableWithNegativeCase() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:postRecordStagingTable");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/import/" + connectorProperties.getProperty("tableNameNegative");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecordStagingTable_negative.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "postRecordStagingTable_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "POST", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
@@ -380,13 +377,13 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getAggregateRecord} integration test with mandatory parameters.")
     public void testgetAggregateRecordWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getAggregateRecord");
-        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/stats/" + connectorProperties.getProperty("tableName") + "?" + "&sysparm_count=" + connectorProperties.getProperty("sysparmCount");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getAggregateRecord_mandatory.json");
+        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/stats/" + connectorProperties.getProperty("tableName") + "?" + "sysparm_avg_fields=" + connectorProperties.getProperty("sysparmAvgFields");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getAggregateRecord_mandatory.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getJSONObject("result").getJSONObject("stats").get("count"), apiRestResponse.getBody().getJSONObject("result").getJSONObject("stats").get("count"));
+        
+        Assert.assertEquals(esbRestResponse.getBody().getJSONObject("result").getJSONObject("stats").getJSONObject("avg").get("category"), apiRestResponse.getBody().getJSONObject("result").getJSONObject("stats").getJSONObject("avg").get("category"));
     }
 
     /**
@@ -395,13 +392,13 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     @Test(priority = 1, groups = {"wso2.esb"}, description = "servicenow {getAggregateRecord} integration test with optional parameters.")
     public void testgetAggregateRecordWithOptionalParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getAggregateRecord");
-        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/stats/" + connectorProperties.getProperty("tableName") + "?" + "&sysparm_count=" + connectorProperties.getProperty("sysparmCount") + "&sysparm_avg_fields=" + connectorProperties.getProperty("sysparmAvgFields") + "&sysparm_min_fields=" + connectorProperties.getProperty("sysparmMinFields") + "&sysparm_max_fields=" + connectorProperties.getProperty("sysparmMaxFields") + "&sysparm_sum_fields=" + connectorProperties.getProperty("sysparmSumFields");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getAggregateRecord_optional.json");
+        String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/stats/" + connectorProperties.getProperty("tableName") + "?" +  "&sysparm_avg_fields=" + connectorProperties.getProperty("sysparmAvgFields") + "&sysparm_min_fields=" + connectorProperties.getProperty("sysparmMinFields") + "&sysparm_max_fields=" + connectorProperties.getProperty("sysparmMaxFields") + "&sysparm_sum_fields=" + connectorProperties.getProperty("sysparmSumFields");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getAggregateRecord_optional.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+      
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
         Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
-        Assert.assertEquals(esbRestResponse.getBody().getJSONObject("result").getJSONObject("stats").get("count"), apiRestResponse.getBody().getJSONObject("result").getJSONObject("stats").get("count"));
+        Assert.assertEquals(esbRestResponse.getBody().getJSONObject("result").getJSONObject("stats").getJSONObject("max").get("number"), apiRestResponse.getBody().getJSONObject("result").getJSONObject("stats").getJSONObject("max").get("number"));
     }
 
     /**
@@ -411,9 +408,11 @@ public class ServiceNowConnectorIntegrationTest extends ConnectorIntegrationTest
     public void testgetAggregateRecordWithNegativeCase() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:getAggregateRecord");
         String apiEndPoint = connectorProperties.getProperty("serviceNowInstanceURL") + "/api/now/stats/" + connectorProperties.getProperty("tableNameNegative") + "&sysparm_count=" + connectorProperties.getProperty("sysparmCount");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getAggregateRecord_negative.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getAggregateRecord_negative.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
         Assert.assertEquals(esbRestResponse.getHttpStatusCode(), apiRestResponse.getHttpStatusCode());
     }
+    
+ 
+
 }

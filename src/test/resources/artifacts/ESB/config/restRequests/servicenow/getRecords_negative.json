@@ -2,5 +2,6 @@
   "serviceNowInstanceURL":"%s(serviceNowInstanceURL)",
   "username":"%s(username)",
   "password":"%s(password)",
-  "tableName":"Negative"
+  "tableName":"Negative",
+  "sysparmQueryNoDomain":"%s(sysparmQueryNoDomain)"
 }

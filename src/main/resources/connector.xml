@@ -5,6 +5,6 @@
         <dependency component="table"/>
         <dependency component="importSet"/>
         <dependency component="aggregate"/>
-        <description>WSO2 Connector for ServiceNow REST API.</description>
+        <description>WSO2 Connector for ServiceNow REST API</description>
     </component>
 </connector>
