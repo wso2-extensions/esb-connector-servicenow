@@ -2,7 +2,7 @@
     "name": "ServiceNow",
     "owner": "WSO2",
     "category": "Issue Tracking and Project Management",
-    "documentationUrl": "https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/servicenow-connector/servicenow-overview/",
+    "documentationUrl": "https://mi.docs.wso2.com/en/latest/reference/connectors/servicenow-connector/servicenow-overview/",
     "description": "The ServiceNow connector allows you to access the ServiceNow REST API through WSO2 ESB. ServiceNow is a software platform that supports IT service management and automates common business processes. This software as a service (SaaS) platform contains a number of modular applications that can vary by instance and user. ",
     "status": "Active",
     "labels": [
@@ -12,9 +12,6 @@
         {
             "tagName": "org.wso2.carbon.connector.servicenow-1.0.2",
             "products": [
-                "EI 7.0.x",
-                "EI 6.6.0",
-                "EI 6.5.0",
                 "MI 4.x.x"
             ],
             "isHidden": false
