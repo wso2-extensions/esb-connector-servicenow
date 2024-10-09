@@ -6,13 +6,16 @@
     "description": "The ServiceNow connector allows you to access the ServiceNow REST API through WSO2 MI. ServiceNow is a software platform that supports IT service management and automates common business processes. This software as a service (SaaS) platform contains a number of modular applications that can vary by instance and user. ",
     "status": "Active",
     "labels": [
-        "issue tracking"
+        "issue-tracking"
     ],
     "releases": [
         {
             "tagName": "org.wso2.carbon.connector.servicenow-1.0.2",
             "products": [
-                "MI 4.x.x"
+                "MI 4.3.0",
+                "MI 4.2.0",
+                "MI 4.1.0",
+                "MI 4.0.0"
             ],
             "isHidden": false
         }
