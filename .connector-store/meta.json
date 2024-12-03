@@ -8,7 +8,7 @@
     "mavenArtifactId": "org.wso2.carbon.connector.servicenow",
     "description": "The ServiceNow connector allows you to access the ServiceNow REST API through WSO2 MI. ServiceNow is a software platform that supports IT service management and automates common business processes. This software as a service (SaaS) platform contains a number of modular applications that can vary by instance and user. ",
     "status": "Active",
-    "connectorRank": 154,
+    "rank": 154,
     "type": "Connector",
     "labels": [
         "issue-tracking"
@@ -74,7 +74,12 @@
                     "isHidden":false
                 }
             ],
-            "connections": [],
+            "connections": [
+                {
+                    "name": "servicenow",
+                    "description": "Connection for interacting with ServiceNow APIs."
+                }
+            ],
             "isHidden": false
         }
     ]
