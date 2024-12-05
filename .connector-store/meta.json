@@ -4,8 +4,8 @@
     "product": "MI",
     "category": "Issue Tracking and Project Management",
     "documentationUrl": "https://mi.docs.wso2.com/en/latest/reference/connectors/servicenow-connector/servicenow-overview/",
-    "mavenGroupId": "org.wso2.carbon.connector",
-    "mavenArtifactId": "org.wso2.carbon.connector.servicenow",
+    "mavenGroupId": "org.wso2.integration.connector",
+    "mavenArtifactId": "mi-connector-servicenow",
     "description": "The ServiceNow connector allows you to access the ServiceNow REST API through WSO2 MI. ServiceNow is a software platform that supports IT service management and automates common business processes. This software as a service (SaaS) platform contains a number of modular applications that can vary by instance and user. ",
     "status": "Active",
     "rank": 154,
@@ -15,7 +15,7 @@
     ],
     "releases": [
         {
-            "tagName": "v1.0.2",
+            "tagName": "org.wso2.carbon.connector.servicenow-1.0.2",
             "products": [
                 "MI 4.3.0",
                 "MI 4.2.0",
