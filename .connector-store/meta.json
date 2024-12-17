@@ -15,6 +15,74 @@
     ],
     "releases": [
         {
+            "tagName": "v1.0.3",
+            "products": [
+                "MI 4.3.0",
+                "MI 4.2.0",
+                "MI 4.1.0",
+                "MI 4.0.0"
+            ],
+            "operations": [
+                {
+                    "name":"init",
+                    "description":"Service-Now configuration.",
+                    "isHidden":false
+                },
+                {
+                    "name":"getRecords",
+                    "description":"Retrieves set of records from table.",
+                    "isHidden":false
+                },
+                {
+                    "name":"getRecordById",
+                    "description":"Retrieves record according to the system ID from table.",
+                    "isHidden":false
+                },
+                {
+                    "name":"postRecord",
+                    "description":"Insert a record into a table.",
+                    "isHidden":false
+                },
+                {
+                    "name":"patchRecordById",
+                    "description":"Patch a record from table by specifying system ID.",
+                    "isHidden":false
+                },
+                {
+                    "name":"deleteRecordById",
+                    "description":"Delete a record from table by specifying system ID.",
+                    "isHidden":false
+                },
+                {
+                    "name":"putRecordById",
+                    "description":"Put a record to table by specifying system ID.",
+                    "isHidden":false
+                },
+                {
+                    "name":"postRecordStagingTable",
+                    "description":"This method inserts incoming data into a specified staging table and triggers transformation based on predefined transform maps in the import set table.",
+                    "isHidden":false
+                },
+                {
+                    "name":"getRecordsStagingTable",
+                    "description":"This method retrieves the associated record and resulting transformation result.",
+                    "isHidden":false
+                },
+                {
+                    "name":"getAggregateRecord",
+                    "description":"Allow to compute aggregate statistics about existing table and column data.",
+                    "isHidden":false
+                }
+            ],
+            "connections": [
+                {
+                    "name": "servicenow",
+                    "description": "Connection for interacting with ServiceNow APIs."
+                }
+            ],
+            "isHidden": false
+        },
+        {
             "tagName": "org.wso2.carbon.connector.servicenow-1.0.2",
             "products": [
                 "MI 4.3.0",

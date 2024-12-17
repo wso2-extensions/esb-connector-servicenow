@@ -7,4 +7,5 @@
         <dependency component="aggregate"/>
         <description>WSO2 Connector for ServiceNow REST API.</description>
     </component>
+    <displayName>ServiceNow</displayName>
 </connector>
