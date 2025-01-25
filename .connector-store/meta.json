@@ -74,12 +74,7 @@
                     "isHidden":false
                 }
             ],
-            "connections": [
-                {
-                    "name": "servicenow",
-                    "description": "Connection for interacting with ServiceNow APIs."
-                }
-            ],
+            "connections": [],
             "isHidden": false
         },
         {
@@ -142,12 +137,7 @@
                     "isHidden":false
                 }
             ],
-            "connections": [
-                {
-                    "name": "servicenow",
-                    "description": "Connection for interacting with ServiceNow APIs."
-                }
-            ],
+            "connections": [],
             "isHidden": false
         }
     ]
