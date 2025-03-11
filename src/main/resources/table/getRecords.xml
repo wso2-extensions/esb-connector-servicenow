@@ -32,6 +32,8 @@
     <parameter name="sysparmReadReplicaCategory" description="The category value to read data from read replicas."/>
     <parameter name="KeyValuePairs"
                description="Can filter a query using key-value pairs where the key is the name of a field."/>
+    <parameter name="responseVariable" description="The name of the variable to which the output should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
         <property name="uri.var.sysparmQuery" expression="$func:sysparmQuery"/>

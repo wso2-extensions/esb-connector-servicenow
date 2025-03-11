@@ -1,0 +1,176 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "postRecordStagingTable",
+  "title": "Create Staging Record",
+  "help": "This method inserts incoming data into a specified staging table and triggers transformation based on predefined transform maps in the import set table",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "SERVICENOW"
+              ],
+              "defaultType": "connection.servicenow",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "ServiceNow connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "tableNameStaging",
+                    "displayName": "Staging Table Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Specify the name of the table."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Record Fields",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "serialNumber",
+                    "displayName": "Serial Number",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for serial_number."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "cpuCount",
+                    "displayName": "CPU Count",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for cpu_count."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "manufacturer",
+                    "displayName": "Manufacturer",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for manufacturer."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "name",
+                    "displayName": "Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for name."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "operatingSystem",
+                    "displayName": "Operating System",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for operating_system."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "diskSpace",
+                    "displayName": "Disk Space",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for disk_space."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "ram",
+                    "displayName": "RAM",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for ram."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "apiColumns",
+                    "displayName": "Additional Fields",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The attribute values of your table in your instance."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Output",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "responseVariable",
+                    "displayName": "Output Variable Name",
+                    "inputType": "string",
+                    "deriveResponseVariable": true,
+                    "required": "true",
+                    "helpTip": "Name of the variable to which the output of the operation should be assigned"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "overwriteBody",
+                    "displayName": "Replace Message Body",
+                    "inputType": "checkbox",
+                    "defaultValue": "false",
+                    "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+                    "required": "false"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

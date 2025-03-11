@@ -1,0 +1,135 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "getRecordById",
+  "title": "Get Record By ID",
+  "help": "Retrieves record according to the system ID from table",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "SERVICENOW"
+              ],
+              "defaultType": "connection.servicenow",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "ServiceNow connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "tableName",
+                    "displayName": "Table Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Name of the Table you are going to get data from."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysId",
+                    "displayName": "System ID",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "System ID which is different for every record."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmDisplayValue",
+                    "displayName": "Display Value",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Data retrieval operation for reference and choice fields."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmFields",
+                    "displayName": "Fields",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Comma-separated field names to return in the response."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmView",
+                    "displayName": "View",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "UI view to determine fields returned in the response."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmExcludeReferenceLink",
+                    "displayName": "Exclude Reference Link",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Additional information provided for reference fields."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Output",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "responseVariable",
+                    "displayName": "Output Variable Name",
+                    "inputType": "string",
+                    "deriveResponseVariable": true,
+                    "required": "true",
+                    "helpTip": "Name of the variable to which the output of the operation should be assigned"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "overwriteBody",
+                    "displayName": "Replace Message Body",
+                    "inputType": "checkbox",
+                    "defaultValue": "false",
+                    "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+                    "required": "false"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Output Schema for getRecords Operation",
+    "description": "Output schema for the getRecords operation in the ServiceNow connector.",
+    "properties": {
+        "payload": {
+            "type": "object",
+            "description": "The main response payload from the getRecords operation.",
+            "properties": {
+                "result": {
+                    "type": "array",
+                    "description": "Array of records returned from the ServiceNow table.",
+                    "items": {
+                        "type": "object",
+                        "description": "A record from the ServiceNow table."
+                    }
+                }
+            }
+        },
+        "headers": {
+            "type": "object",
+            "description": "HTTP headers from the ServiceNow API response.",
+            "properties": {
+                "Content-Type": {
+                    "type": "string",
+                    "description": "The content type of the response."
+                },
+                "X-Total-Count": {
+                    "type": "string",
+                    "description": "The total count of records matching the query."
+                }
+            }
+        },
+        "attributes": {
+            "type": "object",
+            "description": "Metadata about the getRecords operation.",
+            "properties": {
+                "statusCode": {
+                    "type": "integer",
+                    "description": "The HTTP status code of the response."
+                }
+            }
+        }
+    },
+    "required": [
+        "payload",
+        "attributes"
+    ],
+    "additionalProperties": false
+}

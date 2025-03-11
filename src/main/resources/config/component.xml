@@ -20,8 +20,10 @@
 <component name="config" type="synapse/template">
     <subComponents>
         <component name="init">
+            <displayName>ServiceNow Connection</displayName>
             <file>init.xml</file>
             <description>Service-Now configuration.</description>
+            <hidden>true</hidden>
         </component>
     </subComponents>
 </component>

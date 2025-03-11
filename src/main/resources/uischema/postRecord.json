@@ -1,0 +1,220 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "postRecord",
+  "title": "Create Record",
+  "help": "Insert a record into a table",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "SERVICENOW"
+              ],
+              "defaultType": "connection.servicenow",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "ServiceNow connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "tableName",
+                    "displayName": "Table Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Name of the Table you are going to insert data into."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmDisplayValue",
+                    "displayName": "Display Value",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Data retrieval operation for reference and choice fields."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmFields",
+                    "displayName": "Fields",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Comma-separated field names to return in the response."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmView",
+                    "displayName": "View",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "UI view to determine fields returned in the response."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmExcludeReferenceLink",
+                    "displayName": "Exclude Reference Link",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Additional information provided for reference fields."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmInputDisplayValue",
+                    "displayName": "Input Display Value",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "Data insert or update operations."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Record Fields",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "number",
+                    "displayName": "Number",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for number."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "shortDescription",
+                    "displayName": "Short Description",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for short_description."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "active",
+                    "displayName": "Active",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for active."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "approval",
+                    "displayName": "Approval",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for approval."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "category",
+                    "displayName": "Category",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for category."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "contactType",
+                    "displayName": "Contact Type",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The row value for contact_type."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "apiColumns",
+                    "displayName": "Additional Fields",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The attribute values of your table in your instance."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Output",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "responseVariable",
+                    "displayName": "Output Variable Name",
+                    "inputType": "string",
+                    "deriveResponseVariable": true,
+                    "required": "true",
+                    "helpTip": "Name of the variable to which the output of the operation should be assigned"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "overwriteBody",
+                    "displayName": "Replace Message Body",
+                    "inputType": "checkbox",
+                    "defaultValue": "false",
+                    "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+                    "required": "false"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Output Schema for getRecordsStagingTable Operation",
+    "description": "Output schema for the getRecordsStagingTable operation in the ServiceNow connector.",
+    "properties": {
+        "payload": {
+            "type": "object",
+            "description": "The main response payload from the getRecordsStagingTable operation.",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "description": "The staging record retrieved from ServiceNow.",
+                    "properties": {
+                        "import_set": {
+                            "type": "object",
+                            "description": "Information about the import set."
+                        },
+                        "transform_map": {
+                            "type": "object",
+                            "description": "Information about the transform map used."
+                        },
+                        "table_target": {
+                            "type": "object",
+                            "description": "Information about the target table."
+                        }
+                    }
+                }
+            }
+        },
+        "headers": {
+            "type": "object",
+            "description": "HTTP headers from the ServiceNow API response.",
+            "properties": {
+                "Content-Type": {
+                    "type": "string",
+                    "description": "The content type of the response."
+                }
+            }
+        },
+        "attributes": {
+            "type": "object",
+            "description": "Metadata about the getRecordsStagingTable operation.",
+            "properties": {
+                "statusCode": {
+                    "type": "integer",
+                    "description": "The HTTP status code of the response."
+                }
+            }
+        }
+    },
+    "required": [
+        "payload",
+        "attributes"
+    ],
+    "additionalProperties": false
+}

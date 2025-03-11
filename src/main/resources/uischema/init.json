@@ -1,0 +1,50 @@
+{
+  "connectorName": "servicenow",
+  "connectionName": "SERVICENOW",
+  "title": "ServiceNow Connection",
+  "help": "Configure connection to ServiceNow instance",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Connection Details",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "serviceNowInstanceURL",
+              "displayName": "ServiceNow Instance URL",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "The URL to access ServiceNow API (e.g., https://instance.service-now.com)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "username",
+              "displayName": "Username",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "The username of the ServiceNow account."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "password",
+              "displayName": "Password",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "true",
+              "isPassword": true,
+              "helpTip": "The password of the ServiceNow account."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
