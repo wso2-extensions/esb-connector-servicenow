@@ -1,0 +1,61 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Output Schema for postRecordStagingTable Operation",
+    "description": "Output schema for the postRecordStagingTable operation in the ServiceNow connector.",
+    "properties": {
+        "payload": {
+            "type": "object",
+            "description": "The main response payload from the postRecordStagingTable operation.",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "description": "The created staging record in ServiceNow.",
+                    "properties": {
+                        "import_set": {
+                            "type": "object",
+                            "description": "Information about the import set."
+                        },
+                        "staging_table": {
+                            "type": "string",
+                            "description": "The name of the staging table."
+                        },
+                        "transform_map": {
+                            "type": "object",
+                            "description": "Information about the transform map used."
+                        }
+                    }
+                }
+            }
+        },
+        "headers": {
+            "type": "object",
+            "description": "HTTP headers from the ServiceNow API response.",
+            "properties": {
+                "Content-Type": {
+                    "type": "string",
+                    "description": "The content type of the response."
+                },
+                "Location": {
+                    "type": "string",
+                    "description": "The URL of the newly created staging record."
+                }
+            }
+        },
+        "attributes": {
+            "type": "object",
+            "description": "Metadata about the postRecordStagingTable operation.",
+            "properties": {
+                "statusCode": {
+                    "type": "integer",
+                    "description": "The HTTP status code of the response."
+                }
+            }
+        }
+    },
+    "required": [
+        "payload",
+        "attributes"
+    ],
+    "additionalProperties": false
+}

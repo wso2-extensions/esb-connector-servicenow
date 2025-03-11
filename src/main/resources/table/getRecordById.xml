@@ -26,6 +26,8 @@
     <parameter name="sysparmFields" description="Comma-separated field names to return in the response."/>
     <parameter name="sysparmView" description="UI view to determine fields returned in the response. "/>
     <parameter name="sysparmExcludeReferenceLink" description="Additional information provided for reference fields."/>
+    <parameter name="responseVariable" description="The name of the variable to which the output should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.sysId" expression="$func:sysId"/>
         <property name="uri.var.tableName" expression="$func:tableName"/>

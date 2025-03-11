@@ -29,6 +29,8 @@
     <parameter name="diskSpace" description="The row value for disk_space."/>
     <parameter name="ram" description="The row value for ram."/>
     <parameter name="apiColumns" description="The attribute values of your table in your instance."/>
+    <parameter name="responseVariable" description="The name of the variable to which the output should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.tableNameStaging" expression="$func:tableNameStaging"/>
         <property name="messageType" value="application/json" scope="axis2"/>

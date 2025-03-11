@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Output Schema for deleteRecordById Operation",
+    "description": "Output schema for the deleteRecordById operation in the ServiceNow connector.",
+    "properties": {
+        "payload": {
+            "type": "object",
+            "description": "The main response payload from the deleteRecordById operation.",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "description": "The result of the delete operation."
+                }
+            }
+        },
+        "headers": {
+            "type": "object",
+            "description": "HTTP headers from the ServiceNow API response.",
+            "properties": {
+                "Content-Type": {
+                    "type": "string",
+                    "description": "The content type of the response."
+                }
+            }
+        },
+        "attributes": {
+            "type": "object",
+            "description": "Metadata about the deleteRecordById operation.",
+            "properties": {
+                "statusCode": {
+                    "type": "integer",
+                    "description": "The HTTP status code of the response."
+                }
+            }
+        }
+    },
+    "required": [
+        "payload",
+        "attributes"
+    ],
+    "additionalProperties": false
+}

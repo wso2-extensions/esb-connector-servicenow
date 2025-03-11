@@ -31,6 +31,8 @@
                description="A comma-separated list of fields for which to calculate the sum of the values."/>
     <parameter name="sysparmCount"
                description="You can set this parameter to true for the number of records returned by the query."/>
+    <parameter name="responseVariable" description="The name of the variable to which the output should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
         <property name="uri.var.sysparmAvgFields" expression="$func:sysparmAvgFields"/>

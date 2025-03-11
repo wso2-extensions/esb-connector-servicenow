@@ -21,6 +21,8 @@
     <!--Required Parameter-->
     <parameter name="sysIdStaging" description="Specific Value for every raw."/>
     <parameter name="tableNameStaging" description="Specify the name of the table."/>
+    <parameter name="responseVariable" description="The name of the variable to which the output should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.sysIdStaging" expression="$func:sysIdStaging"/>
         <property name="uri.var.tableNameStaging" expression="$func:tableNameStaging"/>

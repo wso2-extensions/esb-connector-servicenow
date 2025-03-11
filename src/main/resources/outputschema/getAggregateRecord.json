@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Output Schema for getAggregateRecord Operation",
+    "description": "Output schema for the getAggregateRecord operation in the ServiceNow connector.",
+    "properties": {
+        "payload": {
+            "type": "object",
+            "description": "The main response payload from the getAggregateRecord operation.",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "description": "The aggregate statistics from ServiceNow.",
+                    "properties": {
+                        "stats": {
+                            "type": "object",
+                            "description": "Statistical information about the table data.",
+                            "properties": {
+                                "count": {
+                                    "type": "string",
+                                    "description": "The count of records."
+                                },
+                                "min": {
+                                    "type": "object",
+                                    "description": "Minimum values for requested fields."
+                                },
+                                "max": {
+                                    "type": "object",
+                                    "description": "Maximum values for requested fields."
+                                },
+                                "avg": {
+                                    "type": "object",
+                                    "description": "Average values for requested fields."
+                                },
+                                "sum": {
+                                    "type": "object",
+                                    "description": "Sum values for requested fields."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "headers": {
+            "type": "object",
+            "description": "HTTP headers from the ServiceNow API response.",
+            "properties": {
+                "Content-Type": {
+                    "type": "string",
+                    "description": "The content type of the response."
+                }
+            }
+        },
+        "attributes": {
+            "type": "object",
+            "description": "Metadata about the getAggregateRecord operation.",
+            "properties": {
+                "statusCode": {
+                    "type": "integer",
+                    "description": "The HTTP status code of the response."
+                }
+            }
+        }
+    },
+    "required": [
+        "payload",
+        "attributes"
+    ],
+    "additionalProperties": false
+}

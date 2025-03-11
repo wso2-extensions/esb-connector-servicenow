@@ -1,0 +1,135 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "getAggregateRecord",
+  "title": "Get Aggregate Statistics",
+  "help": "Allow to compute aggregate statistics about existing table and column data",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "SERVICENOW"
+              ],
+              "defaultType": "connection.servicenow",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "ServiceNow connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "tableName",
+                    "displayName": "Table Name",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Name of the Table you are going to get data from."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmAvgFields",
+                    "displayName": "Average Fields",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "A comma-separated list of fields for which to calculate the average value."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmMinFields",
+                    "displayName": "Minimum Fields",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "A comma-separated list of fields for which to calculate the minimum value."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmMaxFields",
+                    "displayName": "Maximum Fields",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "A comma-separated list of fields for which to calculate the maximum value."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmSumFields",
+                    "displayName": "Sum Fields",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "A comma-separated list of fields for which to calculate the sum of the values."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "sysparmCount",
+                    "displayName": "Count Records",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "You can set this parameter to true for the number of records returned by the query."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Output",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "responseVariable",
+                    "displayName": "Output Variable Name",
+                    "inputType": "string",
+                    "deriveResponseVariable": true,
+                    "required": "true",
+                    "helpTip": "Name of the variable to which the output of the operation should be assigned"
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "overwriteBody",
+                    "displayName": "Replace Message Body",
+                    "inputType": "checkbox",
+                    "defaultValue": "false",
+                    "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+                    "required": "false"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

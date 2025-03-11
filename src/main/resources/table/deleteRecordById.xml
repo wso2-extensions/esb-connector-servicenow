@@ -21,6 +21,8 @@
 <template name="deleteRecordById" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="sysId" description="System Id which is different for every raw."/>
     <parameter name="tableName" description="Name of the Table you ar going to get data."/>
+    <parameter name="responseVariable" description="The name of the variable to which the output should be stored."/>
+    <parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
     <sequence>
         <property name="uri.var.sysId" expression="$func:sysId"/>
         <property name="uri.var.tableName" expression="$func:tableName"/>
