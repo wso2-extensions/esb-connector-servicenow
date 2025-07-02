@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Servicenow API Delete Record by ID Operation Response Schema",
+  "description": "Schema representing the output of the delete record by id operation in ServiceNow API",
+  "properties": {
+    "payload": {
+      "description": "Response for the `deleteRecordById` method.",
+      "properties": {}
+    },
+    "attributes": {
+      "description": "Metadata about the operation.",
+      "properties": {
+        "statusCode": {
+          "description": "HTTP status code of the API response."
+        }
+      }
+    },
+    "headers": {
+      "description": "HTTP headers of the API response.",
+      "properties": {}
+    }
+  }
+}

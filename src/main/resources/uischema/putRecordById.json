@@ -1,0 +1,223 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "putRecordById",
+  "title": "Update Record by sys_id (PUT)",
+  "help": "Fully update a record in a ServiceNow table using its sys_id. You can send predefined and custom fields using this operation.",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": ["SERVICENOW"],
+              "defaultType": "connection.SERVICENOW",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection configuration to access the ServiceNow instance."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Record Identification",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tableName",
+              "displayName": "Table Name",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "Name of the table where the record exists (e.g., incident)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysId",
+              "displayName": "Record sys_id",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "The unique sys_id of the record to be fully updated."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Payload Fields",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "number",
+              "displayName": "Number",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Value for the 'number' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "shortDescription",
+              "displayName": "Short Description",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Value for the 'short_description' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "active",
+              "displayName": "Active",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Boolean value to set the 'active' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "approval",
+              "displayName": "Approval",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Approval status of the record."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "category",
+              "displayName": "Category",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Category field value."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "contactType",
+              "displayName": "Contact Type",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Contact type field value."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "apiColumns",
+              "displayName": "Additional Fields (JSON)",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Additional key-value fields as JSON object to include in the update."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Query Parameters",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmDisplayValue",
+              "displayName": "Display Value",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Whether to show reference and choice fields as display values."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmFields",
+              "displayName": "Fields to Return",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to include in the response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmView",
+              "displayName": "UI View",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "View to determine which fields are returned."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmExcludeReferenceLink",
+              "displayName": "Exclude Reference Link",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Exclude reference link metadata from response (true/false)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmInputDisplayValue",
+              "displayName": "Input Display Value",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Send display values instead of sys_ids when inserting/updating reference fields."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Output",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "responseVariable",
+              "displayName": "Output Variable Name",
+              "inputType": "string",
+              "deriveResponseVariable": "true",
+              "required": "true",
+              "helpTip": "Name of the variable to store the ServiceNow response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "overwriteBody",
+              "displayName": "Overwrite Message Body",
+              "inputType": "checkbox",
+              "defaultValue": "false",
+              "required": "false",
+              "helpTip": "If checked, replaces the message body with the API response."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "aggregateStats",
+  "title": "Get Aggregate Stats",
+  "help": "Retrieves aggregated metrics (e.g., count, avg, sum) from a ServiceNow table using the Aggregate API.",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": ["SERVICENOW"],
+              "defaultType": "connection.SERVICENOW",
+              "required": "true",
+              "helpTip": "Connection to the ServiceNow instance."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tableName",
+              "displayName": "Table Name",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "The name of the table on which to perform aggregation."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Aggregate Function (Choose One Only)",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmAvgFields",
+              "displayName": "Average Fields",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to calculate average. Use only one aggregation type per call."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmSumFields",
+              "displayName": "Sum Fields",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to calculate sum. Use only one aggregation type per call."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmMinFields",
+              "displayName": "Minimum Fields",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to calculate minimum. Use only one aggregation type per call."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmMaxFields",
+              "displayName": "Maximum Fields",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to calculate maximum. Use only one aggregation type per call."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmHaving",
+              "displayName": "Having Clause",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Aggregate filtering clause. Format: aggregate^field^operator^value (e.g., sum^price^GREATERTHAN^100). Cannot be used with other aggregate fields."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Query Filters (Choose One Only)",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmQuery",
+              "displayName": "Encoded Query",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Encoded query (e.g., active=true^priority=1). Do not use if name-value pairs are set."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "customFilters",
+              "displayName": "Name-Value Filters",
+              "inputType": "map",
+              "required": "false",
+              "helpTip": "Optional key-value filters (e.g., priority:1, active:true). Do not use if sysparm_query is set."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Sorting and Grouping",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmGroupBy",
+              "displayName": "Group By Field",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Field to group the result by. Only one field allowed."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmOrderBy",
+              "displayName": "Order By Field",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Field to order the result. Prefix with '-' for descending (e.g., -priority)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmCount",
+              "displayName": "Return Record Count",
+              "inputType": "stringOrExpression",
+              "defaultValue": "true",
+              "required": "false",
+              "helpTip": "Set to true to return the count of records."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Output",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "responseVariable",
+              "displayName": "Output Variable Name",
+              "inputType": "string",
+              "deriveResponseVariable": "true",
+              "required": "true",
+              "helpTip": "Variable name to store the API response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "overwriteBody",
+              "displayName": "Overwrite Message Body",
+              "inputType": "checkbox",
+              "defaultValue": "false",
+              "required": "false",
+              "helpTip": "Replace the current message body with the API response."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

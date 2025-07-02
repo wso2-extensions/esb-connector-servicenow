@@ -1,0 +1,165 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "postRecordStagingTable",
+  "title": "Insert Record into Staging Table",
+  "help": "Insert a new record into a ServiceNow import (staging) table with predefined and dynamic fields.",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": ["SERVICENOW"],
+              "defaultType": "connection.SERVICENOW",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection configuration used to access the ServiceNow instance."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Staging Table",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tableNameStaging",
+              "displayName": "Staging Table Name",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "The name of the import table in ServiceNow where the record will be inserted."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Record Fields",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "serialNumber",
+              "displayName": "Serial Number",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Value for the 'serial_number' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "cpuCount",
+              "displayName": "CPU Count",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Value for the 'cpu_count' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "manufacturer",
+              "displayName": "Manufacturer",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Value for the 'manufacturer' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "name",
+              "displayName": "Name",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Value for the 'name' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "operatingSystem",
+              "displayName": "Operating System",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Value for the 'operating_system' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "diskSpace",
+              "displayName": "Disk Space",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Value for the 'disk_space' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "ram",
+              "displayName": "RAM",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Value for the 'ram' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "apiColumns",
+              "displayName": "Additional Fields (JSON)",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Additional key-value fields to be added dynamically as a JSON object."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Output",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "responseVariable",
+              "displayName": "Output Variable Name",
+              "inputType": "string",
+              "deriveResponseVariable": "true",
+              "required": "true",
+              "helpTip": "Name of the variable to store the API response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "overwriteBody",
+              "displayName": "Overwrite Message Body",
+              "inputType": "checkbox",
+              "defaultValue": "false",
+              "required": "false",
+              "helpTip": "If checked, the response will replace the message body."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

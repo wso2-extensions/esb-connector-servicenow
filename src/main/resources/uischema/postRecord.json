@@ -1,0 +1,213 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "postRecord",
+  "title": "Create Record in Table",
+  "help": "Insert a new record into a ServiceNow table with optional query and payload fields.",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": ["SERVICENOW"],
+              "defaultType": "connection.SERVICENOW",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection configuration to access the ServiceNow instance."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Table Information",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tableName",
+              "displayName": "Table Name",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "Name of the ServiceNow table (e.g., incident, change_request)."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Payload Fields",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "number",
+              "displayName": "Number",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "The value for the 'number' field in the record."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "shortDescription",
+              "displayName": "Short Description",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "The value for the 'short_description' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "active",
+              "displayName": "Active",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "The value for the 'active' field (true/false)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "approval",
+              "displayName": "Approval",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "The value for the 'approval' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "category",
+              "displayName": "Category",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "The value for the 'category' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "contactType",
+              "displayName": "Contact Type",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "The value for the 'contact_type' field."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "apiColumns",
+              "displayName": "Additional Fields",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "A JSON object of additional fields to be added to the request payload."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Query Parameters",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmDisplayValue",
+              "displayName": "Display Value",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Specifies how reference and choice fields are displayed."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmFields",
+              "displayName": "Fields to Return",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to return in the response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmView",
+              "displayName": "UI View",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "UI view used to determine the returned fields."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmExcludeReferenceLink",
+              "displayName": "Exclude Reference Link",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Exclude reference link details from reference fields."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmInputDisplayValue",
+              "displayName": "Input Display Value",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Indicates if display values should be used for input."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Output",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "responseVariable",
+              "displayName": "Output Variable Name",
+              "inputType": "string",
+              "deriveResponseVariable": "true",
+              "required": "true",
+              "helpTip": "Variable name to store the API response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "overwriteBody",
+              "displayName": "Overwrite Message Body",
+              "inputType": "checkbox",
+              "defaultValue": "false",
+              "required": "false",
+              "helpTip": "Overwrite the message body with the response from the API call."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "deleteRecordById",
+  "title": "Delete Record by sys_id",
+  "help": "Delete a record from a specified ServiceNow table using its unique sys_id.",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": ["SERVICENOW"],
+              "defaultType": "connection.SERVICENOW",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection configuration to connect to the ServiceNow instance."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Input",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tableName",
+              "displayName": "Table Name",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "Name of the ServiceNow table from which the record will be deleted (e.g., incident)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysId",
+              "displayName": "Record sys_id",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "Unique sys_id of the record to be deleted."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Output",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "responseVariable",
+              "displayName": "Output Variable Name",
+              "inputType": "string",
+              "deriveResponseVariable": "true",
+              "required": "true",
+              "helpTip": "Variable name to capture the deletion response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "overwriteBody",
+              "displayName": "Overwrite Message Body",
+              "inputType": "checkbox",
+              "defaultValue": "false",
+              "required": "false",
+              "helpTip": "If checked, the response will replace the current message body."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

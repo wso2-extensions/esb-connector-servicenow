@@ -1,0 +1,77 @@
+{
+  "connectorName": "servicenow",
+  "connectionName": "SERVICENOW",
+  "title": "ServiceNow Connection",
+  "help": "<h1>ServiceNow Connection</h1><p>Use this connection to integrate with ServiceNow services.</p>",
+  "testConnectionEnabled": false,
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "SERVICE_NOW_CONNECTION_1",
+        "required": "false",
+        "helpTip": "The unique name of the connection to ServiceNow."
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "username",
+                    "displayName": "Username",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Username used to log in to Jira."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "password",
+                    "displayName": "Password",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Password used to log in to Jira."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "API Details",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "serviceNowInstanceURL",
+                    "displayName": "API URL",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "URI of the serviceNow instance, e.g., https://<site-url>/"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

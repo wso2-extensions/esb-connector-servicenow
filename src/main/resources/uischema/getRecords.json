@@ -1,0 +1,175 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "getRecords",
+  "title": "Get Records from Table",
+  "help": "Retrieve multiple records from a ServiceNow table using filters, views, and pagination settings.",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": ["SERVICENOW"],
+              "defaultType": "connection.SERVICENOW",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection configuration for accessing the ServiceNow instance."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Input",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tableName",
+              "displayName": "Table Name",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "The name of the ServiceNow table to query (e.g., incident, cmdb_ci)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmQuery",
+              "displayName": "Encoded Query",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Encoded query string to filter results (e.g., active=true^priority=1)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "KeyValuePairs",
+              "displayName": "Name-Value Filters",
+              "inputType": "map",
+              "required": "false",
+              "helpTip": "Optional field-level filters as key-value pairs (e.g., priority:1, active:true)."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Query Parameters",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmDisplayValue",
+              "displayName": "Display Value",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Format reference and choice fields as display values (true/false/all)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmFields",
+              "displayName": "Fields to Return",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to include in the response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmView",
+              "displayName": "UI View",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "UI view to use for determining which fields to return."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmLimit",
+              "displayName": "Record Limit",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Maximum number of records to retrieve (default is 10,000)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmOffset",
+              "displayName": "Record Offset",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Number of records to skip before returning results."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmExcludeReferenceLink",
+              "displayName": "Exclude Reference Link",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Exclude reference link details from the response (true/false)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmReadReplicaCategory",
+              "displayName": "Read Replica Category",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Category to route the read request to a read-replica node."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Output",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "responseVariable",
+              "displayName": "Output Variable Name",
+              "inputType": "string",
+              "deriveResponseVariable": "true",
+              "required": "true",
+              "helpTip": "Name of the variable to assign the API response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "overwriteBody",
+              "displayName": "Overwrite Message Body",
+              "inputType": "checkbox",
+              "defaultValue": "false",
+              "required": "false",
+              "helpTip": "If selected, replaces the message body with the API response."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
