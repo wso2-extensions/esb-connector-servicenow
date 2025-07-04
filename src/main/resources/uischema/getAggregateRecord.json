@@ -1,6 +1,6 @@
 {
   "connectorName": "servicenow",
-  "operationName": "aggregateStats",
+  "operationName": "getAggregateRecord",
   "title": "Get Aggregate Stats",
   "help": "Retrieves aggregated metrics (e.g., count, avg, sum) from a ServiceNow table using the Aggregate API.",
   "elements": [
@@ -37,7 +37,7 @@
     {
       "type": "attributeGroup",
       "value": {
-        "groupName": "Aggregate Function (Choose One Only)",
+        "groupName": "Query parameters",
         "elements": [
           {
             "type": "attribute",
@@ -82,76 +82,9 @@
           {
             "type": "attribute",
             "value": {
-              "name": "sysparmHaving",
-              "displayName": "Having Clause",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Aggregate filtering clause. Format: aggregate^field^operator^value (e.g., sum^price^GREATERTHAN^100). Cannot be used with other aggregate fields."
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "attributeGroup",
-      "value": {
-        "groupName": "Query Filters (Choose One Only)",
-        "elements": [
-          {
-            "type": "attribute",
-            "value": {
-              "name": "sysparmQuery",
-              "displayName": "Encoded Query",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Encoded query (e.g., active=true^priority=1). Do not use if name-value pairs are set."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "customFilters",
-              "displayName": "Name-Value Filters",
-              "inputType": "map",
-              "required": "false",
-              "helpTip": "Optional key-value filters (e.g., priority:1, active:true). Do not use if sysparm_query is set."
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "attributeGroup",
-      "value": {
-        "groupName": "Sorting and Grouping",
-        "elements": [
-          {
-            "type": "attribute",
-            "value": {
-              "name": "sysparmGroupBy",
-              "displayName": "Group By Field",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Field to group the result by. Only one field allowed."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "sysparmOrderBy",
-              "displayName": "Order By Field",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Field to order the result. Prefix with '-' for descending (e.g., -priority)."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
               "name": "sysparmCount",
               "displayName": "Return Record Count",
               "inputType": "stringOrExpression",
-              "defaultValue": "true",
               "required": "false",
               "helpTip": "Set to true to return the count of records."
             }

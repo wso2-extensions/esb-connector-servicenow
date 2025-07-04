@@ -73,9 +73,9 @@
             "value": {
               "name": "active",
               "displayName": "Active",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
               "required": "false",
-              "helpTip": "The value for the 'active' field (true/false)."
+              "helpTip": "The value for the 'active' field."
             }
           },
           {
@@ -112,10 +112,10 @@
             "type": "attribute",
             "value": {
               "name": "apiColumns",
-              "displayName": "Additional Fields",
+              "displayName": "API Columns",
               "inputType": "stringOrExpression",
               "required": "false",
-              "helpTip": "A JSON object of additional fields to be added to the request payload."
+              "helpTip": "The attribute values of your table in your instance."
             }
           }
         ]
@@ -131,8 +131,9 @@
             "value": {
               "name": "sysparmDisplayValue",
               "displayName": "Display Value",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
               "required": "false",
+              "defaultValue": "false",
               "helpTip": "Specifies how reference and choice fields are displayed."
             }
           },
@@ -161,8 +162,9 @@
             "value": {
               "name": "sysparmExcludeReferenceLink",
               "displayName": "Exclude Reference Link",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
               "required": "false",
+              "defaultValue": "false",
               "helpTip": "Exclude reference link details from reference fields."
             }
           },
@@ -171,7 +173,8 @@
             "value": {
               "name": "sysparmInputDisplayValue",
               "displayName": "Input Display Value",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
+              "defaultValue": "false",
               "required": "false",
               "helpTip": "Indicates if display values should be used for input."
             }

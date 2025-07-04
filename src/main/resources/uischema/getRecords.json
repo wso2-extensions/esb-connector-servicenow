@@ -39,26 +39,6 @@
               "required": "true",
               "helpTip": "The name of the ServiceNow table to query (e.g., incident, cmdb_ci)."
             }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "sysparmQuery",
-              "displayName": "Encoded Query",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Encoded query string to filter results (e.g., active=true^priority=1)."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "KeyValuePairs",
-              "displayName": "Name-Value Filters",
-              "inputType": "map",
-              "required": "false",
-              "helpTip": "Optional field-level filters as key-value pairs (e.g., priority:1, active:true)."
-            }
           }
         ]
       }
@@ -71,9 +51,20 @@
           {
             "type": "attribute",
             "value": {
+              "name": "sysparmQuery",
+              "displayName": "Query",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Encoded query string to filter results (e.g., active=true^priority=1)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
               "name": "sysparmDisplayValue",
               "displayName": "Display Value",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
+              "defaultValue": "false",
               "required": "false",
               "helpTip": "Format reference and choice fields as display values (true/false/all)."
             }
@@ -105,6 +96,7 @@
               "displayName": "Record Limit",
               "inputType": "stringOrExpression",
               "required": "false",
+              "defaultValue": "20",
               "helpTip": "Maximum number of records to retrieve (default is 10,000)."
             }
           },
@@ -115,6 +107,7 @@
               "displayName": "Record Offset",
               "inputType": "stringOrExpression",
               "required": "false",
+                "defaultValue": "0",
               "helpTip": "Number of records to skip before returning results."
             }
           },
@@ -123,8 +116,9 @@
             "value": {
               "name": "sysparmExcludeReferenceLink",
               "displayName": "Exclude Reference Link",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
               "required": "false",
+              "defaultValue": "false",
               "helpTip": "Exclude reference link details from the response (true/false)."
             }
           },
@@ -136,6 +130,15 @@
               "inputType": "stringOrExpression",
               "required": "false",
               "helpTip": "Category to route the read request to a read-replica node."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "keyValuePairs",
+              "displayName": "Key-Value Pairs",
+              "inputType": "stringOrExpression",
+              "helpTip": "Alternative query syntax: field1=value1,field2=value2."
             }
           }
         ]

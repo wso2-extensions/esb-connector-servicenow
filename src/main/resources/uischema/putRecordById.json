@@ -83,7 +83,7 @@
             "value": {
               "name": "active",
               "displayName": "Active",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
               "required": "false",
               "helpTip": "Boolean value to set the 'active' field."
             }
@@ -141,7 +141,8 @@
             "value": {
               "name": "sysparmDisplayValue",
               "displayName": "Display Value",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
+              "defaultValue": "false",
               "required": "false",
               "helpTip": "Whether to show reference and choice fields as display values."
             }
@@ -181,7 +182,8 @@
             "value": {
               "name": "sysparmInputDisplayValue",
               "displayName": "Input Display Value",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
+              "defaultValue": "false",
               "required": "false",
               "helpTip": "Send display values instead of sys_ids when inserting/updating reference fields."
             }

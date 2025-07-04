@@ -39,94 +39,16 @@
               "required": "true",
               "helpTip": "The name of the import table in ServiceNow where the record will be inserted."
             }
-          }
-        ]
-      }
-    },
-    {
-      "type": "attributeGroup",
-      "value": {
-        "groupName": "Record Fields",
-        "elements": [
-          {
-            "type": "attribute",
-            "value": {
-              "name": "serialNumber",
-              "displayName": "Serial Number",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Value for the 'serial_number' field."
-            }
           },
           {
-            "type": "attribute",
-            "value": {
-              "name": "cpuCount",
-              "displayName": "CPU Count",
+              "type": "attribute",
+              "value": {
+              "name": "fields",
+              "displayName": "Fields to Insert",
               "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Value for the 'cpu_count' field."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "manufacturer",
-              "displayName": "Manufacturer",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Value for the 'manufacturer' field."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "name",
-              "displayName": "Name",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Value for the 'name' field."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "operatingSystem",
-              "displayName": "Operating System",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Value for the 'operating_system' field."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "diskSpace",
-              "displayName": "Disk Space",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Value for the 'disk_space' field."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "ram",
-              "displayName": "RAM",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Value for the 'ram' field."
-            }
-          },
-          {
-            "type": "attribute",
-            "value": {
-              "name": "apiColumns",
-              "displayName": "Additional Fields (JSON)",
-              "inputType": "stringOrExpression",
-              "required": "false",
-              "helpTip": "Additional key-value fields to be added dynamically as a JSON object."
-            }
+              "required": "true",
+              "helpTip": "JSON object containing field names and values to insert into the staging table. Example: \"{\"field1\": \"value1\", \"field2\": \"value2\"}\""
+              }
           }
         ]
       }

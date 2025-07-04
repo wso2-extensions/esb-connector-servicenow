@@ -63,7 +63,8 @@
             "value": {
               "name": "sysparmDisplayValue",
               "displayName": "Display Value",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
+              "defaultValue": "false",
               "required": "false",
               "helpTip": "Show reference and choice fields as display values (true/false/all)."
             }
@@ -93,7 +94,8 @@
             "value": {
               "name": "sysparmExcludeReferenceLink",
               "displayName": "Exclude Reference Link",
-              "inputType": "stringOrExpression",
+              "inputType": "booleanOrExpression",
+              "defaultValue": "false",
               "required": "false",
               "helpTip": "Exclude reference link attributes in the response (true/false)."
             }

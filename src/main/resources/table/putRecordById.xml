@@ -20,7 +20,7 @@
 <template name="putRecordById" xmlns="http://ws.apache.org/ns/synapse">
     <!--Required Parameters-->
     <parameter name="tableName" description="Specify the table which you are going to put record."/>
-    <parameter name="sysId" description="System Id which is different for every raw."/>
+    <parameter name="sysId" description="System Id of the record to update."/>
     <!-- supported parameters -->
     <parameter name="sysparmDisplayValue" description="Data retrieval operation for reference and choice fields."/>
     <parameter name="sysparmFields" description="Comma-separated field names to return in the response."/>
