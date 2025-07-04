@@ -20,32 +20,32 @@
 <component name="table" type="synapse/template">
     <subComponents>
         <component name="getRecords">
-            <displayName>Get Records</displayName>
+            <displayName>Fetch Records</displayName>
             <file>getRecords.xml</file>
             <description>Retrieves set of records from table.</description>
         </component>
         <component name="getRecordById">
-            <displayName>Get Record by Id</displayName>
+            <displayName>Fetch Record by ID</displayName>
             <file>getRecordById.xml</file>
             <description>Retrieves record according to the system ID from table.</description>
         </component>
         <component name="postRecord">
-            <displayName>Insert Record</displayName>
+            <displayName>Insert Record into Table</displayName>
             <file>postRecord.xml</file>
             <description>Insert a record into a table.</description>
         </component>
         <component name="patchRecordById">
-            <displayName>Update Specified Record</displayName>
+            <displayName>Update Record by ID</displayName>
             <file>patchRecordById.xml</file>
             <description>Patch a record from table by specifying system ID.</description>
         </component>
         <component name="deleteRecordById">
-            <displayName>Delete Record by Id</displayName>
+            <displayName>Delete Record by ID</displayName>
             <file>deleteRecordById.xml</file>
             <description>Delete a record from table by specifying system ID.</description>
         </component>
         <component name="putRecordById">
-            <displayName>Update Specified Record with the Request Body</displayName>
+            <displayName>Update Record by ID</displayName>
             <file>putRecordById.xml</file>
             <description>Put a record to table by specifying system ID.</description>
         </component>
