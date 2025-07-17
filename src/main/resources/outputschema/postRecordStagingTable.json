@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Servicenow API Post Record Staging Table Operation Response Schema",
+  "description": "Schema representing the output of the post record staging table operation in ServiceNow API",
+  "properties": {
+    "payload": {
+      "description": "Response for the `postRecordStagingTable` method.",
+      "properties": {
+        "import_set": {
+          "description": "The import set table name.",
+          "type": "string"
+        },
+        "staging_table": {
+          "description": "The staging table name.",
+          "type": "string"
+        },
+        "result": {
+          "description": "The result of the aggregate operation.",
+          "type": "array"
+        }
+      }
+    },
+    "attributes": {
+      "description": "Metadata about the operation.",
+      "properties": {
+        "statusCode": {
+          "description": "HTTP status code of the API response."
+        }
+      }
+    },
+    "headers": {
+      "description": "HTTP headers of the API response.",
+      "properties": {}
+    }
+  }
+}
