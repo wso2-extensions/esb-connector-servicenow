@@ -204,7 +204,7 @@
               "inputType": "string",
               "deriveResponseVariable": "true",
               "required": "true",
-              "helpTip": "Variable to hold the response returned by ServiceNow after patching."
+              "helpTip": "Name of the variable to which the output of the operation should be assigned"
             }
           },
           {
@@ -214,8 +214,8 @@
               "displayName": "Overwrite Message Body",
               "inputType": "checkbox",
               "defaultValue": "false",
-              "required": "false",
-              "helpTip": "If checked, replaces the message body with the response from the API."
+              "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+              "required": "false"
             }
           }
         ]

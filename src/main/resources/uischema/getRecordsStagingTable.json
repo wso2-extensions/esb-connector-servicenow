@@ -68,7 +68,7 @@
               "inputType": "string",
               "deriveResponseVariable": "true",
               "required": "true",
-              "helpTip": "Name of the variable that will hold the HTTP response payload."
+              "helpTip": "Name of the variable to which the output of the operation should be assigned"
             }
           },
           {
@@ -78,7 +78,7 @@
               "displayName": "Overwrite Message Body",
               "inputType": "checkbox",
               "defaultValue": "false",
-              "helpTip": "Replace the current message body with the operation response (clearing the variable above).",
+              "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
               "required": "false"
             }
           }

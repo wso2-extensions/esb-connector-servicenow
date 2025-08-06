@@ -53,7 +53,7 @@
         ]
       }
     },
-    {
+    {{
       "type": "attributeGroup",
       "value": {
         "groupName": "Output",
@@ -66,7 +66,7 @@
               "inputType": "string",
               "deriveResponseVariable": "true",
               "required": "true",
-              "helpTip": "Variable name to capture the deletion response."
+              "helpTip": "Name of the variable to which the output of the operation should be assigned"
             }
           },
           {
@@ -76,8 +76,8 @@
               "displayName": "Overwrite Message Body",
               "inputType": "checkbox",
               "defaultValue": "false",
-              "required": "false",
-              "helpTip": "If checked, the response will replace the current message body."
+              "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+              "required": "false"
             }
           }
         ]

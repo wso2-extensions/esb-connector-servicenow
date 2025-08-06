@@ -20,14 +20,14 @@
 <component name="importSet" type="synapse/template">
     <subComponents>
         <component name="postRecordStagingTable">
-            <displayName>Insert a Record into the Staging Table</displayName>
+            <displayName>Insert Record</displayName>
             <file>postRecordStagingTable.xml</file>
             <description>This method inserts incoming data into a specified staging table and triggers transformation
                 based on predefined transform maps in the import set table.
             </description>
         </component>
         <component name="getRecordsStagingTable">
-            <displayName>Get Records from Staging Table</displayName>
+            <displayName>Get Records</displayName>
             <file>getRecordsStagingTable.xml</file>
             <description>This method retrieves the associated record and resulting transformation result.</description>
         </component>

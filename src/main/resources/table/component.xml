@@ -25,27 +25,27 @@
             <description>Retrieves set of records from table.</description>
         </component>
         <component name="getRecordById">
-            <displayName>Fetch Record by ID</displayName>
+            <displayName>Fetch Record</displayName>
             <file>getRecordById.xml</file>
             <description>Retrieves record according to the system ID from table.</description>
         </component>
         <component name="postRecord">
-            <displayName>Insert Record into Table</displayName>
+            <displayName>Insert Record</displayName>
             <file>postRecord.xml</file>
             <description>Insert a record into a table.</description>
         </component>
         <component name="patchRecordById">
-            <displayName>Update Record by ID</displayName>
+            <displayName>Update Record</displayName>
             <file>patchRecordById.xml</file>
             <description>Patch a record from table by specifying system ID.</description>
         </component>
         <component name="deleteRecordById">
-            <displayName>Delete Record by ID</displayName>
+            <displayName>Delete Record</displayName>
             <file>deleteRecordById.xml</file>
             <description>Delete a record from table by specifying system ID.</description>
         </component>
         <component name="putRecordById">
-            <displayName>Update Record by ID</displayName>
+            <displayName>Update Record</displayName>
             <file>putRecordById.xml</file>
             <description>Put a record to table by specifying system ID.</description>
         </component>
