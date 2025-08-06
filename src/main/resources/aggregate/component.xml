@@ -20,7 +20,7 @@
 <component name="aggregate" type="synapse/template">
     <subComponents>
         <component name="getAggregateRecord">
-            <displayName>Retrieve Aggregated Records</displayName>
+            <displayName>Retrieve Records</displayName>
             <file>getAggregateRecord.xml</file>
             <description>Allow to compute aggregate statistics about existing table and column data.</description>
         </component>
