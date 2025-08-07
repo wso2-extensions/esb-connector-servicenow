@@ -17,7 +17,7 @@
 ~ under the License.
 -->
 
-<component name="table" type="synapse/template">
+<component name="table" type="synapse/template" displayName="Table">
     <subComponents>
         <component name="getRecords">
             <displayName>Fetch Records</displayName>

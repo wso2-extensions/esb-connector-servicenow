@@ -17,7 +17,7 @@
 ~ under the License.
 -->
 
-<component name="aggregate" type="synapse/template">
+<component name="aggregate" type="synapse/template" displayName="Aggregate">
     <subComponents>
         <component name="getAggregateRecord">
             <displayName>Retrieve Records</displayName>

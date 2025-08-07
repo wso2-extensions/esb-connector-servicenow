@@ -17,7 +17,7 @@
 ~ under the License.
 -->
 
-<component name="importSet" type="synapse/template">
+<component name="importSet" type="synapse/template" displayName="ImportSet">
     <subComponents>
         <component name="postRecordStagingTable">
             <displayName>Insert Record</displayName>
