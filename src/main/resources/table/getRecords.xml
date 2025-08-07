@@ -25,12 +25,12 @@
                description="An encoded query. The encoded query provides support for order by and filter out records."/>
     <parameter name="sysparmDisplayValue" description="Data retrieval operation for reference and choice fields."/>
     <parameter name="sysparmFields" description="Comma-separated field names to return in the response."/>
-    <parameter name="sysparmView" description="UI view to determine fields returned in the response. "/>
+    <parameter name="sysparmView" description="UI view to determine fields returned in the response."/>
     <parameter name="sysparmLimit" description="Limit to be applied on pagination. The default is 10000."/>
     <parameter name="sysparmOffset" description="A number of records to skip before returning records."/>
     <parameter name="sysparmExcludeReferenceLink" description="Additional information provided for reference fields."/>
     <parameter name="sysparmReadReplicaCategory" description="The category value to read data from read replicas."/>
-    <parameter name="KeyValuePairs"
+    <parameter name="keyValuePairs"
                description="Can filter a query using key-value pairs where the key is the name of a field."/>
     <sequence>
         <property name="uri.var.tableName" expression="$func:tableName"/>
@@ -42,7 +42,7 @@
         <property name="uri.var.sysparmOffset" expression="$func:sysparmOffset"/>
         <property name="uri.var.sysparmExcludeReferenceLink" expression="$func:sysparmExcludeReferenceLink"/>
         <property name="uri.var.sysparmReadReplicaCategory" expression="$func:sysparmReadReplicaCategory"/>
-        <property name="uri.var.KeyValuePairs" expression="$func:KeyValuePairs"/>
+        <property name="uri.var.keyValuePairs" expression="$func:keyValuePairs"/>
         <property name="uri.var.apiParameters" value=""/>
         <filter xpath="(not($ctx:uri.var.sysparmQuery = '' or (not(string($ctx:uri.var.sysparmQuery)))))">
             <then>
@@ -92,10 +92,10 @@
                           expression="fn:concat($ctx:uri.var.apiParameters, 'sysparm_read_replica_category=', $ctx:uri.var.sysparmReadReplicaCategory, '&amp;')"/>
             </then>
         </filter>
-        <filter xpath="(not($ctx:uri.var.KeyValuePairs = '' or (not(string($ctx:uri.var.KeyValuePairs)))))">
+        <filter xpath="(not($ctx:uri.var.keyValuePairs = '' or (not(string($ctx:uri.var.keyValuePairs)))))">
             <then>
                 <property name="uri.var.apiParameters"
-                          expression="fn:concat($ctx:uri.var.apiParameters, $ctx:uri.var.KeyValuePairs, '&amp;')"/>
+                          expression="fn:concat($ctx:uri.var.apiParameters, $ctx:uri.var.keyValuePairs, '&amp;')"/>
             </then>
         </filter>
         <call>

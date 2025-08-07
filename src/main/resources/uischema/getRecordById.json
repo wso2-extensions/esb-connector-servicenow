@@ -1,0 +1,137 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "getRecordById",
+  "title": "Get Record by sys_id",
+  "help": "Retrieve a single record from a ServiceNow table using its unique sys_id.",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": ["SERVICENOW"],
+              "defaultType": "connection.SERVICENOW",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection configuration for accessing the ServiceNow instance."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Input",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tableName",
+              "displayName": "Table Name",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "Name of the ServiceNow table from which to fetch the record."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysId",
+              "displayName": "Record sys_id",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "Unique sys_id of the record you want to retrieve."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Query Parameters",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmDisplayValue",
+              "displayName": "Display Value",
+              "inputType": "booleanOrExpression",
+              "defaultValue": "false",
+              "required": "false",
+              "helpTip": "Show reference and choice fields as display values (true/false/all)."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmFields",
+              "displayName": "Fields to Return",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of field names to include in the response."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmView",
+              "displayName": "UI View",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Name of the UI view used to determine the response fields."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmExcludeReferenceLink",
+              "displayName": "Exclude Reference Link",
+              "inputType": "booleanOrExpression",
+              "defaultValue": "false",
+              "required": "false",
+              "helpTip": "Exclude reference link attributes in the response (true/false)."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Output",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "responseVariable",
+              "displayName": "Output Variable Name",
+              "inputType": "string",
+              "deriveResponseVariable": "true",
+              "required": "true",
+              "helpTip": "Name of the variable to which the output of the operation should be assigned"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "overwriteBody",
+              "displayName": "Overwrite Message Body",
+              "inputType": "checkbox",
+              "defaultValue": "false",
+              "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+              "required": "false"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

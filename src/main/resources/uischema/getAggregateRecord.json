@@ -1,0 +1,126 @@
+{
+  "connectorName": "servicenow",
+  "operationName": "getAggregateRecord",
+  "title": "Get Aggregate Stats",
+  "help": "Retrieves aggregated metrics (e.g., count, avg, sum) from a ServiceNow table using the Aggregate API.",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "ServiceNow Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": ["SERVICENOW"],
+              "defaultType": "connection.SERVICENOW",
+              "required": "true",
+              "helpTip": "Connection to the ServiceNow instance."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "tableName",
+              "displayName": "Table Name",
+              "inputType": "stringOrExpression",
+              "required": "true",
+              "helpTip": "The name of the table on which to perform aggregation."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Query parameters",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmAvgFields",
+              "displayName": "Average Fields",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to calculate average. Use only one aggregation type per call."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmSumFields",
+              "displayName": "Sum Fields",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to calculate sum. Use only one aggregation type per call."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmMinFields",
+              "displayName": "Minimum Fields",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to calculate minimum. Use only one aggregation type per call."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmMaxFields",
+              "displayName": "Maximum Fields",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Comma-separated list of fields to calculate maximum. Use only one aggregation type per call."
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "sysparmCount",
+              "displayName": "Return Record Count",
+              "inputType": "stringOrExpression",
+              "required": "false",
+              "helpTip": "Set to true to return the count of records."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Output",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "responseVariable",
+              "displayName": "Output Variable Name",
+              "inputType": "string",
+              "deriveResponseVariable": "true",
+              "required": "true",
+              "helpTip": "Name of the variable to which the output of the operation should be assigned"
+            }
+          },
+          {
+            "type": "attribute",
+            "value": {
+              "name": "overwriteBody",
+              "displayName": "Overwrite Message Body",
+              "inputType": "checkbox",
+              "defaultValue": "false",
+              "helpTip": "Replace the Message Body in Message Context with the output of the operation (This will remove the payload from the above variable).",
+              "required": "false"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -17,9 +17,10 @@
 ~ under the License.
 -->
 
-<component name="aggregate" type="synapse/template">
+<component name="aggregate" type="synapse/template" displayName="Aggregate">
     <subComponents>
         <component name="getAggregateRecord">
+            <displayName>Retrieve Records</displayName>
             <file>getAggregateRecord.xml</file>
             <description>Allow to compute aggregate statistics about existing table and column data.</description>
         </component>

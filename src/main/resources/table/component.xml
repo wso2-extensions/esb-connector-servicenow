@@ -17,29 +17,35 @@
 ~ under the License.
 -->
 
-<component name="table" type="synapse/template">
+<component name="table" type="synapse/template" displayName="Table">
     <subComponents>
         <component name="getRecords">
+            <displayName>Fetch Records</displayName>
             <file>getRecords.xml</file>
             <description>Retrieves set of records from table.</description>
         </component>
         <component name="getRecordById">
+            <displayName>Fetch Record</displayName>
             <file>getRecordById.xml</file>
             <description>Retrieves record according to the system ID from table.</description>
         </component>
         <component name="postRecord">
+            <displayName>Insert Record</displayName>
             <file>postRecord.xml</file>
             <description>Insert a record into a table.</description>
         </component>
         <component name="patchRecordById">
+            <displayName>Update Record</displayName>
             <file>patchRecordById.xml</file>
             <description>Patch a record from table by specifying system ID.</description>
         </component>
         <component name="deleteRecordById">
+            <displayName>Delete Record</displayName>
             <file>deleteRecordById.xml</file>
             <description>Delete a record from table by specifying system ID.</description>
         </component>
         <component name="putRecordById">
+            <displayName>Update Record</displayName>
             <file>putRecordById.xml</file>
             <description>Put a record to table by specifying system ID.</description>
         </component>

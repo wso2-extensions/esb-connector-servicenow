@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Servicenow API Get Record by Id Operation Response Schema",
+  "description": "Schema representing the output of the get record by id operation in ServiceNow API",
+  "properties": {
+    "payload": {
+      "description": "Response for the `getRecordById` method.",
+      "properties": {
+        "result": {
+          "description": "The result of the aggregate operation.",
+          "type": "object"
+        }
+      }
+    },
+    "attributes": {
+      "description": "Metadata about the operation.",
+      "properties": {
+        "statusCode": {
+          "description": "HTTP status code of the API response."
+        }
+      }
+    },
+    "headers": {
+      "description": "HTTP headers of the API response.",
+      "properties": {}
+    }
+  }
+}

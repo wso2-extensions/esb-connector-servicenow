@@ -22,6 +22,7 @@
         <component name="init">
             <file>init.xml</file>
             <description>Service-Now configuration.</description>
+            <hidden>true</hidden>
         </component>
     </subComponents>
 </component>
